@@ -83,10 +83,10 @@
 #define		InstrumentIDLength	82
 #define		MARKET_PRICE_DEPTH	5
 
-//< error id = "NONE" value = "0" prompt = "ÕıÈ·" / >
-#define		CW_ERRID_NONE 0						//ÕıÈ·
-//< error id = "INSUFFICIENT_MONEY" value = "31" prompt = "×Ê½ğ²»×ã" / >
-#define		CW_ERRID_INSUFFICIENT_MONEY 31		//×Ê½ğ²»×ã
+//< error id = "NONE" value = "0" prompt = "æ­£ç¡®" / >
+#define		CW_ERRID_NONE 0						//æ­£ç¡®
+//< error id = "INSUFFICIENT_MONEY" value = "31" prompt = "èµ„é‡‘ä¸è¶³" / >
+#define		CW_ERRID_INSUFFICIENT_MONEY 31		//èµ„é‡‘ä¸è¶³
 
 enum CW_TE_RESUME_TYPE
 {
@@ -109,85 +109,85 @@ enum cwRangeOpenClose
 #ifdef _MSC_VER
 #pragma region CW_Data_Type_Define
 #endif // _MSC_VER
-///cwFtdcDateTypeÊÇÒ»¸öÈÕÆÚÀàĞÍ
+///cwFtdcDateTypeæ˜¯ä¸€ä¸ªæ—¥æœŸç±»å‹
 typedef char		cwFtdcDateType[9];
-///cwFtdcInstrumentIDTypeÊÇÒ»¸öºÏÔ¼´úÂëÀàĞÍ
+///cwFtdcInstrumentIDTypeæ˜¯ä¸€ä¸ªåˆçº¦ä»£ç ç±»å‹
 typedef char		cwFtdcInstrumentIDType[InstrumentIDLength];
-///cwFtdcProductIDTypeÊÇÒ»¸öºÏÔ¼´úÂëÀàĞÍ
+///cwFtdcProductIDTypeæ˜¯ä¸€ä¸ªåˆçº¦ä»£ç ç±»å‹
 typedef char		cwFtdcProductIDType[InstrumentIDLength];
-///cwFtdcExchangeIDTypeÊÇÒ»¸ö½»Ò×Ëù´úÂëÀàĞÍ
+///cwFtdcExchangeIDTypeæ˜¯ä¸€ä¸ªäº¤æ˜“æ‰€ä»£ç ç±»å‹
 typedef char		cwFtdcExchangeIDType[11];
-///cwFtdcTimeTypeÊÇÒ»¸öÊ±¼äÀàĞÍ
+///cwFtdcTimeTypeæ˜¯ä¸€ä¸ªæ—¶é—´ç±»å‹
 typedef char		cwFtdcTimeType[9];
-///cwFtdcMillisecTypeÊÇÒ»¸öÊ±¼ä£¨ºÁÃë£©ÀàĞÍ
+///cwFtdcMillisecTypeæ˜¯ä¸€ä¸ªæ—¶é—´ï¼ˆæ¯«ç§’ï¼‰ç±»å‹
 typedef uint32_t	cwFtdcMillisecType;
-///cwFtdcPriceTypeÊÇÒ»¸ö¼Û¸ñÀàĞÍ
+///cwFtdcPriceTypeæ˜¯ä¸€ä¸ªä»·æ ¼ç±»å‹
 typedef double		cwFtdcPriceType;
-///cwFtdcVolumeTypeÊÇÒ»¸öÊıÁ¿ÀàĞÍ
+///cwFtdcVolumeTypeæ˜¯ä¸€ä¸ªæ•°é‡ç±»å‹
 typedef int32_t		cwFtdcVolumeType;
-///cwFtdcLargeVolumeTypeÊÇÒ»¸ö´ó¶îÊıÁ¿ÀàĞÍ
+///cwFtdcLargeVolumeTypeæ˜¯ä¸€ä¸ªå¤§é¢æ•°é‡ç±»å‹
 typedef int64_t		cwFtdcLargeVolumeType;
-///cwFtdcAccountIDTypeÊÇÒ»¸öÍ¶×ÊÕßÕÊºÅÀàĞÍ
+///cwFtdcAccountIDTypeæ˜¯ä¸€ä¸ªæŠ•èµ„è€…å¸å·ç±»å‹
 typedef char		cwFtdcAccountIDType[16];
-///cwFtdcMoneyTypeÊÇÒ»¸ö×Ê½ğÀàĞÍ
+///cwFtdcMoneyTypeæ˜¯ä¸€ä¸ªèµ„é‡‘ç±»å‹
 typedef double		cwFtdcMoneyType;
-///cwFtdcInstrumentNameTypeÊÇÒ»¸öºÏÔ¼Ãû³ÆÀàĞÍ
+///cwFtdcInstrumentNameTypeæ˜¯ä¸€ä¸ªåˆçº¦åç§°ç±»å‹
 typedef char		cwFtdcInstrumentNameType[21];
-///cwFtdcYearTypeÊÇÒ»¸öÄê·İÀàĞÍ
+///cwFtdcYearTypeæ˜¯ä¸€ä¸ªå¹´ä»½ç±»å‹
 typedef uint32_t	cwFtdcYearType;
-///cwFtdcMonthTypeÊÇÒ»¸öÔÂ·İÀàĞÍ
+///cwFtdcMonthTypeæ˜¯ä¸€ä¸ªæœˆä»½ç±»å‹
 typedef uint32_t	cwFtdcMonthType;
-///cwFtdcVolumeMultipleTypeÊÇÒ»¸öºÏÔ¼ÊıÁ¿³ËÊıÀàĞÍ
+///cwFtdcVolumeMultipleTypeæ˜¯ä¸€ä¸ªåˆçº¦æ•°é‡ä¹˜æ•°ç±»å‹
 typedef uint32_t	cwFtdcVolumeMultipleType;
-///cwFtdcBoolTypeÊÇÒ»¸ö²¼¶ûĞÍÀàĞÍ
+///cwFtdcBoolTypeæ˜¯ä¸€ä¸ªå¸ƒå°”å‹ç±»å‹
 typedef uint32_t	cwFtdcBoolType;
-///cwFtdcUnderlyingMultipleTypeÊÇÒ»¸ö»ù´¡ÉÌÆ·³ËÊıÀàĞÍ
+///cwFtdcUnderlyingMultipleTypeæ˜¯ä¸€ä¸ªåŸºç¡€å•†å“ä¹˜æ•°ç±»å‹
 typedef double		cwFtdcUnderlyingMultipleType;
-///cwFtdcRatioTypeÊÇÒ»¸ö±ÈÂÊÀàĞÍ
+///cwFtdcRatioTypeæ˜¯ä¸€ä¸ªæ¯”ç‡ç±»å‹
 typedef double		cwFtdcRatioType;
-///cwFtdcBrokerIDTypeÊÇÒ»¸ö¾­¼Í¹«Ë¾´úÂëÀàĞÍ
+///cwFtdcBrokerIDTypeæ˜¯ä¸€ä¸ªç»çºªå…¬å¸ä»£ç ç±»å‹
 typedef char		cwFtdcBrokerIDType[11];
-///cwFtdcInvestorIDTypeÊÇÒ»¸öÍ¶×ÊÕß´úÂëÀàĞÍ
+///cwFtdcInvestorIDTypeæ˜¯ä¸€ä¸ªæŠ•èµ„è€…ä»£ç ç±»å‹
 typedef char		cwFtdcInvestorIDType[19];
-///cwFtdcOrderRefTypeÊÇÒ»¸ö±¨µ¥ÒıÓÃÀàĞÍ
+///cwFtdcOrderRefTypeæ˜¯ä¸€ä¸ªæŠ¥å•å¼•ç”¨ç±»å‹
 typedef char		cwFtdcOrderRefType[23];
-///cwFtdcUserIDTypeÊÇÒ»¸öÓÃ»§´úÂëÀàĞÍ
+///cwFtdcUserIDTypeæ˜¯ä¸€ä¸ªç”¨æˆ·ä»£ç ç±»å‹
 typedef char		cwFtdcUserIDType[16];
-///cwFtdcPasswordTypeÊÇÒ»¸öÃÜÂëÀàĞÍ
+///cwFtdcPasswordTypeæ˜¯ä¸€ä¸ªå¯†ç ç±»å‹
 typedef char		cwFtdcPasswordType[41];
-///cwFtdcCombOffsetFlagTypeÊÇÒ»¸ö×éºÏ¿ªÆ½±êÖ¾ÀàĞÍ
+///cwFtdcCombOffsetFlagTypeæ˜¯ä¸€ä¸ªç»„åˆå¼€å¹³æ ‡å¿—ç±»å‹
 typedef char		cwFtdcCombOffsetFlagType[5];
-///cwFtdcCombHedgeFlagTypeÊÇÒ»¸ö×éºÏÍ¶»úÌ×±£±êÖ¾ÀàĞÍ
+///cwFtdcCombHedgeFlagTypeæ˜¯ä¸€ä¸ªç»„åˆæŠ•æœºå¥—ä¿æ ‡å¿—ç±»å‹
 typedef char		cwFtdcCombHedgeFlagType[5];
-///cwFtdcOrderLocalIDTypeÊÇÒ»¸ö±¾µØ±¨µ¥±àºÅÀàĞÍ
+///cwFtdcOrderLocalIDTypeæ˜¯ä¸€ä¸ªæœ¬åœ°æŠ¥å•ç¼–å·ç±»å‹
 typedef char		cwFtdcOrderLocalIDType[33];
-///cwFtdcClientIDTypeÊÇÒ»¸ö½»Ò×±àÂëÀàĞÍ
+///cwFtdcClientIDTypeæ˜¯ä¸€ä¸ªäº¤æ˜“ç¼–ç ç±»å‹
 typedef char		cwFtdcClientIDType[19];
-///cwFtdcSettlementIDTypeÊÇÒ»¸ö½áËã±àºÅÀàĞÍ
+///cwFtdcSettlementIDTypeæ˜¯ä¸€ä¸ªç»“ç®—ç¼–å·ç±»å‹
 typedef uint32_t	cwFtdcSettlementIDType;
-///cwFtdcOrderSysIDTypeÊÇÒ»¸ö±¨µ¥±àºÅÀàĞÍ
+///cwFtdcOrderSysIDTypeæ˜¯ä¸€ä¸ªæŠ¥å•ç¼–å·ç±»å‹
 typedef char		cwFtdcOrderSysIDType[31];
-///cwFtdcFrontIDTypeÊÇÒ»¸öÇ°ÖÃ±àºÅÀàĞÍ
+///cwFtdcFrontIDTypeæ˜¯ä¸€ä¸ªå‰ç½®ç¼–å·ç±»å‹
 typedef uint32_t	cwFtdcFrontIDType;
-///cwFtdcSessionIDTypeÊÇÒ»¸ö»á»°±àºÅÀàĞÍ
+///cwFtdcSessionIDTypeæ˜¯ä¸€ä¸ªä¼šè¯ç¼–å·ç±»å‹
 typedef uint32_t	cwFtdcSessionIDType;
-///cwFtdcProductInfoTypeÊÇÒ»¸ö²úÆ·ĞÅÏ¢ÀàĞÍ
+///cwFtdcProductInfoTypeæ˜¯ä¸€ä¸ªäº§å“ä¿¡æ¯ç±»å‹
 typedef char		cwFtdcProductInfoType[11];
-///cwFtdcAppIDTypeÊÇÒ»¸öµÇÂ¼Ç°ÈÏÖ¤appidÀàĞÍ
+///cwFtdcAppIDTypeæ˜¯ä¸€ä¸ªç™»å½•å‰è®¤è¯appidç±»å‹
 typedef char		cwFtdcAppIDType[33];
-///cwFtdcErrorMsgTypeÊÇÒ»¸ö´íÎóĞÅÏ¢ÀàĞÍ
+///cwFtdcErrorMsgTypeæ˜¯ä¸€ä¸ªé”™è¯¯ä¿¡æ¯ç±»å‹
 typedef char		cwFtdcErrorMsgType[87];
-///cwFtdcCurrencyIDTypeÊÇÒ»¸ö±ÒÖÖ´úÂëÀàĞÍ
+///cwFtdcCurrencyIDTypeæ˜¯ä¸€ä¸ªå¸ç§ä»£ç ç±»å‹
 typedef char		cwFtdcCurrencyIDType[4];
-///cwFtdcIPAddressTypeÊÇÒ»¸öIPµØÖ·ÀàĞÍ
+///cwFtdcIPAddressTypeæ˜¯ä¸€ä¸ªIPåœ°å€ç±»å‹
 typedef char		cwFtdcIPAddressType[33];
-///cwFtdcMacAddressTypeÊÇÒ»¸öMacµØÖ·ÀàĞÍ
+///cwFtdcMacAddressTypeæ˜¯ä¸€ä¸ªMacåœ°å€ç±»å‹
 typedef char		cwFtdcMacAddressType[21];
-///cwFtdcTradeIDTypeÊÇÒ»¸ö³É½»±àºÅÀàĞÍ
+///cwFtdcTradeIDTypeæ˜¯ä¸€ä¸ªæˆäº¤ç¼–å·ç±»å‹
 typedef char		cwFtdcTradeIDType[21];
-///cwFtdcTraderIDTypeÊÇÒ»¸ö½»Ò×Ëù½»Ò×Ô±´úÂëÀàĞÍ
+///cwFtdcTraderIDTypeæ˜¯ä¸€ä¸ªäº¤æ˜“æ‰€äº¤æ˜“å‘˜ä»£ç ç±»å‹
 typedef char		cwFtdcTraderIDType[21];
-///cwFtdcErrorIDTypeÊÇÒ»¸ö´íÎó´úÂëÀàĞÍ
+///cwFtdcErrorIDTypeæ˜¯ä¸€ä¸ªé”™è¯¯ä»£ç ç±»å‹
 typedef int			cwFtdcErrorIDType;
 
 
@@ -199,306 +199,306 @@ typedef int			cwFtdcErrorIDType;
 #pragma region CW_Data_Type_Enum_Define
 #endif // _MSC_VER
 /////////////////////////////////////////////////////////////////////////
-///cwFtdcProductClassTypeÊÇÒ»¸ö²úÆ·ÀàĞÍÀàĞÍ
+///cwFtdcProductClassTypeæ˜¯ä¸€ä¸ªäº§å“ç±»å‹ç±»å‹
 /////////////////////////////////////////////////////////////////////////
-///Î´Öª
+///æœªçŸ¥
 #define CW_FTDC_PC_UnKnow 'u'
-///ÆÚ»õ
+///æœŸè´§
 #define CW_FTDC_PC_Futures '1'
-///ÆÚ»õÆÚÈ¨
+///æœŸè´§æœŸæƒ
 #define CW_FTDC_PC_Options '2'
-///×éºÏ
+///ç»„åˆ
 #define CW_FTDC_PC_Combination '3'
-///¼´ÆÚ
+///å³æœŸ
 #define CW_FTDC_PC_Spot '4'
-///ÆÚ×ªÏÖ
+///æœŸè½¬ç°
 #define CW_FTDC_PC_EFP '5'
-///ÏÖ»õÆÚÈ¨
+///ç°è´§æœŸæƒ
 #define CW_FTDC_PC_SpotOption '6'
-///TASºÏÔ¼
+///TASåˆçº¦
 #define CW_FTDC_PC_TAS '7'
-///½ğÊôÖ¸Êı
+///é‡‘å±æŒ‡æ•°
 #define CW_FTDC_PC_MI 'I'
-///¹ÉÆ±ÆÚÈ¨
+///è‚¡ç¥¨æœŸæƒ
 #define CW_FTDC_PC_StockOptions '8'
-///½ğ½»ËùÏÖ»õ
+///é‡‘äº¤æ‰€ç°è´§
 #define CW_FTDC_PC_SGE_SPOT '9'
-///Ö¤È¯
+///è¯åˆ¸
 #define CW_FTDC_PC_Stocks '0'
-///½ğ½»ËùµİÑÓ
+///é‡‘äº¤æ‰€é€’å»¶
 #define CW_FTDC_PC_SGE_DEFER 'a'
-///½ğ½»ËùÔ¶ÆÚ
+///é‡‘äº¤æ‰€è¿œæœŸ
 #define CW_FTDC_PC_SGE_FOWARD 'b'
 
 typedef char		cwFtdcProductClassType;
 
 /////////////////////////////////////////////////////////////////////////
-///cwFtdcPositionTypeTypeÊÇÒ»¸ö³Ö²ÖÀàĞÍÀàĞÍ
+///cwFtdcPositionTypeTypeæ˜¯ä¸€ä¸ªæŒä»“ç±»å‹ç±»å‹
 /////////////////////////////////////////////////////////////////////////
-///¾»³Ö²Ö
+///å‡€æŒä»“
 #define CW_FTDC_PT_Net '1'
-///×ÛºÏ³Ö²Ö
+///ç»¼åˆæŒä»“
 #define CW_FTDC_PT_Gross '2'
 
 typedef char cwFtdcPositionTypeType;
 
 /////////////////////////////////////////////////////////////////////////
-///cwFtdcMaxMarginSideAlgorithmTypeÊÇÒ»¸ö´ó¶îµ¥±ß±£Ö¤½ğËã·¨ÀàĞÍ
+///cwFtdcMaxMarginSideAlgorithmTypeæ˜¯ä¸€ä¸ªå¤§é¢å•è¾¹ä¿è¯é‡‘ç®—æ³•ç±»å‹
 /////////////////////////////////////////////////////////////////////////
-///²»Ê¹ÓÃ´ó¶îµ¥±ß±£Ö¤½ğËã·¨
+///ä¸ä½¿ç”¨å¤§é¢å•è¾¹ä¿è¯é‡‘ç®—æ³•
 #define CW_FTDC_MMSA_NO '0'
-///Ê¹ÓÃ´ó¶îµ¥±ß±£Ö¤½ğËã·¨
+///ä½¿ç”¨å¤§é¢å•è¾¹ä¿è¯é‡‘ç®—æ³•
 #define CW_FTDC_MMSA_YES '1'
 
 typedef char cwFtdcMaxMarginSideAlgorithmType;
 
 /////////////////////////////////////////////////////////////////////////
-///cwFtdcOptionsTypeTypeÊÇÒ»¸öÆÚÈ¨ÀàĞÍÀàĞÍ
+///cwFtdcOptionsTypeTypeæ˜¯ä¸€ä¸ªæœŸæƒç±»å‹ç±»å‹
 /////////////////////////////////////////////////////////////////////////
-///¿´ÕÇ
+///çœ‹æ¶¨
 #define CW_FTDC_CP_CallOptions '1'
-///¿´µø
+///çœ‹è·Œ
 #define CW_FTDC_CP_PutOptions '2'
 
 typedef char cwFtdcOptionsTypeType;
 
 /////////////////////////////////////////////////////////////////////////
-///TFtdcCurrencyTypeÊÇÒ»¸ö±ÒÖÖÀàĞÍ
+///TFtdcCurrencyTypeæ˜¯ä¸€ä¸ªå¸ç§ç±»å‹
 /////////////////////////////////////////////////////////////////////////
-///ÈËÃñ±Ò
+///äººæ°‘å¸
 #define CW_FTDC_C_RMB '1'
-///ÃÀÔª
+///ç¾å…ƒ
 #define CW_FTDC_C_UDOLLAR '2'
 
 typedef char cwFtdcCurrencyType;
 
 /////////////////////////////////////////////////////////////////////////
-///cwFtdcDirectionTypeÊÇÒ»¸öÂòÂô·½ÏòÀàĞÍ
+///cwFtdcDirectionTypeæ˜¯ä¸€ä¸ªä¹°å–æ–¹å‘ç±»å‹
 /////////////////////////////////////////////////////////////////////////
-//Âò
+//ä¹°
 #define CW_FTDC_D_Buy '0'
-//Âô
+//å–
 #define CW_FTDC_D_Sell '1'
 
 typedef char cwFtdcDirectionType;
 
 /////////////////////////////////////////////////////////////////////////
-///cwFtdcHedgeFlagTypeÊÇÒ»¸öÍ¶»úÌ×±£±êÖ¾ÀàĞÍ
+///cwFtdcHedgeFlagTypeæ˜¯ä¸€ä¸ªæŠ•æœºå¥—ä¿æ ‡å¿—ç±»å‹
 /////////////////////////////////////////////////////////////////////////
-//Í¶»ú
+//æŠ•æœº
 #define CW_FTDC_HF_Speculation '1'
-//Ì×Àû
+//å¥—åˆ©
 #define CW_FTDC_HF_Arbitrage '2'
-//Ì×±£
+//å¥—ä¿
 #define CW_FTDC_HF_Hedge '3'
-//×öÊĞÉÌ
+//åšå¸‚å•†
 #define CW_FTDC_HF_MarketMaker '5'
-///µÚÒ»ÍÈÍ¶»úµÚ¶şÍÈÌ×±£
+///ç¬¬ä¸€è…¿æŠ•æœºç¬¬äºŒè…¿å¥—ä¿
 #define CW_FTDC_HF_SpecHedge '6'
-///µÚÒ»ÍÈÌ×±£µÚ¶şÍÈÍ¶»ú
+///ç¬¬ä¸€è…¿å¥—ä¿ç¬¬äºŒè…¿æŠ•æœº
 #define CW_FTDC_HF_HedgeSpec '7'
 
 typedef char cwFtdcHedgeFlagType;
 
 /////////////////////////////////////////////////////////////////////////
-///cwFtdcPositionDateTypeÊÇÒ»¸ö³Ö²ÖÈÕÆÚÀàĞÍ
+///cwFtdcPositionDateTypeæ˜¯ä¸€ä¸ªæŒä»“æ—¥æœŸç±»å‹
 /////////////////////////////////////////////////////////////////////////
-///¸üĞÂÊ±²»Çø·Ö½ñÈÕºÍ×òÈÕ³Ö²Ö, QDP³Ö²Ö
+///æ›´æ–°æ—¶ä¸åŒºåˆ†ä»Šæ—¥å’Œæ˜¨æ—¥æŒä»“, QDPæŒä»“
 #define CW_FTDC_PSD_UNKNOW '0'
-///½ñÈÕ³Ö²Ö
+///ä»Šæ—¥æŒä»“
 #define CW_FTDC_PSD_Today '1'
-///ÀúÊ·³Ö²Ö
+///å†å²æŒä»“
 #define CW_FTDC_PSD_History '2'
 
 typedef char cwFtdcPositionDateType;
 
 /////////////////////////////////////////////////////////////////////////
-///TFtdcOrderPriceTypeTypeÊÇÒ»¸ö±¨µ¥¼Û¸ñÌõ¼şÀàĞÍ
+///TFtdcOrderPriceTypeTypeæ˜¯ä¸€ä¸ªæŠ¥å•ä»·æ ¼æ¡ä»¶ç±»å‹
 /////////////////////////////////////////////////////////////////////////
-///ÈÎÒâ¼Û
+///ä»»æ„ä»·
 #define CW_FTDC_OPT_AnyPrice '1'
-///ÏŞ¼Û
+///é™ä»·
 #define CW_FTDC_OPT_LimitPrice '2'
-///×îÓÅ¼Û
+///æœ€ä¼˜ä»·
 #define CW_FTDC_OPT_BestPrice '3'
-///×îĞÂ¼Û
+///æœ€æ–°ä»·
 #define CW_FTDC_OPT_LastPrice '4'
-///×îĞÂ¼Û¸¡¶¯ÉÏ¸¡1¸öticks
+///æœ€æ–°ä»·æµ®åŠ¨ä¸Šæµ®1ä¸ªticks
 #define CW_FTDC_OPT_LastPricePlusOneTicks '5'
-///×îĞÂ¼Û¸¡¶¯ÉÏ¸¡2¸öticks
+///æœ€æ–°ä»·æµ®åŠ¨ä¸Šæµ®2ä¸ªticks
 #define CW_FTDC_OPT_LastPricePlusTwoTicks '6'
-///×îĞÂ¼Û¸¡¶¯ÉÏ¸¡3¸öticks
+///æœ€æ–°ä»·æµ®åŠ¨ä¸Šæµ®3ä¸ªticks
 #define CW_FTDC_OPT_LastPricePlusThreeTicks '7'
-///ÂôÒ»¼Û
+///å–ä¸€ä»·
 #define CW_FTDC_OPT_AskPrice1 '8'
-///ÂôÒ»¼Û¸¡¶¯ÉÏ¸¡1¸öticks
+///å–ä¸€ä»·æµ®åŠ¨ä¸Šæµ®1ä¸ªticks
 #define CW_FTDC_OPT_AskPrice1PlusOneTicks '9'
-///ÂôÒ»¼Û¸¡¶¯ÉÏ¸¡2¸öticks
+///å–ä¸€ä»·æµ®åŠ¨ä¸Šæµ®2ä¸ªticks
 #define CW_FTDC_OPT_AskPrice1PlusTwoTicks 'A'
-///ÂôÒ»¼Û¸¡¶¯ÉÏ¸¡3¸öticks
+///å–ä¸€ä»·æµ®åŠ¨ä¸Šæµ®3ä¸ªticks
 #define CW_FTDC_OPT_AskPrice1PlusThreeTicks 'B'
-///ÂòÒ»¼Û
+///ä¹°ä¸€ä»·
 #define CW_FTDC_OPT_BidPrice1 'C'
-///ÂòÒ»¼Û¸¡¶¯ÉÏ¸¡1¸öticks
+///ä¹°ä¸€ä»·æµ®åŠ¨ä¸Šæµ®1ä¸ªticks
 #define CW_FTDC_OPT_BidPrice1PlusOneTicks 'D'
-///ÂòÒ»¼Û¸¡¶¯ÉÏ¸¡2¸öticks
+///ä¹°ä¸€ä»·æµ®åŠ¨ä¸Šæµ®2ä¸ªticks
 #define CW_FTDC_OPT_BidPrice1PlusTwoTicks 'E'
-///ÂòÒ»¼Û¸¡¶¯ÉÏ¸¡3¸öticks
+///ä¹°ä¸€ä»·æµ®åŠ¨ä¸Šæµ®3ä¸ªticks
 #define CW_FTDC_OPT_BidPrice1PlusThreeTicks 'F'
-///Îåµµ¼Û
+///äº”æ¡£ä»·
 #define CW_FTDC_OPT_FiveLevelPrice 'G'
 
 typedef char cwFtdcOrderPriceType;
 
 /////////////////////////////////////////////////////////////////////////
-///cwFtdcTimeConditionTypeÊÇÒ»¸öÓĞĞ§ÆÚÀàĞÍÀàĞÍ
+///cwFtdcTimeConditionTypeæ˜¯ä¸€ä¸ªæœ‰æ•ˆæœŸç±»å‹ç±»å‹
 /////////////////////////////////////////////////////////////////////////
-//Á¢¼´Íê³É£¬·ñÔò³·Ïú
+//ç«‹å³å®Œæˆï¼Œå¦åˆ™æ’¤é”€
 #define CW_FTDC_TC_IOC '1'
-//±¾½ÚÓĞĞ§
+//æœ¬èŠ‚æœ‰æ•ˆ
 #define CW_FTDC_TC_GFS '2'
-//µ±ÈÕÓĞĞ§
+//å½“æ—¥æœ‰æ•ˆ
 #define CW_FTDC_TC_GFD '3'
-//Ö¸¶¨ÈÕÆÚÇ°ÓĞĞ§
+//æŒ‡å®šæ—¥æœŸå‰æœ‰æ•ˆ
 #define CW_FTDC_TC_GTD '4'
-//³·ÏúÇ°ÓĞĞ§
+//æ’¤é”€å‰æœ‰æ•ˆ
 #define CW_FTDC_TC_GTC '5'
-//¼¯ºÏ¾º¼ÛÓĞĞ§
+//é›†åˆç«ä»·æœ‰æ•ˆ
 #define CW_FTDC_TC_GFA '6'
 
 typedef char cwFtdcTimeConditionType;
 
 /////////////////////////////////////////////////////////////////////////
-///cwFtdcVolumeConditionTypeÊÇÒ»¸ö³É½»Á¿ÀàĞÍÀàĞÍ
+///cwFtdcVolumeConditionTypeæ˜¯ä¸€ä¸ªæˆäº¤é‡ç±»å‹ç±»å‹
 /////////////////////////////////////////////////////////////////////////
-///ÈÎºÎÊıÁ¿
+///ä»»ä½•æ•°é‡
 #define CW_FTDC_VC_AV '1'
-///×îĞ¡ÊıÁ¿
+///æœ€å°æ•°é‡
 #define CW_FTDC_VC_MV '2'
-///È«²¿ÊıÁ¿
+///å…¨éƒ¨æ•°é‡
 #define CW_FTDC_VC_CV '3'
 
 typedef char cwFtdcVolumeConditionType;
 
 /////////////////////////////////////////////////////////////////////////
-///cwFtdcContingentConditionTypeÊÇÒ»¸ö´¥·¢Ìõ¼şÀàĞÍ
+///cwFtdcContingentConditionTypeæ˜¯ä¸€ä¸ªè§¦å‘æ¡ä»¶ç±»å‹
 /////////////////////////////////////////////////////////////////////////
-///Á¢¼´
+///ç«‹å³
 #define CW_FTDC_CC_Immediately '1'
-///Ö¹Ëğ
+///æ­¢æŸ
 #define CW_FTDC_CC_Touch '2'
-///Ö¹Ó®
+///æ­¢èµ¢
 #define CW_FTDC_CC_TouchProfit '3'
-///Ô¤Âñµ¥
+///é¢„åŸ‹å•
 #define CW_FTDC_CC_ParkedOrder '4'
-///×îĞÂ¼Û´óÓÚÌõ¼ş¼Û
+///æœ€æ–°ä»·å¤§äºæ¡ä»¶ä»·
 #define CW_FTDC_CC_LastPriceGreaterThanStopPrice '5'
-///×îĞÂ¼Û´óÓÚµÈÓÚÌõ¼ş¼Û
+///æœ€æ–°ä»·å¤§äºç­‰äºæ¡ä»¶ä»·
 #define CW_FTDC_CC_LastPriceGreaterEqualStopPrice '6'
-///×îĞÂ¼ÛĞ¡ÓÚÌõ¼ş¼Û
+///æœ€æ–°ä»·å°äºæ¡ä»¶ä»·
 #define CW_FTDC_CC_LastPriceLesserThanStopPrice '7'
-///×îĞÂ¼ÛĞ¡ÓÚµÈÓÚÌõ¼ş¼Û
+///æœ€æ–°ä»·å°äºç­‰äºæ¡ä»¶ä»·
 #define CW_FTDC_CC_LastPriceLesserEqualStopPrice '8'
-///ÂôÒ»¼Û´óÓÚÌõ¼ş¼Û
+///å–ä¸€ä»·å¤§äºæ¡ä»¶ä»·
 #define CW_FTDC_CC_AskPriceGreaterThanStopPrice '9'
-///ÂôÒ»¼Û´óÓÚµÈÓÚÌõ¼ş¼Û
+///å–ä¸€ä»·å¤§äºç­‰äºæ¡ä»¶ä»·
 #define CW_FTDC_CC_AskPriceGreaterEqualStopPrice 'A'
-///ÂôÒ»¼ÛĞ¡ÓÚÌõ¼ş¼Û
+///å–ä¸€ä»·å°äºæ¡ä»¶ä»·
 #define CW_FTDC_CC_AskPriceLesserThanStopPrice 'B'
-///ÂôÒ»¼ÛĞ¡ÓÚµÈÓÚÌõ¼ş¼Û
+///å–ä¸€ä»·å°äºç­‰äºæ¡ä»¶ä»·
 #define CW_FTDC_CC_AskPriceLesserEqualStopPrice 'C'
-///ÂòÒ»¼Û´óÓÚÌõ¼ş¼Û
+///ä¹°ä¸€ä»·å¤§äºæ¡ä»¶ä»·
 #define CW_FTDC_CC_BidPriceGreaterThanStopPrice 'D'
-///ÂòÒ»¼Û´óÓÚµÈÓÚÌõ¼ş¼Û
+///ä¹°ä¸€ä»·å¤§äºç­‰äºæ¡ä»¶ä»·
 #define CW_FTDC_CC_BidPriceGreaterEqualStopPrice 'E'
-///ÂòÒ»¼ÛĞ¡ÓÚÌõ¼ş¼Û
+///ä¹°ä¸€ä»·å°äºæ¡ä»¶ä»·
 #define CW_FTDC_CC_BidPriceLesserThanStopPrice 'F'
-///ÂòÒ»¼ÛĞ¡ÓÚµÈÓÚÌõ¼ş¼Û
+///ä¹°ä¸€ä»·å°äºç­‰äºæ¡ä»¶ä»·
 #define CW_FTDC_CC_BidPriceLesserEqualStopPrice 'H'
 
 typedef char cwFtdcContingentConditionType;
 
 /////////////////////////////////////////////////////////////////////////
-///cwFtdcForceCloseReasonTypeÊÇÒ»¸öÇ¿Æ½Ô­ÒòÀàĞÍ
+///cwFtdcForceCloseReasonTypeæ˜¯ä¸€ä¸ªå¼ºå¹³åŸå› ç±»å‹
 /////////////////////////////////////////////////////////////////////////
-///·ÇÇ¿Æ½
+///éå¼ºå¹³
 #define CW_FTDC_FCC_NotForceClose '0'
-///×Ê½ğ²»×ã
+///èµ„é‡‘ä¸è¶³
 #define CW_FTDC_FCC_LackDeposit '1'
-///¿Í»§³¬²Ö
+///å®¢æˆ·è¶…ä»“
 #define CW_FTDC_FCC_ClientOverPositionLimit '2'
-///»áÔ±³¬²Ö
+///ä¼šå‘˜è¶…ä»“
 #define CW_FTDC_FCC_MemberOverPositionLimit '3'
-///³Ö²Ö·ÇÕûÊı±¶
+///æŒä»“éæ•´æ•°å€
 #define CW_FTDC_FCC_NotMultiple '4'
-///Î¥¹æ
+///è¿è§„
 #define CW_FTDC_FCC_Violation '5'
-///ÆäËü
+///å…¶å®ƒ
 #define CW_FTDC_FCC_Other '6'
-///×ÔÈ»ÈËÁÙ½ü½»¸î
+///è‡ªç„¶äººä¸´è¿‘äº¤å‰²
 #define CW_FTDC_FCC_PersonDeliv '7'
-///±¾µØÇ¿Æ½×Ê½ğ²»×ãºöÂÔ³¨¿Ú
+///æœ¬åœ°å¼ºå¹³èµ„é‡‘ä¸è¶³å¿½ç•¥æ•å£
 #define CW_FTDC_FCC_Notverifycapital '8'
-///±¾µØÇ¿Æ½×Ê½ğ²»×ã
+///æœ¬åœ°å¼ºå¹³èµ„é‡‘ä¸è¶³
 #define CW_FTDC_FCC_LocalLackDeposit '9'
-///±¾µØÇ¿Æ½Î¥¹æ³Ö²ÖºöÂÔ³¨¿Ú
+///æœ¬åœ°å¼ºå¹³è¿è§„æŒä»“å¿½ç•¥æ•å£
 #define CW_FTDC_FCC_LocalViolationNocheck 'a'
-///±¾µØÇ¿Æ½Î¥¹æ³Ö²Ö
+///æœ¬åœ°å¼ºå¹³è¿è§„æŒä»“
 #define CW_FTDC_FCC_LocalViolation 'b'
 typedef char cwFtdcForceCloseReasonType;
 
 /////////////////////////////////////////////////////////////////////////
-///cwFtdcOrderSubmitStatusTypeÊÇÒ»¸ö±¨µ¥Ìá½»×´Ì¬ÀàĞÍ
+///cwFtdcOrderSubmitStatusTypeæ˜¯ä¸€ä¸ªæŠ¥å•æäº¤çŠ¶æ€ç±»å‹
 /////////////////////////////////////////////////////////////////////////
-///ÒÑ¾­Ìá½»
+///å·²ç»æäº¤
 #define CW_FTDC_OSS_InsertSubmitted '0'
-///³·µ¥ÒÑ¾­Ìá½»
+///æ’¤å•å·²ç»æäº¤
 #define CW_FTDC_OSS_CancelSubmitted '1'
-///ĞŞ¸ÄÒÑ¾­Ìá½»
+///ä¿®æ”¹å·²ç»æäº¤
 #define CW_FTDC_OSS_ModifySubmitted '2'
-///ÒÑ¾­½ÓÊÜ
+///å·²ç»æ¥å—
 #define CW_FTDC_OSS_Accepted '3'
-///±¨µ¥ÒÑ¾­±»¾Ü¾ø
+///æŠ¥å•å·²ç»è¢«æ‹’ç»
 #define CW_FTDC_OSS_InsertRejected '4'
-///³·µ¥ÒÑ¾­±»¾Ü¾ø
+///æ’¤å•å·²ç»è¢«æ‹’ç»
 #define CW_FTDC_OSS_CancelRejected '5'
-///¸Äµ¥ÒÑ¾­±»¾Ü¾ø
+///æ”¹å•å·²ç»è¢«æ‹’ç»
 #define CW_FTDC_OSS_ModifyRejected '6'
 
 typedef char cwFtdcOrderSubmitStatusType;
 
 /////////////////////////////////////////////////////////////////////////
-///cwFtdcOrderSourceTypeÊÇÒ»¸ö±¨µ¥À´Ô´ÀàĞÍ
+///cwFtdcOrderSourceTypeæ˜¯ä¸€ä¸ªæŠ¥å•æ¥æºç±»å‹
 /////////////////////////////////////////////////////////////////////////
-///À´×Ô²ÎÓëÕß
+///æ¥è‡ªå‚ä¸è€…
 #define CW_FTDC_OSRC_Participant '0'
-///À´×Ô¹ÜÀíÔ±
+///æ¥è‡ªç®¡ç†å‘˜
 #define CW_FTDC_OSRC_Administrator '1'
 
 typedef char cwFtdcOrderSourceType;
 
 /////////////////////////////////////////////////////////////////////////
-///cwFtdcOrderStatusTypeÊÇÒ»¸ö±¨µ¥×´Ì¬ÀàĞÍ
+///cwFtdcOrderStatusTypeæ˜¯ä¸€ä¸ªæŠ¥å•çŠ¶æ€ç±»å‹
 /////////////////////////////////////////////////////////////////////////
-//È«²¿³É½»
+//å…¨éƒ¨æˆäº¤
 #define CW_FTDC_OST_AllTraded '0'
-//²¿·Ö³É½»»¹ÔÚ¶ÓÁĞÖĞ
+//éƒ¨åˆ†æˆäº¤è¿˜åœ¨é˜Ÿåˆ—ä¸­
 #define CW_FTDC_OST_PartTradedQueueing '1'
-//²¿·Ö³É½»²»ÔÚ¶ÓÁĞÖĞ
+//éƒ¨åˆ†æˆäº¤ä¸åœ¨é˜Ÿåˆ—ä¸­
 #define CW_FTDC_OST_PartTradedNotQueueing '2'
-//Î´³É½»»¹ÔÚ¶ÓÁĞÖĞ
+//æœªæˆäº¤è¿˜åœ¨é˜Ÿåˆ—ä¸­
 #define CW_FTDC_OST_NoTradeQueueing '3'
-//Î´³É½»²»ÔÚ¶ÓÁĞÖĞ
+//æœªæˆäº¤ä¸åœ¨é˜Ÿåˆ—ä¸­
 #define CW_FTDC_OST_NoTradeNotQueueing '4'
-//³·µ¥
+//æ’¤å•
 #define CW_FTDC_OST_Canceled '5'
-//¶©µ¥ÒÑ±¨Èë½»Ò×ËùÎ´Ó¦´ğ
+//è®¢å•å·²æŠ¥å…¥äº¤æ˜“æ‰€æœªåº”ç­”
 #define CW_FTDC_OST_AcceptedNoReply '6'
-//Î´Öª
+//æœªçŸ¥
 #define CW_FTDC_OST_Unknown 'a'
-//ÉĞÎ´´¥·¢
+//å°šæœªè§¦å‘
 #define CW_FTDC_OST_NotTouched 'b'
-//ÒÑ´¥·¢
+//å·²è§¦å‘
 #define CW_FTDC_OST_Touched 'c'
 //Default
 #define CW_FTDC_OST_cwDefault ' '
@@ -506,121 +506,121 @@ typedef char cwFtdcOrderSourceType;
 typedef char cwFtdcOrderStatusType;
 
 /////////////////////////////////////////////////////////////////////////
-///cwFtdcOrderTypeTypeÊÇÒ»¸ö±¨µ¥ÀàĞÍÀàĞÍ
+///cwFtdcOrderTypeTypeæ˜¯ä¸€ä¸ªæŠ¥å•ç±»å‹ç±»å‹
 /////////////////////////////////////////////////////////////////////////
-///Õı³£
+///æ­£å¸¸
 #define CW_FTDC_ORDT_Normal '0'
-///±¨¼ÛÑÜÉú
+///æŠ¥ä»·è¡ç”Ÿ
 #define CW_FTDC_ORDT_DeriveFromQuote '1'
-///×éºÏÑÜÉú
+///ç»„åˆè¡ç”Ÿ
 #define CW_FTDC_ORDT_DeriveFromCombination '2'
-///×éºÏ±¨µ¥
+///ç»„åˆæŠ¥å•
 #define CW_FTDC_ORDT_Combination '3'
-///Ìõ¼şµ¥
+///æ¡ä»¶å•
 #define CW_FTDC_ORDT_ConditionalOrder '4'
-///»¥»»µ¥
+///äº’æ¢å•
 #define CW_FTDC_ORDT_Swap '5'
 
 typedef char cwFtdcOrderTypeType;
 
 /////////////////////////////////////////////////////////////////////////
-///cwFtdcOffsetFlagTypeÊÇÒ»¸ö¿ªÆ½±êÖ¾ÀàĞÍ
+///cwFtdcOffsetFlagTypeæ˜¯ä¸€ä¸ªå¼€å¹³æ ‡å¿—ç±»å‹
 /////////////////////////////////////////////////////////////////////////
-///¿ª²Ö
+///å¼€ä»“
 #define CW_FTDC_OF_Open '0'
-///Æ½²Ö
+///å¹³ä»“
 #define CW_FTDC_OF_Close '1'
-///Ç¿Æ½
+///å¼ºå¹³
 #define CW_FTDC_OF_ForceClose '2'
-///Æ½½ñ
+///å¹³ä»Š
 #define CW_FTDC_OF_CloseToday '3'
-///Æ½×ò
+///å¹³æ˜¨
 #define CW_FTDC_OF_CloseYesterday '4'
-///Ç¿¼õ
+///å¼ºå‡
 #define CW_FTDC_OF_ForceOff '5'
-///±¾µØÇ¿Æ½
+///æœ¬åœ°å¼ºå¹³
 #define CW_FTDC_OF_LocalForceClose '6'
 
 typedef char cwFtdcOffsetFlagType;
 
 /////////////////////////////////////////////////////////////////////////
-///cwFtdcTradeTypeTypeÊÇÒ»¸ö³É½»ÀàĞÍÀàĞÍ
+///cwFtdcTradeTypeTypeæ˜¯ä¸€ä¸ªæˆäº¤ç±»å‹ç±»å‹
 /////////////////////////////////////////////////////////////////////////
-///×éºÏ³Ö²Ö²ğ·ÖÎªµ¥Ò»³Ö²Ö,³õÊ¼»¯²»Ó¦°üº¬¸ÃÀàĞÍµÄ³Ö²Ö
+///ç»„åˆæŒä»“æ‹†åˆ†ä¸ºå•ä¸€æŒä»“,åˆå§‹åŒ–ä¸åº”åŒ…å«è¯¥ç±»å‹çš„æŒä»“
 #define CW_FTDC_TRDT_SplitCombination '#'
-///ÆÕÍ¨³É½»
+///æ™®é€šæˆäº¤
 #define CW_FTDC_TRDT_Common '0'
-///ÆÚÈ¨Ö´ĞĞ
+///æœŸæƒæ‰§è¡Œ
 #define CW_FTDC_TRDT_OptionsExecution '1'
-///OTC³É½»
+///OTCæˆäº¤
 #define CW_FTDC_TRDT_OTC '2'
-///ÆÚ×ªÏÖÑÜÉú³É½»
+///æœŸè½¬ç°è¡ç”Ÿæˆäº¤
 #define CW_FTDC_TRDT_EFPDerived '3'
-///×éºÏÑÜÉú³É½»
+///ç»„åˆè¡ç”Ÿæˆäº¤
 #define CW_FTDC_TRDT_CombinationDerived '4'
 
 typedef char cwFtdcTradeTypeType;
 
 /////////////////////////////////////////////////////////////////////////
-///cwFtdcSpecPosiTypeTypeÊÇÒ»¸öÌØÊâ³Ö²ÖÃ÷Ï¸±êÊ¶ÀàĞÍ
+///cwFtdcSpecPosiTypeTypeæ˜¯ä¸€ä¸ªç‰¹æ®ŠæŒä»“æ˜ç»†æ ‡è¯†ç±»å‹
 /////////////////////////////////////////////////////////////////////////
-///ÆÕÍ¨³Ö²ÖÃ÷Ï¸
+///æ™®é€šæŒä»“æ˜ç»†
 #define CW_FTDC_SPOST_Common '#'
-///TASºÏÔ¼³É½»²úÉúµÄ±êµÄºÏÔ¼³Ö²ÖÃ÷Ï¸
+///TASåˆçº¦æˆäº¤äº§ç”Ÿçš„æ ‡çš„åˆçº¦æŒä»“æ˜ç»†
 #define CW_FTDC_SPOST_Tas '0'
 
 typedef char cwFtdcSpecPosiTypeType;
 
 /////////////////////////////////////////////////////////////////////////
-///cwFtdcPriceSourceTypeÊÇÒ»¸ö³É½»¼ÛÀ´Ô´ÀàĞÍ
+///cwFtdcPriceSourceTypeæ˜¯ä¸€ä¸ªæˆäº¤ä»·æ¥æºç±»å‹
 /////////////////////////////////////////////////////////////////////////
-///Ç°³É½»¼Û
+///å‰æˆäº¤ä»·
 #define CW_FTDC_PSRC_LastPrice '0'
-///ÂòÎ¯ÍĞ¼Û
+///ä¹°å§”æ‰˜ä»·
 #define CW_FTDC_PSRC_Buy '1'
-///ÂôÎ¯ÍĞ¼Û
+///å–å§”æ‰˜ä»·
 #define CW_FTDC_PSRC_Sell '2'
 
 typedef char cwFtdcPriceSourceType;
 
 /////////////////////////////////////////////////////////////////////////
-///cwFtdcTradeSourceTypeÊÇÒ»¸ö³É½»À´Ô´ÀàĞÍ
+///cwFtdcTradeSourceTypeæ˜¯ä¸€ä¸ªæˆäº¤æ¥æºç±»å‹
 /////////////////////////////////////////////////////////////////////////
-///À´×Ô½»Ò×ËùÆÕÍ¨»Ø±¨
+///æ¥è‡ªäº¤æ˜“æ‰€æ™®é€šå›æŠ¥
 #define CW_FTDC_TSRC_NORMAL '0'
-///À´×Ô²éÑ¯
+///æ¥è‡ªæŸ¥è¯¢
 #define CW_FTDC_TSRC_QUERY '1'
 
 typedef char cwFtdcTradeSourceType;
 
 /////////////////////////////////////////////////////////////////////////
-///cwFtdcInstrumentStatusTypeÊÇÒ»¸öºÏÔ¼½»Ò××´Ì¬ÀàĞÍ
+///cwFtdcInstrumentStatusTypeæ˜¯ä¸€ä¸ªåˆçº¦äº¤æ˜“çŠ¶æ€ç±»å‹
 /////////////////////////////////////////////////////////////////////////
-///¿ªÅÌÇ°
+///å¼€ç›˜å‰
 #define CW_FTDC_IS_BeforeTrading '0'
-///·Ç½»Ò×
+///éäº¤æ˜“
 #define CW_FTDC_IS_NoTrading '1'
-///Á¬Ğø½»Ò×
+///è¿ç»­äº¤æ˜“
 #define CW_FTDC_IS_Continous '2'
-///¼¯ºÏ¾º¼Û±¨µ¥
+///é›†åˆç«ä»·æŠ¥å•
 #define CW_FTDC_IS_AuctionOrdering '3'
-///¼¯ºÏ¾º¼Û¼Û¸ñÆ½ºâ
+///é›†åˆç«ä»·ä»·æ ¼å¹³è¡¡
 #define CW_FTDC_IS_AuctionBalance '4'
-///¼¯ºÏ¾º¼Û´éºÏ
+///é›†åˆç«ä»·æ’®åˆ
 #define CW_FTDC_IS_AuctionMatch '5'
-///ÊÕÅÌ
+///æ”¶ç›˜
 #define CW_FTDC_IS_Closed '6'
-///½»Ò×ÒµÎñ´¦Àí
+///äº¤æ˜“ä¸šåŠ¡å¤„ç†
 #define CW_FTDC_IS_TransactionProcessing '7'
-///½ğ½»Ëù½»¸îÉê±¨
+///é‡‘äº¤æ‰€äº¤å‰²ç”³æŠ¥
 #define CW_FTDC_IS_SGE_Dery_App '7'
-///½ğ½»Ëù½»¸îÉê±¨½áÊø
+///é‡‘äº¤æ‰€äº¤å‰²ç”³æŠ¥ç»“æŸ
 #define CW_FTDC_IS_SGE_Dery_Match '8'
-///½ğ½»ËùÖĞÁ¢²ÖÉê±¨
+///é‡‘äº¤æ‰€ä¸­ç«‹ä»“ç”³æŠ¥
 #define CW_FTDC_IS_SGE_Mid_App '9'
-///½ğ½»Ëù½»¸îÉê±¨´éºÏ
+///é‡‘äº¤æ‰€äº¤å‰²ç”³æŠ¥æ’®åˆ
 #define CW_FTDC_IS_SGE_Mid_Match 'a'
-///´óÉÌËù×Ô¶¯×ª»»±¨¾¯
+///å¤§å•†æ‰€è‡ªåŠ¨è½¬æ¢æŠ¥è­¦
 #define CW_FTDC_IS_DCE_MarketStatusAlarm 'b'
 
 typedef char cwFtdcInstrumentStatusType;
@@ -628,10 +628,10 @@ const char * g_cwGetInstrumentStatus(cwFtdcInstrumentStatusType insstatustype);
 
 enum cwInsertOrderType :int
 {
-	cwInsertLimitOrder = 0,			//ÏŞ¼Ûµ¥
-	cwInsertFAKOrder = 1,			//FAK Filled And Kill Á¢¼´³É½»Ê£Óà×Ô¶¯³·ÏúÖ¸Áî
-	cwInsertFOKOrder = 2,			//FOK Filled Or Kill Á¢¼´È«²¿³É½»·ñÔò×Ô¶¯³·ÏúÖ¸Áî
-	cwInsertMarketOrder = 3,		//ÊĞ¼Ûµ¥£¨Ôİ²»Ö§³Ö£©
+	cwInsertLimitOrder = 0,			//é™ä»·å•
+	cwInsertFAKOrder = 1,			//FAK Filled And Kill ç«‹å³æˆäº¤å‰©ä½™è‡ªåŠ¨æ’¤é”€æŒ‡ä»¤
+	cwInsertFOKOrder = 2,			//FOK Filled Or Kill ç«‹å³å…¨éƒ¨æˆäº¤å¦åˆ™è‡ªåŠ¨æ’¤é”€æŒ‡ä»¤
+	cwInsertMarketOrder = 3,		//å¸‚ä»·å•ï¼ˆæš‚ä¸æ”¯æŒï¼‰
 	cwInsertOtherTypeOrder
 };
 
@@ -641,37 +641,37 @@ const char * GetInsertOrderTypeString(cwInsertOrderType ordertype);
 #pragma endregion
 #endif // _MSC_VER
 
-/// Ò»µµĞĞÇé½á¹¹Ìå
+/// ä¸€æ¡£è¡Œæƒ…ç»“æ„ä½“
 struct OneLevelQuote
 {
-	cwFtdcPriceType		Price;							// ¼Û¸ñ
-	cwFtdcVolumeType	Volume;							// ÊıÁ¿
+	cwFtdcPriceType		Price;							// ä»·æ ¼
+	cwFtdcVolumeType	Volume;							// æ•°é‡
 };
 
-//ÊÇ·ñÊ¹ÓÃÄÚ´æ³Ø
+//æ˜¯å¦ä½¿ç”¨å†…å­˜æ± 
 //#define USING_CW_MEMORY_POOL
 
-///Éî¶ÈĞĞÇé
+///æ·±åº¦è¡Œæƒ…
 struct cwFtdcDepthMarketDataField
 {
-	///½»Ò×Ëù´úÂë
+	///äº¤æ˜“æ‰€ä»£ç 
 	cwFtdcExchangeIDType	ExchangeID;
-	///½»Ò×ÈÕ
+	///äº¤æ˜“æ—¥
 	cwFtdcDateType			TradingDay;
-	///ÒµÎñÈÕÆÚ
+	///ä¸šåŠ¡æ—¥æœŸ
 	cwFtdcDateType			ActionDay;
-	///×îºóĞŞ¸ÄÊ±¼ä
+	///æœ€åä¿®æ”¹æ—¶é—´
 	cwFtdcTimeType			UpdateTime;
-	///×îºóĞŞ¸ÄºÁÃë
+	///æœ€åä¿®æ”¹æ¯«ç§’
 	cwFtdcMillisecType		UpdateMillisec;
-	///ºÏÔ¼´úÂë
+	///åˆçº¦ä»£ç 
 	cwFtdcInstrumentIDType	InstrumentID;
 	union
 	{
 		OneLevelQuote			BuyLevel[MARKET_PRICE_DEPTH];
 		struct
 		{
-			///ÉêÂò¼ÛÒ»
+			///ç”³ä¹°ä»·ä¸€
 			cwFtdcPriceType BidPrice1;
 			cwFtdcVolumeType BidVolume1;
 
@@ -693,7 +693,7 @@ struct cwFtdcDepthMarketDataField
 		OneLevelQuote			SellLevel[MARKET_PRICE_DEPTH];
 		struct
 		{
-			cwFtdcPriceType AskPrice1; //ÂôÒ»¼Û
+			cwFtdcPriceType AskPrice1; //å–ä¸€ä»·
 			cwFtdcVolumeType AskVolume1;
 
 			cwFtdcPriceType AskPrice2;
@@ -710,42 +710,42 @@ struct cwFtdcDepthMarketDataField
 		};
 	};
 
-	///×îĞÂ¼Û
+	///æœ€æ–°ä»·
 	cwFtdcPriceType		LastPrice;
-	///ÉÏ´Î½áËã¼Û
+	///ä¸Šæ¬¡ç»“ç®—ä»·
 	cwFtdcPriceType		PreSettlementPrice;
-	///×òÊÕÅÌ
+	///æ˜¨æ”¶ç›˜
 	cwFtdcPriceType		PreClosePrice;
-	///×ò³Ö²ÖÁ¿
+	///æ˜¨æŒä»“é‡
 	cwFtdcPriceType		PreOpenInterest;
-	///×òĞéÊµ¶È
+	///æ˜¨è™šå®åº¦
 	cwFtdcPriceType		PreDelta;
 
-	///ÊıÁ¿
+	///æ•°é‡
 	cwFtdcLargeVolumeType	Volume;
-	///³É½»½ğ¶î
+	///æˆäº¤é‡‘é¢
 	cwFtdcPriceType		Turnover;
-	///³Ö²ÖÁ¿
+	///æŒä»“é‡
 	cwFtdcPriceType		OpenInterest;
 
-	///½ñ¿ªÅÌ
+	///ä»Šå¼€ç›˜
 	cwFtdcPriceType		OpenPrice;
-	///×î¸ß¼Û
+	///æœ€é«˜ä»·
 	cwFtdcPriceType		HighestPrice;
-	///×îµÍ¼Û
+	///æœ€ä½ä»·
 	cwFtdcPriceType		LowestPrice;
-	///½ñÊÕÅÌ
+	///ä»Šæ”¶ç›˜
 	cwFtdcPriceType		ClosePrice;
-	///±¾´Î½áËã¼Û
+	///æœ¬æ¬¡ç»“ç®—ä»·
 	cwFtdcPriceType		SettlementPrice;
-	///ÕÇÍ£°å¼Û
+	///æ¶¨åœæ¿ä»·
 	cwFtdcPriceType		UpperLimitPrice;
-	///µøÍ£°å¼Û
+	///è·Œåœæ¿ä»·
 	cwFtdcPriceType		LowerLimitPrice;
 
-	///½ñĞéÊµ¶È
+	///ä»Šè™šå®åº¦
 	cwFtdcPriceType		CurrDelta;
-	///µ±ÈÕ¾ù¼Û
+	///å½“æ—¥å‡ä»·
 	cwFtdcPriceType		AveragePrice;
 };
 typedef std::shared_ptr<cwFtdcDepthMarketDataField> cwMarketDataPtr;
@@ -754,114 +754,114 @@ typedef std::shared_ptr<cwFtdcDepthMarketDataField> cwMarketDataPtr;
 //Instrument
 struct cwFtdcInstrumentField
 {
-	///½»Ò×Ëù´úÂë
+	///äº¤æ˜“æ‰€ä»£ç 
 	cwFtdcExchangeIDType				ExchangeID;
-	///ºÏÔ¼´úÂë
+	///åˆçº¦ä»£ç 
 	cwFtdcInstrumentIDType				InstrumentID;
-	///ºÏÔ¼Ãû³Æ
+	///åˆçº¦åç§°
 	cwFtdcInstrumentNameType			InstrumentName;
-	///²úÆ·´úÂë
+	///äº§å“ä»£ç 
 	cwFtdcProductIDType					ProductID;
-	///²úÆ·ÀàĞÍ
+	///äº§å“ç±»å‹
 	cwFtdcProductClassType				ProductClass;
-	///´´½¨ÈÕ
+	///åˆ›å»ºæ—¥
 	cwFtdcDateType						CreateDate;
-	///ÉÏÊĞÈÕ
+	///ä¸Šå¸‚æ—¥
 	cwFtdcDateType						OpenDate;
-	///µ½ÆÚÈÕ
+	///åˆ°æœŸæ—¥
 	cwFtdcDateType						ExpireDate;
-	///±ÒÖÖ
+	///å¸ç§
 	cwFtdcCurrencyType					Currency;
-	///ÆÚÈ¨ÀàĞÍ
+	///æœŸæƒç±»å‹
 	cwFtdcOptionsTypeType				OptionsType;
-	///¿ªÊ¼½»¸îÈÕ
+	///å¼€å§‹äº¤å‰²æ—¥
 	cwFtdcDateType						StartDelivDate;
-	///½áÊø½»¸îÈÕ
+	///ç»“æŸäº¤å‰²æ—¥
 	cwFtdcDateType						EndDelivDate;
-	///³Ö²ÖÀàĞÍ
+	///æŒä»“ç±»å‹
 	cwFtdcPositionTypeType				PositionType;
-	///ÊÇ·ñÊ¹ÓÃ´ó¶îµ¥±ß±£Ö¤½ğËã·¨
+	///æ˜¯å¦ä½¿ç”¨å¤§é¢å•è¾¹ä¿è¯é‡‘ç®—æ³•
 	cwFtdcMaxMarginSideAlgorithmType	MaxMarginSideAlgorithm;
-	///»ù´¡ÉÌÆ·´úÂë
+	///åŸºç¡€å•†å“ä»£ç 
 	cwFtdcInstrumentIDType				UnderlyingInstrID;
-	///ºÏÔ¼»ù´¡ÉÌÆ·³ËÊı
+	///åˆçº¦åŸºç¡€å•†å“ä¹˜æ•°
 	cwFtdcUnderlyingMultipleType		UnderlyingMultiple;
-	///½»¸îÄê·İ
+	///äº¤å‰²å¹´ä»½
 	cwFtdcYearType						DeliveryYear;
-	///½»¸îÔÂ
+	///äº¤å‰²æœˆ
 	cwFtdcMonthType						DeliveryMonth;
-	///ÊĞ¼Ûµ¥×î´óÏÂµ¥Á¿
+	///å¸‚ä»·å•æœ€å¤§ä¸‹å•é‡
 	cwFtdcVolumeType					MaxMarketOrderVolume;
-	///ÊĞ¼Ûµ¥×îĞ¡ÏÂµ¥Á¿
+	///å¸‚ä»·å•æœ€å°ä¸‹å•é‡
 	cwFtdcVolumeType					MinMarketOrderVolume;
-	///ÏŞ¼Ûµ¥×î´óÏÂµ¥Á¿
+	///é™ä»·å•æœ€å¤§ä¸‹å•é‡
 	cwFtdcVolumeType					MaxLimitOrderVolume;
-	///ÏŞ¼Ûµ¥×îĞ¡ÏÂµ¥Á¿
+	///é™ä»·å•æœ€å°ä¸‹å•é‡
 	cwFtdcVolumeType					MinLimitOrderVolume;
-	///µ±Ç°ÊÇ·ñ½»Ò×
+	///å½“å‰æ˜¯å¦äº¤æ˜“
 	cwFtdcBoolType						IsTrading;
-	///ºÏÔ¼ÊıÁ¿³ËÊı
+	///åˆçº¦æ•°é‡ä¹˜æ•°
 	cwFtdcVolumeMultipleType			VolumeMultiple;
-	///×îĞ¡±ä¶¯¼ÛÎ»
+	///æœ€å°å˜åŠ¨ä»·ä½
 	cwFtdcPriceType						PriceTick;
-	///Ö´ĞĞ¼Û
+	///æ‰§è¡Œä»·
 	cwFtdcPriceType						StrikePrice;
 
 };
 typedef std::shared_ptr<cwFtdcInstrumentField> cwInstrumentDataPtr;
 
-///ºÏÔ¼±£Ö¤½ğÂÊ
+///åˆçº¦ä¿è¯é‡‘ç‡
 struct cwFtdcInstrumentMarginRateField
 {
-	///ÊÇ·ñÎª²éÑ¯Öµ£¬0ÎªÄ¬ÈÏÖµ£¬1Îª²éÑ¯Öµ
+	///æ˜¯å¦ä¸ºæŸ¥è¯¢å€¼ï¼Œ0ä¸ºé»˜è®¤å€¼ï¼Œ1ä¸ºæŸ¥è¯¢å€¼
 	cwFtdcBoolType		QryValue;
-	///¾­¼Í¹«Ë¾´úÂë
+	///ç»çºªå…¬å¸ä»£ç 
 	cwFtdcBrokerIDType	BrokerID;
-	///Í¶×ÊÕß´úÂë
+	///æŠ•èµ„è€…ä»£ç 
 	cwFtdcInvestorIDType	InvestorID;
-	///Í¶»úÌ×±£±êÖ¾
+	///æŠ•æœºå¥—ä¿æ ‡å¿—
 	cwFtdcHedgeFlagType	HedgeFlag;
-	///¶àÍ·±£Ö¤½ğÂÊ
+	///å¤šå¤´ä¿è¯é‡‘ç‡
 	cwFtdcRatioType	LongMarginRatioByMoney;
-	///¶àÍ·±£Ö¤½ğ·Ñ
+	///å¤šå¤´ä¿è¯é‡‘è´¹
 	cwFtdcMoneyType	LongMarginRatioByVolume;
-	///¿ÕÍ·±£Ö¤½ğÂÊ
+	///ç©ºå¤´ä¿è¯é‡‘ç‡
 	cwFtdcRatioType	ShortMarginRatioByMoney;
-	///¿ÕÍ·±£Ö¤½ğ·Ñ
+	///ç©ºå¤´ä¿è¯é‡‘è´¹
 	cwFtdcMoneyType	ShortMarginRatioByVolume;
-	///ÊÇ·ñÏà¶Ô½»Ò×ËùÊÕÈ¡
+	///æ˜¯å¦ç›¸å¯¹äº¤æ˜“æ‰€æ”¶å–
 	cwFtdcBoolType	IsRelative;
-	///½»Ò×Ëù´úÂë
+	///äº¤æ˜“æ‰€ä»£ç 
 	cwFtdcExchangeIDType	ExchangeID;
-	///ºÏÔ¼´úÂë
+	///åˆçº¦ä»£ç 
 	cwFtdcInstrumentIDType	InstrumentID;
 };
 typedef std::shared_ptr<cwFtdcInstrumentMarginRateField> cwMarginRateDataPtr;
 
-///ºÏÔ¼ÊÖĞø·ÑÂÊ
+///åˆçº¦æ‰‹ç»­è´¹ç‡
 struct cwFtdcInstrumentCommissionRateField
 {
-	///ÊÇ·ñÎª²éÑ¯Öµ£¬0ÎªÄ¬ÈÏÖµ£¬1Îª²éÑ¯Öµ
+	///æ˜¯å¦ä¸ºæŸ¥è¯¢å€¼ï¼Œ0ä¸ºé»˜è®¤å€¼ï¼Œ1ä¸ºæŸ¥è¯¢å€¼
 	cwFtdcBoolType		QryValue;
-	///¾­¼Í¹«Ë¾´úÂë
+	///ç»çºªå…¬å¸ä»£ç 
 	cwFtdcBrokerIDType	BrokerID;
-	///Í¶×ÊÕß´úÂë
+	///æŠ•èµ„è€…ä»£ç 
 	cwFtdcInvestorIDType	InvestorID;
-	///¿ª²ÖÊÖĞø·ÑÂÊ
+	///å¼€ä»“æ‰‹ç»­è´¹ç‡
 	cwFtdcRatioType	OpenRatioByMoney;
-	///¿ª²ÖÊÖĞø·Ñ
+	///å¼€ä»“æ‰‹ç»­è´¹
 	cwFtdcRatioType	OpenRatioByVolume;
-	///Æ½²ÖÊÖĞø·ÑÂÊ
+	///å¹³ä»“æ‰‹ç»­è´¹ç‡
 	cwFtdcRatioType	CloseRatioByMoney;
-	///Æ½²ÖÊÖĞø·Ñ
+	///å¹³ä»“æ‰‹ç»­è´¹
 	cwFtdcRatioType	CloseRatioByVolume;
-	///Æ½½ñÊÖĞø·ÑÂÊ
+	///å¹³ä»Šæ‰‹ç»­è´¹ç‡
 	cwFtdcRatioType	CloseTodayRatioByMoney;
-	///Æ½½ñÊÖĞø·Ñ
+	///å¹³ä»Šæ‰‹ç»­è´¹
 	cwFtdcRatioType	CloseTodayRatioByVolume;
-	///½»Ò×Ëù´úÂë
+	///äº¤æ˜“æ‰€ä»£ç 
 	cwFtdcExchangeIDType	ExchangeID;
-	///ºÏÔ¼´úÂë
+	///åˆçº¦ä»£ç 
 	cwFtdcInstrumentIDType	InstrumentID;
 };
 typedef std::shared_ptr<cwFtdcInstrumentCommissionRateField> cwCommissionRateDataPtr;
@@ -870,29 +870,29 @@ typedef std::shared_ptr<cwFtdcInstrumentCommissionRateField> cwCommissionRateDat
 ///Account
 typedef struct cwFtdcACCOUNTFIELD
 {
-	///Í¶×ÊÕßÕÊºÅ
+	///æŠ•èµ„è€…å¸å·
 	cwFtdcAccountIDType				AccountID;
-	///ÉÏ´Î½áËã×¼±¸½ğ
+	///ä¸Šæ¬¡ç»“ç®—å‡†å¤‡é‡‘
 	cwFtdcMoneyType					PreBalance;
-	///Èë½ğ½ğ¶î
+	///å…¥é‡‘é‡‘é¢
 	cwFtdcMoneyType					Deposit;
-	///³ö½ğ½ğ¶î
+	///å‡ºé‡‘é‡‘é¢
 	cwFtdcMoneyType					Withdraw;
-	///µ±Ç°±£Ö¤½ğ×Ü¶î
+	///å½“å‰ä¿è¯é‡‘æ€»é¢
 	cwFtdcMoneyType					CurrMargin;
-	///ÊÖĞø·Ñ
+	///æ‰‹ç»­è´¹
 	cwFtdcMoneyType					Commission;
-	///¶³½áµÄ±£Ö¤½ğ
+	///å†»ç»“çš„ä¿è¯é‡‘
 	cwFtdcMoneyType					FrozenMargin;
-	///¶³½áµÄÊÖĞø·Ñ
+	///å†»ç»“çš„æ‰‹ç»­è´¹
 	cwFtdcMoneyType					FrozenCommission;
-	///Æ½²ÖÓ¯¿÷
+	///å¹³ä»“ç›ˆäº
 	cwFtdcMoneyType					CloseProfit;
-	///³Ö²ÖÓ¯¿÷
+	///æŒä»“ç›ˆäº
 	cwFtdcMoneyType					PositionProfit;
-	///ÆÚ»õ½áËã×¼±¸½ğ
+	///æœŸè´§ç»“ç®—å‡†å¤‡é‡‘
 	cwFtdcMoneyType					Balance;
-	///¿ÉÓÃ×Ê½ğ
+	///å¯ç”¨èµ„é‡‘
 	cwFtdcMoneyType					Available;
 
 	cwFtdcACCOUNTFIELD();
@@ -904,11 +904,11 @@ typedef std::shared_ptr<cwFtdcACCOUNTFIELD>	cwAccountPtr;
 ///Order
 enum  cwOpenClose
 {
-	//¿ª²Ö
+	//å¼€ä»“
 	cwOpen = 0
-	//Æ½²Ö£¨Æ½×ò£©
+	//å¹³ä»“ï¼ˆå¹³æ˜¨ï¼‰
 	, cwClose
-	//Æ½½ñ
+	//å¹³ä»Š
 	, cwCloseToday
 };
 
@@ -924,9 +924,9 @@ enum cwUserCanceleStatus : uint32_t
 
 struct ActiveOrderKey
 {
-	///Ç°ÖÃ±àºÅ
+	///å‰ç½®ç¼–å·
 	cwFtdcFrontIDType					FrontID;
-	///»á»°±àºÅ
+	///ä¼šè¯ç¼–å·
 	cwFtdcSessionIDType					SessionID;
 
 	uint64_t							OrderRef;
@@ -952,10 +952,10 @@ size_t ActiveOrderKeyHash(ActiveOrderKey & key);
 
 struct ActiveEasyKey
 {
-	///ºÏÔ¼
+	///åˆçº¦
 	std::string						InstrumentID;
 
-	//±¾µØ±¨µ¥±àºÅ
+	//æœ¬åœ°æŠ¥å•ç¼–å·
 	uint64_t						OrderRef;
 
 	ActiveEasyKey(const char* ref, const char * szInstrumentID);
@@ -979,9 +979,9 @@ size_t ActiveEasyKeyHash(ActiveEasyKey& key);
 
 struct SysOrderKey
 {
-	///½»Ò×Ëù´úÂë
+	///äº¤æ˜“æ‰€ä»£ç 
 	cwFtdcExchangeIDType				ExchangeID;
-	///±¨µ¥±àºÅ
+	///æŠ¥å•ç¼–å·
 	cwFtdcOrderSysIDType				OrderSysID;
 
 	SysOrderKey(const char * exchange, const char * sysid);
@@ -1001,95 +1001,95 @@ struct SysOrderKey_HashFun
 
 struct ORDERFIELD
 {
-	///¾­¼Í¹«Ë¾´úÂë
+	///ç»çºªå…¬å¸ä»£ç 
 	cwFtdcBrokerIDType					BrokerID;
-	///Í¶×ÊÕß´úÂë
+	///æŠ•èµ„è€…ä»£ç 
 	cwFtdcInvestorIDType				InvestorID;
-	///ºÏÔ¼´úÂë
+	///åˆçº¦ä»£ç 
 	cwFtdcInstrumentIDType				InstrumentID;
-	///±¨µ¥ÒıÓÃ
+	///æŠ¥å•å¼•ç”¨
 	cwFtdcOrderRefType					OrderRef;
-	///ÓÃ»§´úÂë
+	///ç”¨æˆ·ä»£ç 
 	cwFtdcUserIDType					UserID;
-	///ÂòÂô·½Ïò
+	///ä¹°å–æ–¹å‘
 	cwFtdcDirectionType					Direction;
-	///×éºÏ¿ªÆ½±êÖ¾
+	///ç»„åˆå¼€å¹³æ ‡å¿—
 	cwFtdcCombOffsetFlagType			CombOffsetFlag;
-	///×éºÏÍ¶»úÌ×±£±êÖ¾
+	///ç»„åˆæŠ•æœºå¥—ä¿æ ‡å¿—
 	cwFtdcCombHedgeFlagType				CombHedgeFlag;
-	///¼Û¸ñ
+	///ä»·æ ¼
 	cwFtdcPriceType						LimitPrice;
-	///ÊıÁ¿
+	///æ•°é‡
 	cwFtdcVolumeType					VolumeTotalOriginal;
-	///×îĞ¡³É½»Á¿
+	///æœ€å°æˆäº¤é‡
 	cwFtdcVolumeType					MinVolume;
-	///±¨µ¥¼Û¸ñÌõ¼ş
+	///æŠ¥å•ä»·æ ¼æ¡ä»¶
 	cwFtdcOrderPriceType				OrderPriceType;
-	///ÓĞĞ§ÆÚÀàĞÍ
+	///æœ‰æ•ˆæœŸç±»å‹
 	cwFtdcTimeConditionType				TimeCondition;
-	///GTDÈÕÆÚ
+	///GTDæ—¥æœŸ
 	cwFtdcDateType						GTDDate;
-	///³É½»Á¿ÀàĞÍ
+	///æˆäº¤é‡ç±»å‹
 	cwFtdcVolumeConditionType			VolumeCondition;
-	///´¥·¢Ìõ¼ş
+	///è§¦å‘æ¡ä»¶
 	cwFtdcContingentConditionType		ContingentCondition;
-	///Ç¿Æ½Ô­Òò
+	///å¼ºå¹³åŸå› 
 	cwFtdcForceCloseReasonType			ForceCloseReason;
-	///±¾µØ±¨µ¥±àºÅ
+	///æœ¬åœ°æŠ¥å•ç¼–å·
 	cwFtdcOrderLocalIDType				OrderLocalID;
-	///½»Ò×Ëù´úÂë
+	///äº¤æ˜“æ‰€ä»£ç 
 	cwFtdcExchangeIDType				ExchangeID;
-	///¿Í»§´úÂë
+	///å®¢æˆ·ä»£ç 
 	cwFtdcClientIDType					ClientID;
-	///±¨µ¥Ìá½»×´Ì¬
+	///æŠ¥å•æäº¤çŠ¶æ€
 	cwFtdcOrderSubmitStatusType			OrderSubmitStatus;
-	///±¨µ¥À´Ô´
+	///æŠ¥å•æ¥æº
 	cwFtdcOrderSourceType				OrderSource;
-	///±¨µ¥×´Ì¬
+	///æŠ¥å•çŠ¶æ€
 	cwFtdcOrderStatusType				OrderStatus;
-	///Ö¹Ëğ¼Û
+	///æ­¢æŸä»·
 	cwFtdcPriceType						StopPrice;
-	///½»Ò×ÈÕ
+	///äº¤æ˜“æ—¥
 	cwFtdcDateType						TradingDay;
-	///±¨µ¥±àºÅ
+	///æŠ¥å•ç¼–å·
 	cwFtdcOrderSysIDType				OrderSysID;
-	///½ñ³É½»ÊıÁ¿
+	///ä»Šæˆäº¤æ•°é‡
 	cwFtdcVolumeType					VolumeTraded;
-	///Ê£ÓàÊıÁ¿
+	///å‰©ä½™æ•°é‡
 	cwFtdcVolumeType					VolumeTotal;
-	///±¨µ¥ÈÕÆÚ
+	///æŠ¥å•æ—¥æœŸ
 	cwFtdcDateType						InsertDate;
-	///Î¯ÍĞÊ±¼ä
+	///å§”æ‰˜æ—¶é—´
 	cwFtdcTimeType						InsertTime;
-	///¼¤»îÊ±¼ä
+	///æ¿€æ´»æ—¶é—´
 	cwFtdcTimeType						ActiveTime;
-	///¹ÒÆğÊ±¼ä
+	///æŒ‚èµ·æ—¶é—´
 	cwFtdcTimeType						SuspendTime;
-	///×îºóĞŞ¸ÄÊ±¼ä
+	///æœ€åä¿®æ”¹æ—¶é—´
 	cwFtdcTimeType						UpdateTime;
-	///³·ÏúÊ±¼ä
+	///æ’¤é”€æ—¶é—´
 	cwFtdcTimeType						CancelTime;
-	///ÓÃ»§¶Ë²úÆ·ĞÅÏ¢
+	///ç”¨æˆ·ç«¯äº§å“ä¿¡æ¯
 	cwFtdcProductInfoType				UserProductInfo;
-	///×´Ì¬ĞÅÏ¢
+	///çŠ¶æ€ä¿¡æ¯
 	cwFtdcErrorMsgType					StatusMsg;
-	///Ïà¹Ø±¨µ¥
+	///ç›¸å…³æŠ¥å•
 	cwFtdcOrderSysIDType				RelativeOrderSysID;
-	///±¨µ¥ÀàĞÍ
+	///æŠ¥å•ç±»å‹
 	cwFtdcOrderTypeType					OrderType;
-	///½áËã±àºÅ
+	///ç»“ç®—ç¼–å·
 	cwFtdcSettlementIDType				SettlementID;
-	///Ç°ÖÃ±àºÅ
+	///å‰ç½®ç¼–å·
 	cwFtdcFrontIDType					FrontID;
-	///»á»°±àºÅ
+	///ä¼šè¯ç¼–å·
 	cwFtdcSessionIDType					SessionID;
-	///ÓÃ»§Ç¿ÆÀ±êÖ¾
+	///ç”¨æˆ·å¼ºè¯„æ ‡å¿—
 	cwFtdcBoolType						UserForceClose;
-	///MacµØÖ·
+	///Macåœ°å€
 	//cwFtdcMacAddressType				MacAddress;
-	///IPµØÖ·
+	///IPåœ°å€
 	cwFtdcIPAddressType					IPAddress;
-	///±ÒÖÖ´úÂë
+	///å¸ç§ä»£ç 
 	cwFtdcCurrencyIDType				CurrencyID;
 
 	cwUserCanceleStatus					UserCancelStatus;
@@ -1109,49 +1109,49 @@ typedef std::shared_ptr<ORDERFIELD> cwOrderPtr;
 ///Trade
 struct TRADEFIELD
 {
-	///¾­¼Í¹«Ë¾´úÂë
+	///ç»çºªå…¬å¸ä»£ç 
 	cwFtdcBrokerIDType					BrokerID;
-	///Í¶×ÊÕß´úÂë
+	///æŠ•èµ„è€…ä»£ç 
 	cwFtdcInvestorIDType				InvestorID;
-	///ºÏÔ¼´úÂë
+	///åˆçº¦ä»£ç 
 	cwFtdcInstrumentIDType				InstrumentID;
-	///±¨µ¥ÒıÓÃ
+	///æŠ¥å•å¼•ç”¨
 	cwFtdcOrderRefType					OrderRef;
-	///ÓÃ»§´úÂë
+	///ç”¨æˆ·ä»£ç 
 	cwFtdcUserIDType					UserID;
-	///½»Ò×Ëù´úÂë
+	///äº¤æ˜“æ‰€ä»£ç 
 	cwFtdcExchangeIDType				ExchangeID;
-	///³É½»±àºÅ
+	///æˆäº¤ç¼–å·
 	cwFtdcTradeIDType					TradeID;
-	///ÂòÂô·½Ïò
+	///ä¹°å–æ–¹å‘
 	cwFtdcDirectionType					Direction;
-	///±¨µ¥±àºÅ
+	///æŠ¥å•ç¼–å·
 	cwFtdcOrderSysIDType				OrderSysID;
-	///¿Í»§´úÂë
+	///å®¢æˆ·ä»£ç 
 	cwFtdcClientIDType					ClientID;
-	///¼Û¸ñ
+	///ä»·æ ¼
 	cwFtdcPriceType						Price;
-	///ÊıÁ¿
+	///æ•°é‡
 	cwFtdcVolumeType					Volume;
-	///¿ªÆ½±êÖ¾
+	///å¼€å¹³æ ‡å¿—
 	cwFtdcOffsetFlagType				OffsetFlag;
-	///Í¶»úÌ×±£±êÖ¾
+	///æŠ•æœºå¥—ä¿æ ‡å¿—
 	cwFtdcHedgeFlagType					HedgeFlag;
-	///³É½»Ê±ÆÚ
+	///æˆäº¤æ—¶æœŸ
 	cwFtdcDateType						TradeDate;
-	///³É½»Ê±¼ä
+	///æˆäº¤æ—¶é—´
 	cwFtdcTimeType						TradeTime;
-	///³É½»ÀàĞÍ
+	///æˆäº¤ç±»å‹
 	cwFtdcTradeTypeType					TradeType;
-	///³É½»À´Ô´
+	///æˆäº¤æ¥æº
 	cwFtdcTradeSourceType				TradeSource;
-	///½»Ò×Ëù½»Ò×Ô±´úÂë
+	///äº¤æ˜“æ‰€äº¤æ˜“å‘˜ä»£ç 
 	cwFtdcTraderIDType					TraderID;
-	///±¾µØ±¨µ¥±àºÅ
+	///æœ¬åœ°æŠ¥å•ç¼–å·
 	cwFtdcOrderLocalIDType				OrderLocalID;
-	///½»Ò×ÈÕ
+	///äº¤æ˜“æ—¥
 	//cwFtdcDateType					TradingDay;
-	///³É½»¼ÛÀ´Ô´
+	///æˆäº¤ä»·æ¥æº
 	//cwFtdcPriceSourceType				PriceSource;
 
 	//TRADEFIELD(CThostFtdcTradeField * pTrade);
@@ -1168,37 +1168,37 @@ typedef std::shared_ptr<TRADEFIELD> cwTradePtr;
 ///Position
 struct POSITIONFIELD
 {
-	///ºÏÔ¼´úÂë
+	///åˆçº¦ä»£ç 
 	cwFtdcInstrumentIDType				InstrumentID;
-	///ÉÏÈÕ³Ö²Ö
+	///ä¸Šæ—¥æŒä»“
 	cwFtdcVolumeType					YdPosition;
-	///½ñÈÕ³Ö²Ö
+	///ä»Šæ—¥æŒä»“
 	cwFtdcVolumeType					TodayPosition;
-	///×Ü³Ö²Ö
+	///æ€»æŒä»“
 	cwFtdcVolumeType					TotalPosition;
-	///³Ö²Ö¶³½á
+	///æŒä»“å†»ç»“
 	cwFtdcVolumeType					PositionFrozen;
-	///³Ö²Ö³É±¾
+	///æŒä»“æˆæœ¬
 	cwFtdcMoneyType						PositionCost;
-	///¿ª²Ö³É±¾
+	///å¼€ä»“æˆæœ¬
 	cwFtdcMoneyType						OpenCost;
-	///½»Ò×Ëù±£Ö¤½ğ
+	///äº¤æ˜“æ‰€ä¿è¯é‡‘
 	cwFtdcMoneyType						ExchangeMargin;
-	///³Ö²Ö¾ù¼Û
+	///æŒä»“å‡ä»·
 	cwFtdcMoneyType						AveragePosPrice;
-	///³Ö²ÖÓ¯¿÷
+	///æŒä»“ç›ˆäº
 	cwFtdcMoneyType						PositionProfit;
-	///ÖğÈÕ¶¢ÊĞÆ½²ÖÓ¯¿÷
+	///é€æ—¥ç›¯å¸‚å¹³ä»“ç›ˆäº
 	cwFtdcMoneyType						CloseProfitByDate;
-	///Öğ±Ê¶Ô³åÆ½²ÖÓ¯¿÷
+	///é€ç¬”å¯¹å†²å¹³ä»“ç›ˆäº
 	cwFtdcMoneyType						CloseProfitByTrade;
-	///±£Ö¤½ğÂÊ
+	///ä¿è¯é‡‘ç‡
 	cwFtdcRatioType						MarginRateByMoney;
-	///±£Ö¤½ğÂÊ(°´ÊÖÊı)
+	///ä¿è¯é‡‘ç‡(æŒ‰æ‰‹æ•°)
 	cwFtdcRatioType						MarginRateByVolume;
-	///³Ö²Ö¶à¿Õ·½Ïò
+	///æŒä»“å¤šç©ºæ–¹å‘
 	cwFtdcDirectionType					PosiDirection;
-	///Í¶»úÌ×±£±êÖ¾
+	///æŠ•æœºå¥—ä¿æ ‡å¿—
 	cwFtdcHedgeFlagType					HedgeFlag;
 
 	POSITIONFIELD();
@@ -1257,12 +1257,12 @@ typedef struct CWPOSITIONFIELD
 }cwPositionField;
 typedef std::shared_ptr<cwPositionField> cwPositionPtr;
 
-///ÏìÓ¦ĞÅÏ¢
+///å“åº”ä¿¡æ¯
 struct cwFtdcRspInfoField
 {
-	///´íÎó´úÂë
+	///é”™è¯¯ä»£ç 
 	cwFtdcErrorIDType	ErrorID;
-	///´íÎóĞÅÏ¢
+	///é”™è¯¯ä¿¡æ¯
 	cwFtdcErrorMsgType	ErrorMsg;
 };
 typedef std::shared_ptr<cwFtdcRspInfoField> cwRspInfoPtr;
@@ -1271,15 +1271,15 @@ typedef std::shared_ptr<cwFtdcRspInfoField> cwRspInfoPtr;
 cwActiveOrderKey GenerateActiveKey(cwOrderPtr pOrder);
 
 namespace cwPandoraFs{
-// »ñÈ¡µ±Ç°Ö´ĞĞÎÄ¼şµÄ¾ø¶ÔÂ·¾¶,ÒÔ.exe½áÎ²
-// @return ÎÄ¼şÂ·¾¶·Ö¸ô·û£¬0 µ±Ç°ÊÇwindowsÏµÍ³'\\'£¬1 µ±Ç°ÊÇlinuxÏµÍ³'/'
+// è·å–å½“å‰æ‰§è¡Œæ–‡ä»¶çš„ç»å¯¹è·¯å¾„,ä»¥.exeç»“å°¾
+// @return æ–‡ä»¶è·¯å¾„åˆ†éš”ç¬¦ï¼Œ0 å½“å‰æ˜¯windowsç³»ç»Ÿ'\\'ï¼Œ1 å½“å‰æ˜¯linuxç³»ç»Ÿ'/'
 int GetExePath(std::string &exePath);
 
-// »ñÈ¡µ±Ç°Ö´ĞĞÎÄ¼şËùÔÚÎÄ¼ş¼ĞµÄ¾ø¶ÔÂ·¾¶,ÒÔ·Ö¸ô·û½áÎ²
-// @return ÎÄ¼şÂ·¾¶·Ö¸ô·û£¬0 µ±Ç°ÊÇwindowsÏµÍ³'\\'£¬1 µ±Ç°ÊÇlinuxÏµÍ³'/'
+// è·å–å½“å‰æ‰§è¡Œæ–‡ä»¶æ‰€åœ¨æ–‡ä»¶å¤¹çš„ç»å¯¹è·¯å¾„,ä»¥åˆ†éš”ç¬¦ç»“å°¾
+// @return æ–‡ä»¶è·¯å¾„åˆ†éš”ç¬¦ï¼Œ0 å½“å‰æ˜¯windowsç³»ç»Ÿ'\\'ï¼Œ1 å½“å‰æ˜¯linuxç³»ç»Ÿ'/'
 int GetExeFolder(std::string& exeFolder);
 
-// ´´½¨Ä¿Â¼£¬Â·¾¶·Ö¸ô·û²Î¿¼GetExePathµÄ·µ»ØÖµ¡£
-// @return 0:Ä¿Â¼ÒÑ´æÔÚ.  1:Ä¿Â¼²»´æÔÚ£¬Ôò´´½¨.
+// åˆ›å»ºç›®å½•ï¼Œè·¯å¾„åˆ†éš”ç¬¦å‚è€ƒGetExePathçš„è¿”å›å€¼ã€‚
+// @return 0:ç›®å½•å·²å­˜åœ¨.  1:ç›®å½•ä¸å­˜åœ¨ï¼Œåˆ™åˆ›å»º.
 int MkDir(std::string &dirPath);
 }

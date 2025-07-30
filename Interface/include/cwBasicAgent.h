@@ -31,56 +31,56 @@ public:
 	virtual void			OnRspOrderInsert(cwOrderPtr pOrder, cwRspInfoPtr pRspInfo) {};
 	virtual void			OnRspOrderCancel(cwOrderPtr pOrder, cwRspInfoPtr pRspInfo) {};
 
-	//±¨µ¥º¯Êı--ÏŞ¼Ûµ¥
+	//æŠ¥å•å‡½æ•°--é™ä»·å•
 	cwOrderPtr				InputLimitOrder(const char * szInstrumentID, cwFtdcDirectionType direction, cwOpenClose openclose, int volume, double price);
-	//±¨µ¥º¯Êı--FAKµ¥£¨Filled And Kill Á¢¼´³É½»Ê£Óà×Ô¶¯³·ÏúÖ¸Áî£©
+	//æŠ¥å•å‡½æ•°--FAKå•ï¼ˆFilled And Kill ç«‹å³æˆäº¤å‰©ä½™è‡ªåŠ¨æ’¤é”€æŒ‡ä»¤ï¼‰
 	cwOrderPtr				InputFAKOrder(const char * szInstrumentID, cwFtdcDirectionType direction, cwOpenClose openclose, int volume, double price);
-	//±¨µ¥º¯Êı--FOKµ¥(FOK Filled Or Kill Á¢¼´È«²¿³É½»·ñÔò×Ô¶¯³·ÏúÖ¸Áî)
+	//æŠ¥å•å‡½æ•°--FOKå•(FOK Filled Or Kill ç«‹å³å…¨éƒ¨æˆäº¤å¦åˆ™è‡ªåŠ¨æ’¤é”€æŒ‡ä»¤)
 	cwOrderPtr				InputFOKOrder(const char * szInstrumentID, cwFtdcDirectionType direction, cwOpenClose openclose, int volume, double price);
 
-	//¼ò»¯±¨µ¥º¯Êı£¬ volumeÕı±íÊ¾Âò£¬¸º±íÊ¾Âô£¬×Ô¶¯¿ªÆ½£¬ÓĞ³Ö²Ö¾ÍÆ½²Ö£¬Ã»ÓĞ¾Í¿ª²Ö
+	//ç®€åŒ–æŠ¥å•å‡½æ•°ï¼Œ volumeæ­£è¡¨ç¤ºä¹°ï¼Œè´Ÿè¡¨ç¤ºå–ï¼Œè‡ªåŠ¨å¼€å¹³ï¼Œæœ‰æŒä»“å°±å¹³ä»“ï¼Œæ²¡æœ‰å°±å¼€ä»“
 	cwOrderPtr				EasyInputOrder(const char * szInstrumentID, int volume, double price,
 		cwBasicStrategy::cwOpenCloseMode openclosemode = cwBasicStrategy::cwOpenCloseMode::CloseTodayThenYd,
 		cwInsertOrderType insertordertype = cwInsertOrderType::cwInsertLimitOrder);
 
-	//¼ò»¯±¨µ¥º¯Êı£¬ volumeÕı±íÊ¾Âò£¬¸º±íÊ¾Âô£¬×Ô¶¯¿ªÆ½£¬ÓĞ³Ö²Ö¾ÍÆ½²Ö£¬Ã»ÓĞ¾Í¿ª²Ö
-	//¸Ãº¯Êı»á¶Ô¶©µ¥£¬¸ù¾İÏÂµ¥Ä£Ê½ºÍ½»Ò×ËùºÏÔ¼ĞÅÏ¢ÅäÖÃ£¬½øĞĞ²ğµ¥²Ù×÷¡£
+	//ç®€åŒ–æŠ¥å•å‡½æ•°ï¼Œ volumeæ­£è¡¨ç¤ºä¹°ï¼Œè´Ÿè¡¨ç¤ºå–ï¼Œè‡ªåŠ¨å¼€å¹³ï¼Œæœ‰æŒä»“å°±å¹³ä»“ï¼Œæ²¡æœ‰å°±å¼€ä»“
+	//è¯¥å‡½æ•°ä¼šå¯¹è®¢å•ï¼Œæ ¹æ®ä¸‹å•æ¨¡å¼å’Œäº¤æ˜“æ‰€åˆçº¦ä¿¡æ¯é…ç½®ï¼Œè¿›è¡Œæ‹†å•æ“ä½œã€‚
 	std::deque<cwOrderPtr>	EasyInputMultiOrder(const char * szInstrumentID, int volume, double price,
 		cwBasicStrategy::cwOpenCloseMode openclosemode = cwBasicStrategy::cwOpenCloseMode::CloseTodayThenYd,
 		cwInsertOrderType insertordertype = cwInsertOrderType::cwInsertLimitOrder);
 
-	//³·µ¥
+	//æ’¤å•
 	bool					CancelOrder(cwOrderPtr pOrder);
-	//ÉèÖÃ´úÀíÈËµÄ¹¤×÷×´Ì¬	
+	//è®¾ç½®ä»£ç†äººçš„å·¥ä½œçŠ¶æ€	
 	void					SetAgentWorking(bool bWork) { m_bAgentWorking = bWork; }
-	//»ñÈ¡´úÀíÈËµÄ¹¤×÷×´Ì¬
+	//è·å–ä»£ç†äººçš„å·¥ä½œçŠ¶æ€
 	bool					GetAgentWorking() { return m_bAgentWorking; }
-	//Í£Ö¹´úÀíÈË				
+	//åœæ­¢ä»£ç†äºº				
 	//bool					StopAgent();
 
-	//»ñÈ¡×îĞÂµÄĞĞÇé
+	//è·å–æœ€æ–°çš„è¡Œæƒ…
 	cwMarketDataPtr	GetLastestMarketData(std::string InstrumentID);
 
-	//»ñÈ¡³Ö²ÖºÍ¹Òµ¥ÁĞ±í
+	//è·å–æŒä»“å’ŒæŒ‚å•åˆ—è¡¨
 	bool GetPositionsAndActiveOrders(std::map<std::string, cwPositionPtr>& PositionMap,
 		std::map<cwActiveOrderKey, cwOrderPtr>& ActiveOrders);
-	//»ñÈ¡Ö¸¶¨ºÏÔ¼³Ö²ÖºÍ¹Òµ¥ÁĞ±í
+	//è·å–æŒ‡å®šåˆçº¦æŒä»“å’ŒæŒ‚å•åˆ—è¡¨
 	bool GetPositionsAndActiveOrders(std::string InstrumentID, cwPositionPtr& pPosition, std::map<cwActiveOrderKey, cwOrderPtr>& ActiveOrders);
-	//»ñÈ¡Ö¸¶¨ºÏÔ¼¾»³Ö²ÖºÍ¹Òµ¥ÁĞ±í
+	//è·å–æŒ‡å®šåˆçº¦å‡€æŒä»“å’ŒæŒ‚å•åˆ—è¡¨
 	bool GetNetPositionAndActiveOrders(std::string InstrumentID, int & iPosition, std::map<cwActiveOrderKey, cwOrderPtr> & ActiveOrders);
 
 
-	//»ñÈ¡½»Ò×Ê±¼ä¶Î£¬¾à¿ªÅÌ¶àÉÙÃëºÍ¾àÊÕÅÌ¶àÉÙÃë
-	//²ÎÊı£ººÏÔ¼Ãû£¬ĞĞÇéÊ±¼ä£¨102835->10:28:35),½»Ò×½×¶Î£¬ ¾à¸Ã½»Ò×Ê±¶Î¿ªÅÌ¶àÉÙÃë£¬¾àÊÕÅÌ¶àÉÙÃë
+	//è·å–äº¤æ˜“æ—¶é—´æ®µï¼Œè·å¼€ç›˜å¤šå°‘ç§’å’Œè·æ”¶ç›˜å¤šå°‘ç§’
+	//å‚æ•°ï¼šåˆçº¦åï¼Œè¡Œæƒ…æ—¶é—´ï¼ˆ102835->10:28:35),äº¤æ˜“é˜¶æ®µï¼Œ è·è¯¥äº¤æ˜“æ—¶æ®µå¼€ç›˜å¤šå°‘ç§’ï¼Œè·æ”¶ç›˜å¤šå°‘ç§’
 	bool		GetTradeTimeSpace(const char * szInstrumentID, const char * updatetime,
 		cwProductTradeTime::cwTradeTimeSpace& iTradeIndex, int& iOpen, int& iClose);
-	//»ñÈ¡ºÏÔ¼×îĞ¡±ä¶¯£¬Èç¹û»ñÈ¡Ê§°Ü·µ»Ø-1
+	//è·å–åˆçº¦æœ€å°å˜åŠ¨ï¼Œå¦‚æœè·å–å¤±è´¥è¿”å›-1
 	double		GetTickSize(const char * szInstrumentID);
 
 protected:
-	//ÊÇ·ñ¶Ô¸ÃºÏÔ¼Â¢¶Ï£¬Èç¹ûÊÇµÄ»°£¬ Ö÷¶¯ÏÂµ¥½«»á±»¾Ü¾ø¡£
+	//æ˜¯å¦å¯¹è¯¥åˆçº¦å„æ–­ï¼Œå¦‚æœæ˜¯çš„è¯ï¼Œ ä¸»åŠ¨ä¸‹å•å°†ä¼šè¢«æ‹’ç»ã€‚
 	bool					m_bMonopoly;
-	//´úÀíÈËÊÇ·ñÔÚ¹¤×÷
+	//ä»£ç†äººæ˜¯å¦åœ¨å·¥ä½œ
 	bool					m_bAgentWorking;
 private:
 	virtual void			_PriceUpdate(cwMarketDataPtr pPriceData);

@@ -206,7 +206,7 @@ void cwCTAPlatform::OnReady()
 		{
 			m_cwAgentDataMap[it->second->InstrumentID] = pAgentData;
 
-			//ÉèÖÃËã·¨²ÎÊı
+			//è®¾ç½®ç®—æ³•å‚æ•°
 			pAgentData->pPositionAgent->InsLargeOrderVolume = 200;
 			pAgentData->pPositionAgent->InsLittleOrderVolume = 100;
 			pAgentData->pPositionAgent->InsAskBidGap = 3;
@@ -332,9 +332,9 @@ void cwCTAPlatform::InitialStrategy(const char* pConfigFilePath)
 		::GetModuleFileName(NULL, TexeFullPath, MAX_PATH);
 
 		int iLength;
-		//»ñÈ¡×Ö½Ú³¤¶È   
+		//è·å–å­—èŠ‚é•¿åº¦   
 		iLength = WideCharToMultiByte(CP_ACP, 0, TexeFullPath, -1, NULL, 0, NULL, NULL);
-		//½«tcharÖµ¸³¸ø_char    
+		//å°†tcharå€¼èµ‹ç»™_char    
 		WideCharToMultiByte(CP_ACP, 0, TexeFullPath, -1, exeFullPath, iLength, NULL, NULL);
 
 		m_strConfigFileFullPath = exeFullPath;
@@ -1351,7 +1351,7 @@ void cwCTAPlatform::SetKindle(std::string strStrategyID, bool bIndex, const char
 		pStrategyInfo->_pStrategy->m_strLastUpdateTime.c_str(), pStrategyInfo->_pStrategy->GetStrategyPosition());
 
 	pStrategyInfo->_pStrategy->m_cwEvaluator.Calculate();
-	m_cwShow.AddLog("¾»Öµ:%.1f »Ø³·:%.1f%% ÏÄÆÕ:%.1f",
+	m_cwShow.AddLog("å‡€å€¼:%.1f å›æ’¤:%.1f%% å¤æ™®:%.1f",
 		pStrategyInfo->_pStrategy->m_cwEvaluator.m_dCurNetAsset,
 		pStrategyInfo->_pStrategy->m_cwEvaluator.m_dMaxDrawDownRatio * 100,
 		pStrategyInfo->_pStrategy->m_cwEvaluator.m_dSharpeRatio);
@@ -1427,7 +1427,7 @@ cwInstrumentDataPtr cwCTAPlatform::GetFirstInstrumentData(std::string ProductID)
 
 void cwCTAPlatform::WriteSignalToFile()
 {
-	std::ofstream wfile;//Ğ´ÎÄ¼şÁ÷;
+	std::ofstream wfile;//å†™æ–‡ä»¶æµ;
 
 	cwAUTOMUTEX mt(m_ParameterMutex, true);
 
@@ -1464,7 +1464,7 @@ void cwCTAPlatform::WriteSignalToFile()
 
 void cwCTAPlatform::WriteNetAssetValueToFile()
 {
-	std::ofstream wfile;//Ğ´ÎÄ¼şÁ÷;
+	std::ofstream wfile;//å†™æ–‡ä»¶æµ;
 
 	std::map<std::uint64_t, std::unordered_map<std::string, cwBasicCTAStrategy::TimeBalanceDataPtr>> BalanceSeries;
 
@@ -1626,12 +1626,12 @@ int cwCTAPlatform::GetExpectedPosition(std::string InstrumentID, TradeParameter&
 	auto StrategySignalPosIt = m_cwStrategyPositionMap.find(SignalInstrumentID);
 	if (StrategySignalPosIt != m_cwStrategyPositionMap.end())
 	{
-		double dbInsPos = 0;									//µ¥²ßÂÔÏÂ²ßÂÔ³Ö²ÖĞÅºÅ
-		double dbExpectionMaintain = 0.0;						//»ã×Ü³Ö²ÖĞÅºÅ
+		double dbInsPos = 0;									//å•ç­–ç•¥ä¸‹ç­–ç•¥æŒä»“ä¿¡å·
+		double dbExpectionMaintain = 0.0;						//æ±‡æ€»æŒä»“ä¿¡å·
 		for (auto it = StrategySignalPosIt->second.begin();
 			it != StrategySignalPosIt->second.end(); it++)
 		{
-			//ĞÅºÅ³Ö²Ö * Ó³ÉäºÏÔ¼±¶Êı
+			//ä¿¡å·æŒä»“ * æ˜ å°„åˆçº¦å€æ•°
 			dbInsPos = it->second * cwTradeParameter.Ratio;
 
 			auto Manualit = m_ManualinterventionMap.find(it->first);
@@ -1665,7 +1665,7 @@ int cwCTAPlatform::GetExpectedPosition(std::string InstrumentID, TradeParameter&
 
 		}
 
-		//ÕË»§×ÜÌå²ÖÎ»¿ØÖÆ£ºÕË»§¿ØÖÆ³Ö²Ö
+		//è´¦æˆ·æ€»ä½“ä»“ä½æ§åˆ¶ï¼šè´¦æˆ·æ§åˆ¶æŒä»“
 		dbExpectionMaintain = dbExpectionMaintain * m_dAccountRatio;
 
 		if (cwTradeParameter.Mod)

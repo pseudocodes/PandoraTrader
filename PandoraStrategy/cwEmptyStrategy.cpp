@@ -57,9 +57,9 @@ void cwEmptyStrategy::InitialStrategy(const char * pConfigFilePath)
 		::GetModuleFileName(NULL, TexeFullPath, MAX_PATH);
 
 		int iLength;
-		//获取字节长度   
+		//鑾峰彇瀛楄妭闀垮害   
 		iLength = WideCharToMultiByte(CP_ACP, 0, TexeFullPath, -1, NULL, 0, NULL, NULL);
-		//将tchar值赋给_char    
+		//灏唗char鍊艰祴缁檁char    
 		WideCharToMultiByte(CP_ACP, 0, TexeFullPath, -1, exeFullPath, iLength, NULL, NULL);
 
 		m_strConfigFileFullPath = exeFullPath;

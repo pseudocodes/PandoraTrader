@@ -35,20 +35,20 @@ class cwTimeStamp
 public:
 	enum cwWeekday :int
 	{
-		Sunday = 0,			//周日
-		Monday = 1,			//周一
-		Tuesday = 2,		//周二
-		Wednesday = 3,		//周三
-		Thursday = 4,		//周四
-		Friday = 5,			//周五
-		Saturday = 6,		//周六
-		Sun = 0,			//周日
-		Mon = 1,			//周一
-		Tue = 2,			//周二
-		Wed = 3,			//周三
-		Thu = 4,			//周四
-		Fri = 5,			//周五
-		Sat = 6				//周六
+		Sunday = 0,			//鍛ㄦ棩
+		Monday = 1,			//鍛ㄤ竴
+		Tuesday = 2,		//鍛ㄤ簩
+		Wednesday = 3,		//鍛ㄤ笁
+		Thursday = 4,		//鍛ㄥ洓
+		Friday = 5,			//鍛ㄤ簲
+		Saturday = 6,		//鍛ㄥ叚
+		Sun = 0,			//鍛ㄦ棩
+		Mon = 1,			//鍛ㄤ竴
+		Tue = 2,			//鍛ㄤ簩
+		Wed = 3,			//鍛ㄤ笁
+		Thu = 4,			//鍛ㄥ洓
+		Fri = 5,			//鍛ㄤ簲
+		Sat = 6				//鍛ㄥ叚
 	};
 
 	enum enumMonth :int

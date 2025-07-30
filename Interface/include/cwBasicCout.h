@@ -64,7 +64,7 @@ private:
 	static std::deque<CoutDataPtr>				m_LogDataDeque;
 #endif
 
-	//²»ĞèÒª¹¤×÷
+	//ä¸éœ€è¦å·¥ä½œ
 	static volatile bool						m_bNoWorkRequired;
 };
 

@@ -100,9 +100,9 @@ void cwChasingRisingStrategy::InitialStrategy(const char* pConfigFilePath)
 	::GetModuleFileName(NULL, TexeFullPath, MAX_PATH);
 
 	int iLength;
-	//»ñÈ¡×Ö½Ú³¤¶È   
+	//è·å–å­—èŠ‚é•¿åº¦   
 	iLength = WideCharToMultiByte(CP_ACP, 0, TexeFullPath, -1, NULL, 0, NULL, NULL);
-	//½«tcharÖµ¸³¸ø_char    
+	//å°†tcharå€¼èµ‹ç»™_char    
 	WideCharToMultiByte(CP_ACP, 0, TexeFullPath, -1, exeFullPath, iLength, NULL, NULL);
 
 	m_strExeFolderPath = exeFullPath;
@@ -517,7 +517,7 @@ void cwChasingRisingStrategy::ChasingRising()
 
 	if (m_cwStrategyParameter.Manual)
 	{
-		//ÊÖ¶¯¸ÉÔ¤
+		//æ‰‹åŠ¨å¹²é¢„
 		std::map<cwActiveOrderKey, cwOrderPtr> WaitOrderList;
 		GetActiveOrders(WaitOrderList);
 
@@ -590,7 +590,7 @@ void cwChasingRisingStrategy::ChasingRising()
 			return;
 		}
 
-		//Ã»ÓĞ¼ÇÂ¼µÄ,ÏÈ¸³Öµ
+		//æ²¡æœ‰è®°å½•çš„,å…ˆèµ‹å€¼
 		m_cwRunningParaPtr->strBaseTime = m_cwRunningParaPtr->LastMarketData->UpdateTime;
 		m_cwRunningParaPtr->baseTime = TimeToint64(m_cwRunningParaPtr->LastMarketData);
 		m_cwRunningParaPtr->basePrice = m_cwRunningParaPtr->LastMarketData->LastPrice;
@@ -636,7 +636,7 @@ void cwChasingRisingStrategy::ChasingRising()
 		if (iMaintain < 0)
 		{
 			
-			///µ±Ç°¾»³Ö²ÖÎª¿Õ²Ö£¬ÔòÆ½²Ö, ÓÃÆ½²Ö²ÎÊı£¬Æ½²ÖÌõ¼şµÍÓÚ¿ª²ÖÌõ¼ş
+			///å½“å‰å‡€æŒä»“ä¸ºç©ºä»“ï¼Œåˆ™å¹³ä»“, ç”¨å¹³ä»“å‚æ•°ï¼Œå¹³ä»“æ¡ä»¶ä½äºå¼€ä»“æ¡ä»¶
 			bool bNeedCancel = false;
 			bool bCanOpen = false;
 
@@ -652,7 +652,7 @@ void cwChasingRisingStrategy::ChasingRising()
 			}
 			else
 			{
-				///×îµÍµã·´µ¯ÔòÖ¹ËğÖ¹Ó¯ ¿Õµ¥
+				///æœ€ä½ç‚¹åå¼¹åˆ™æ­¢æŸæ­¢ç›ˆ ç©ºå•
 				double upPrice = m_cwRunningParaPtr->dLowPx * (1 + d_stop);
 
 				if (m_cwRunningParaPtr->LastMarketData->LastPrice > upPrice + dInsEQ)
@@ -680,7 +680,7 @@ void cwChasingRisingStrategy::ChasingRising()
 			}
 
 
-			//ÏÈ¼ì²é¹Òµ¥
+			//å…ˆæ£€æŸ¥æŒ‚å•
 			int iSubMainWaitLongOrder = 0;
 			for (auto WaitOrderIt = WaitOrderList.begin();
 				WaitOrderIt != WaitOrderList.end(); WaitOrderIt++)
@@ -738,13 +738,13 @@ void cwChasingRisingStrategy::ChasingRising()
 		}
 		else
 		{
-			///ÓÃ¿ª²Ö²ÎÊı
+			///ç”¨å¼€ä»“å‚æ•°
 			bool bNeedCancel = true;
 			bool bCanOpen = false;
 
 			double dbOrderPrice = dTickSize;
 
-			//ÏÈ¼ì²é¹Òµ¥
+			//å…ˆæ£€æŸ¥æŒ‚å•
 			int iSubMainWaitLongOrder = 0;
 			for (auto WaitOrderIt = WaitOrderList.begin();
 				WaitOrderIt != WaitOrderList.end(); WaitOrderIt++)
@@ -798,7 +798,7 @@ void cwChasingRisingStrategy::ChasingRising()
 		//Insert Short
 		if (iMaintain > 0)
 		{
-			///µ±Ç°¾»³Ö²ÖÎª¿Õ²Ö£¬ÔòÆ½²Ö, ÓÃÆ½²Ö²ÎÊı£¬Æ½²ÖÌõ¼şµÍÓÚ¿ª²ÖÌõ¼ş
+			///å½“å‰å‡€æŒä»“ä¸ºç©ºä»“ï¼Œåˆ™å¹³ä»“, ç”¨å¹³ä»“å‚æ•°ï¼Œå¹³ä»“æ¡ä»¶ä½äºå¼€ä»“æ¡ä»¶
 			bool bNeedCancel = false;
 			bool bCanOpen = false;
 
@@ -814,7 +814,7 @@ void cwChasingRisingStrategy::ChasingRising()
 			}
 			else
 			{
-				//×î¸ßµã»ØÂäÔòÖ¹ËğÖ¹Ó¯ ¶àµ¥
+				//æœ€é«˜ç‚¹å›è½åˆ™æ­¢æŸæ­¢ç›ˆ å¤šå•
 				double downPrice = m_cwRunningParaPtr->dHighPx * (1 - d_stop);
 				if (m_cwRunningParaPtr->LastMarketData->LastPrice < downPrice - dInsEQ)
 				{
@@ -840,7 +840,7 @@ void cwChasingRisingStrategy::ChasingRising()
 
 			}
 
-			//ÏÈ¼ì²é¹Òµ¥
+			//å…ˆæ£€æŸ¥æŒ‚å•
 			int iSubMainWaitShortOrder = 0;
 			for (auto WaitOrderIt = WaitOrderList.begin();
 				WaitOrderIt != WaitOrderList.end(); WaitOrderIt++)
@@ -899,13 +899,13 @@ void cwChasingRisingStrategy::ChasingRising()
 		}
 		else
 		{
-			///ÓÃ¿ª²Ö²ÎÊı
+			///ç”¨å¼€ä»“å‚æ•°
 			bool bNeedCancel = true;
 			bool bCanOpen = false;
 
 			double dbOrderPrice = dTickSize;
 
-			//ÏÈ¼ì²é¹Òµ¥
+			//å…ˆæ£€æŸ¥æŒ‚å•
 			int iSubMainWaitShortOrder = 0;
 			for (auto WaitOrderIt = WaitOrderList.begin();
 				WaitOrderIt != WaitOrderList.end(); WaitOrderIt++)

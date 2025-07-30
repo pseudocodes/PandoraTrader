@@ -129,9 +129,9 @@ void cwMarketDataReceiver::InitialStrategy(const char * pConfigFilePath)
 		::GetModuleFileName(NULL, TexeFullPath, MAX_PATH);
 
 		int iLength;
-		//»ñÈ¡×Ö½Ú³¤¶È   
+		//èŽ·å–å­—èŠ‚é•¿åº¦   
 		iLength = WideCharToMultiByte(CP_ACP, 0, TexeFullPath, -1, NULL, 0, NULL, NULL);
-		//½«tcharÖµ¸³¸ø_char    
+		//å°†tcharå€¼èµ‹ç»™_char    
 		WideCharToMultiByte(CP_ACP, 0, TexeFullPath, -1, exeFullPath, iLength, NULL, NULL);
 
 		m_strConfigFileFullPath = exeFullPath;
@@ -166,13 +166,13 @@ void cwMarketDataReceiver::OnReady()
 {
 	if(m_bSaveInstrument)
 	{
-		//´´½¨Ò»¸öXMLµÄÎÄµµ¶ÔÏó¡£
+		//åˆ›å»ºä¸€ä¸ªXMLçš„æ–‡æ¡£å¯¹è±¡ã€‚
 		TiXmlDocument *myDocument = new TiXmlDocument();
 
 		TiXmlDeclaration * pDeclaration = new TiXmlDeclaration("1.0", "", "");
 		myDocument->LinkEndChild(pDeclaration);
 
-		//´´½¨Ò»¸ö¸ùÔªËØ²¢Á¬½Ó¡£
+		//åˆ›å»ºä¸€ä¸ªæ ¹å…ƒç´ å¹¶è¿žæŽ¥ã€‚
 		TiXmlElement *RootElement = new TiXmlElement("Instruments");
 		myDocument->LinkEndChild(RootElement);
 
@@ -181,11 +181,11 @@ void cwMarketDataReceiver::OnReady()
 		for (auto itIns = m_InstrumentMap.begin();
 			itIns != m_InstrumentMap.end(); itIns++)
 		{
-			//´´½¨Ò»¸öPersonÔªËØ²¢Á¬½Ó¡£
+			//åˆ›å»ºä¸€ä¸ªPersonå…ƒç´ å¹¶è¿žæŽ¥ã€‚
 			TiXmlElement *PersonElement = new TiXmlElement("Instrument");
 			RootElement->LinkEndChild(PersonElement);
 
-			//ÉèÖÃPersonÔªËØµÄÊôÐÔ¡£
+			//è®¾ç½®Personå…ƒç´ çš„å±žæ€§ã€‚
 			PersonElement->SetAttribute("ExchangeID", itIns->second->ExchangeID);
 			PersonElement->SetAttribute("InstrumentID", itIns->second->InstrumentID);
 			PersonElement->SetAttribute("InstrumentName", itIns->second->InstrumentName);
@@ -269,13 +269,13 @@ void cwMarketDataReceiver::OnReady()
 
 		if (!loadOkay)
 		{
-			//´´½¨Ò»¸öXMLµÄÎÄµµ¶ÔÏó¡£
+			//åˆ›å»ºä¸€ä¸ªXMLçš„æ–‡æ¡£å¯¹è±¡ã€‚
 			TiXmlDocument *myDocument = new TiXmlDocument();
 
 			TiXmlDeclaration * pDeclaration = new TiXmlDeclaration("1.0", "", "");
 			myDocument->LinkEndChild(pDeclaration);
 
-			//´´½¨Ò»¸ö¸ùÔªËØ²¢Á¬½Ó¡£
+			//åˆ›å»ºä¸€ä¸ªæ ¹å…ƒç´ å¹¶è¿žæŽ¥ã€‚
 			TiXmlElement *RootElement = new TiXmlElement("HisMDFiles");
 			myDocument->LinkEndChild(RootElement);
 

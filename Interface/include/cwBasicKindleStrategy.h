@@ -9,7 +9,7 @@
 //*******************************************************************************
 //////////////////////////////////////////////////////////////////////////////////
 
-//ÌáÊ¾£¬ÏÂ»®Ïß¿ªÍ·µÄº¯ÊıÈç_PriceUpdateÎªÏµÍ³µ÷ÓÃ£¬ÇëÎğµ÷ÓÃ¡£
+//æç¤ºï¼Œä¸‹åˆ’çº¿å¼€å¤´çš„å‡½æ•°å¦‚_PriceUpdateä¸ºç³»ç»Ÿè°ƒç”¨ï¼Œè¯·å‹¿è°ƒç”¨ã€‚
 
 #pragma once
 #include "cwCommonUtility.h"
@@ -33,44 +33,44 @@ public:
 	virtual ~cwBasicKindleStrategy();
 
 	///MarketData SPI
-	//ĞĞÇé¸üĞÂ£¨OnBar»áÏÈÓÚPriceUpdate»Øµ÷£¬ ÔÚPriceUpdateÒÑ¾­¿ÉÒÔ»ñÈ¡¸üĞÂºÃµÄKÏß£©
+	//è¡Œæƒ…æ›´æ–°ï¼ˆOnBarä¼šå…ˆäºPriceUpdateå›è°ƒï¼Œ åœ¨PriceUpdateå·²ç»å¯ä»¥è·å–æ›´æ–°å¥½çš„Kçº¿ï¼‰
 	void					PriceUpdate(cwMarketDataPtr pPriceData) override {};
-	//µ±Éú³ÉÒ»¸ùĞÂKÏßµÄÊ±ºò£¬»áµ÷ÓÃ¸Ã»Øµ÷
+	//å½“ç”Ÿæˆä¸€æ ¹æ–°Kçº¿çš„æ—¶å€™ï¼Œä¼šè°ƒç”¨è¯¥å›è°ƒ
 	virtual void			OnBar(cwMarketDataPtr pPriceData, int iTimeScale, cwBasicKindleStrategy::cwKindleSeriesPtr pKindleSeries) {};
 
 	///Trade SPI
-	//³É½»»Ø±¨
+	//æˆäº¤å›æŠ¥
 	void					OnRtnTrade(cwTradePtr pTrade) override {};
-	//±¨µ¥»Ø±¨, pOrderÎª×îĞÂ±¨µ¥£¬pOriginOrderÎªÉÏÒ»´Î¸üĞÂ±¨µ¥½á¹¹Ìå£¬ÓĞ¿ÉÄÜÎªNULL
+	//æŠ¥å•å›æŠ¥, pOrderä¸ºæœ€æ–°æŠ¥å•ï¼ŒpOriginOrderä¸ºä¸Šä¸€æ¬¡æ›´æ–°æŠ¥å•ç»“æ„ä½“ï¼Œæœ‰å¯èƒ½ä¸ºNULL
 	void					OnRtnOrder(cwOrderPtr pOrder, cwOrderPtr pOriginOrder = cwOrderPtr()) override {};
-	//³·µ¥³É¹¦
+	//æ’¤å•æˆåŠŸ
 	void					OnOrderCanceled(cwOrderPtr pOrder) override {};
-	//±¨µ¥Â¼ÈëÇëÇóÏìÓ¦
+	//æŠ¥å•å½•å…¥è¯·æ±‚å“åº”
 	void					OnRspOrderInsert(cwOrderPtr pOrder, cwRspInfoPtr pRspInfo) override {};
-	//±¨µ¥²Ù×÷ÇëÇóÏìÓ¦
+	//æŠ¥å•æ“ä½œè¯·æ±‚å“åº”
 	void					OnRspOrderCancel(cwOrderPtr pOrder, cwRspInfoPtr pRspInfo) override {};
 
 	///System Call Back
-	//¶¨Ê±Æ÷ÏìÓ¦
-	//¶¨Ê±Æ÷ID, ÔÚSetTimerµÄÊ±ºò´«¸øÏµÍ³£¬Èç¹ûInstrumentID´«NULL,ÔÚ»Øµ÷µÄÊ±ºòszInstrumentIDÎª¿Õ×Ö·û´®£¨¡°¡±£©£¬
-	//·ñÔò´«Ê²Ã´ºÏÔ¼ºÍTimerId£¬OnStrategyTimerµÄszInstrumentID¾ÍÊÇÄÇ¸öºÏÔ¼ĞÅÏ¢
+	//å®šæ—¶å™¨å“åº”
+	//å®šæ—¶å™¨ID, åœ¨SetTimerçš„æ—¶å€™ä¼ ç»™ç³»ç»Ÿï¼Œå¦‚æœInstrumentIDä¼ NULL,åœ¨å›è°ƒçš„æ—¶å€™szInstrumentIDä¸ºç©ºå­—ç¬¦ä¸²ï¼ˆâ€œâ€ï¼‰ï¼Œ
+	//å¦åˆ™ä¼ ä»€ä¹ˆåˆçº¦å’ŒTimerIdï¼ŒOnStrategyTimerçš„szInstrumentIDå°±æ˜¯é‚£ä¸ªåˆçº¦ä¿¡æ¯
 	void					OnStrategyTimer(int iTimerId, const char * szInstrumentID) override {};
-	//µ±²ßÂÔ½»Ò×³õÊ¼»¯Íê³ÉÊ±»áµ÷ÓÃOnReady, ¿ÉÒÔÔÚ´Ëº¯Êı×ö²ßÂÔµÄ³õÊ¼»¯²Ù×÷
+	//å½“ç­–ç•¥äº¤æ˜“åˆå§‹åŒ–å®Œæˆæ—¶ä¼šè°ƒç”¨OnReady, å¯ä»¥åœ¨æ­¤å‡½æ•°åšç­–ç•¥çš„åˆå§‹åŒ–æ“ä½œ
 	void					OnReady() override {};
 
 
-	//¶©ÔÄkÏß£¬ iTimeScaleÊÇkÏßÖÜÆÚ£¬ÃëÊı£¨Èç5·ÖÖÓÎª300£©
+	//è®¢é˜…kçº¿ï¼Œ iTimeScaleæ˜¯kçº¿å‘¨æœŸï¼Œç§’æ•°ï¼ˆå¦‚5åˆ†é’Ÿä¸º300ï¼‰
 	cwKindleSeriesPtr		SubcribeKindle(const char * szInstrumentID, int iTimeScale, int HisKindleCount = 0);
-	//pParserHisKindle ÊÇ¸öº¯ÊıÖ¸ÕëÓÃÓÚ¶ÁÈ¡ÀúÊ·Êı¾İ
-	//szFilePath»á´«ÈëÀúÊ·Êı¾İÎÄ¼ş¼ĞÂ·¾¶£¬ÆäÖµInitialHisKindleFromHisKindleFolder´«Èë£¬¸Ãº¯Êı½«KÏßÊı¾İ°´Ê±¼äË³Ğò´Ó0-n´æ·ÅÔÚKindleListÖĞ
-	//ÀúÊ·kÏß´¦ÀíÕı³£Ôò·µ»Øtrue£¬Óöµ½ÎÊÌâ£¬Ôò·µ»Øfalse.
+	//pParserHisKindle æ˜¯ä¸ªå‡½æ•°æŒ‡é’ˆç”¨äºè¯»å–å†å²æ•°æ®
+	//szFilePathä¼šä¼ å…¥å†å²æ•°æ®æ–‡ä»¶å¤¹è·¯å¾„ï¼Œå…¶å€¼InitialHisKindleFromHisKindleFolderä¼ å…¥ï¼Œè¯¥å‡½æ•°å°†Kçº¿æ•°æ®æŒ‰æ—¶é—´é¡ºåºä»0-nå­˜æ”¾åœ¨KindleListä¸­
+	//å†å²kçº¿å¤„ç†æ­£å¸¸åˆ™è¿”å›trueï¼Œé‡åˆ°é—®é¢˜ï¼Œåˆ™è¿”å›false.
 	cwKindleSeriesPtr		SubcribeKindle(const char * szInstrumentID, int iTimeScale,
 		bool(*pParserHisKindle)(const char* szFilePath,
 			const char* szInstrumentID, 
 			const char* szProductID,
 			const char* szExchangeID,
 			std::deque<cwKindleStickPtr>& KindleList));
-	//¶©ÔÄÈÕÏßKÏß
+	//è®¢é˜…æ—¥çº¿Kçº¿
 	cwKindleSeriesPtr		SubcribeDailyKindle(const char * szInstrumentID);
 	cwKindleSeriesPtr		SubcribeDailyKindle(const char* szInstrumentID,
 		bool(*pParserHisKindle)(const char* szFilePath,
@@ -78,7 +78,7 @@ public:
 			const char* szProductID,
 			const char* szExchangeID,
 			std::deque<cwKindleStickPtr>& KindleList));
-	//¶©ÔÄÖ¸ÊıKÏß
+	//è®¢é˜…æŒ‡æ•°Kçº¿
 	cwKindleSeriesPtr		SubcribeIndexKindle(const char* szProductId, int iTimeScale, int HisKindleCount = 0);
 	cwKindleSeriesPtr		SubcribeIndexKindle(const char* szProductId, int iTimeScale, 
 		bool(*pParserHisKindle)(const char* szFilePath,
@@ -96,70 +96,70 @@ public:
 
 	bool					InitialHisKindleFromDB();
 
-	//»ñÈ¡ÒÑ¾­¶©ÔÄµÄkÏß
+	//è·å–å·²ç»è®¢é˜…çš„kçº¿
 	cwKindleSeriesPtr		GetKindleSeries(const char * szInstrumentID, int iTimeScale);
 
-	//±¨µ¥º¯Êı--ÏŞ¼Ûµ¥
+	//æŠ¥å•å‡½æ•°--é™ä»·å•
 	cwOrderPtr				InputLimitOrder(const char * szInstrumentID, cwFtdcDirectionType direction, cwOpenClose openclose, int volume, double price);
-	//±¨µ¥º¯Êı--FAKµ¥£¨Filled And Kill Á¢¼´³É½»Ê£Óà×Ô¶¯³·ÏúÖ¸Áî£©
+	//æŠ¥å•å‡½æ•°--FAKå•ï¼ˆFilled And Kill ç«‹å³æˆäº¤å‰©ä½™è‡ªåŠ¨æ’¤é”€æŒ‡ä»¤ï¼‰
 	cwOrderPtr				InputFAKOrder(const char * szInstrumentID, cwFtdcDirectionType direction, cwOpenClose openclose, int volume, double price);
-	//±¨µ¥º¯Êı--FOKµ¥(FOK Filled Or Kill Á¢¼´È«²¿³É½»·ñÔò×Ô¶¯³·ÏúÖ¸Áî)
+	//æŠ¥å•å‡½æ•°--FOKå•(FOK Filled Or Kill ç«‹å³å…¨éƒ¨æˆäº¤å¦åˆ™è‡ªåŠ¨æ’¤é”€æŒ‡ä»¤)
 	cwOrderPtr				InputFOKOrder(const char * szInstrumentID, cwFtdcDirectionType direction, cwOpenClose openclose, int volume, double price);
 
-	//¼ò»¯±¨µ¥º¯Êı£¬ volumeÕı±íÊ¾Âò£¬¸º±íÊ¾Âô£¬×Ô¶¯¿ªÆ½£¬ÓĞ³Ö²Ö¾ÍÆ½²Ö£¬Ã»ÓĞ¾Í¿ª²Ö
+	//ç®€åŒ–æŠ¥å•å‡½æ•°ï¼Œ volumeæ­£è¡¨ç¤ºä¹°ï¼Œè´Ÿè¡¨ç¤ºå–ï¼Œè‡ªåŠ¨å¼€å¹³ï¼Œæœ‰æŒä»“å°±å¹³ä»“ï¼Œæ²¡æœ‰å°±å¼€ä»“
 	cwOrderPtr				EasyInputOrder(const char * szInstrumentID, int volume, double price,
 		cwOpenCloseMode openclosemode = cwOpenCloseMode::CloseTodayThenYd,
 		cwInsertOrderType insertordertype = cwInsertOrderType::cwInsertLimitOrder);
 
-	//¼ò»¯±¨µ¥º¯Êı£¬ volumeÕı±íÊ¾Âò£¬¸º±íÊ¾Âô£¬×Ô¶¯¿ªÆ½£¬ÓĞ³Ö²Ö¾ÍÆ½²Ö£¬Ã»ÓĞ¾Í¿ª²Ö
-	//¸Ãº¯Êı»á¶Ô¶©µ¥£¬¸ù¾İÏÂµ¥Ä£Ê½ºÍ½»Ò×ËùºÏÔ¼ĞÅÏ¢ÅäÖÃ£¬½øĞĞ²ğµ¥²Ù×÷¡£
+	//ç®€åŒ–æŠ¥å•å‡½æ•°ï¼Œ volumeæ­£è¡¨ç¤ºä¹°ï¼Œè´Ÿè¡¨ç¤ºå–ï¼Œè‡ªåŠ¨å¼€å¹³ï¼Œæœ‰æŒä»“å°±å¹³ä»“ï¼Œæ²¡æœ‰å°±å¼€ä»“
+	//è¯¥å‡½æ•°ä¼šå¯¹è®¢å•ï¼Œæ ¹æ®ä¸‹å•æ¨¡å¼å’Œäº¤æ˜“æ‰€åˆçº¦ä¿¡æ¯é…ç½®ï¼Œè¿›è¡Œæ‹†å•æ“ä½œã€‚
 	std::deque<cwOrderPtr>	EasyInputMultiOrder(const char * szInstrumentID, int volume, double price,
 		cwOpenCloseMode openclosemode = cwOpenCloseMode::CloseTodayThenYd,
 		cwInsertOrderType insertordertype = cwInsertOrderType::cwInsertLimitOrder);
 
-	//³·µ¥
+	//æ’¤å•
 	bool					CancelOrder(cwOrderPtr pOrder);
-	//È«²¿³·µ¥
+	//å…¨éƒ¨æ’¤å•
 	int						CancelAll();
-	//°´Ö¸¶¨ºÏÔ¼È«²¿³·µ¥
+	//æŒ‰æŒ‡å®šåˆçº¦å…¨éƒ¨æ’¤å•
 	int						CancelAll(const char * szInstrumentID);
-	//°´Ö¸¶¨ºÏÔ¼ºÍ·½ÏòÈ«²¿³·µ¥
+	//æŒ‰æŒ‡å®šåˆçº¦å’Œæ–¹å‘å…¨éƒ¨æ’¤å•
 	int						CancelAll(const char * szInstrumentID, cwFtdcDirectionType direction);
 
-	//ÉèÖÃ¶¨Ê±Æ÷ iTimerId¶¨Ê±Æ÷id£¬ÔÚOnStrategyTimer»Øµ÷ÒÀ¾İ´ËidÅĞ¶¨ÊÇÄÄ¸ö¶¨Ê±Æ÷´¥·¢, iElapse ´¥·¢¼ä¸ô£¨ºÁÃë£©
-	//Ä¿Ç°×î´óÖ§³Ö100¸ö¶¨Ê±Æ÷£¬¶¨Ê±Æ÷ÄÚ»Øµ÷º¯ÊıÇëÎğ´¦ÀíºÄÊ±Âß¼­¡£
-	//Í¬¸öidÏÂ£¬´¥·¢¼ä¸ô½«»á±»¸²¸Ç
+	//è®¾ç½®å®šæ—¶å™¨ iTimerIdå®šæ—¶å™¨idï¼Œåœ¨OnStrategyTimerå›è°ƒä¾æ®æ­¤idåˆ¤å®šæ˜¯å“ªä¸ªå®šæ—¶å™¨è§¦å‘, iElapse è§¦å‘é—´éš”ï¼ˆæ¯«ç§’ï¼‰
+	//ç›®å‰æœ€å¤§æ”¯æŒ100ä¸ªå®šæ—¶å™¨ï¼Œå®šæ—¶å™¨å†…å›è°ƒå‡½æ•°è¯·å‹¿å¤„ç†è€—æ—¶é€»è¾‘ã€‚
+	//åŒä¸ªidä¸‹ï¼Œè§¦å‘é—´éš”å°†ä¼šè¢«è¦†ç›–
 	// 
-	//ÌØ±ğ×¢Òâ£º
-	//szInstrumentID ÊÇ¶¨Ê±Æ÷¹ØÁªµÄºÏÔ¼ĞÅÏ¢£¬¸Ã¶¨Ê±Æ÷»Øµ÷Ê±½«°ó¶¨ÔÚ¸ÃºÏÔ¼¶ÔÓ¦µÄ×Ê²ú×éºÏIDÏÂ£¬
-	//¼´¸Ã»Øµ÷½«ºÍÕâ¸öportfolioÏÂµÄ»Øµ÷ĞÅÏ¢ÔÚÍ¬¸öÏß³Ì´¦ÀíOnStrategyTimer»Øµ÷
-	//¿ÉÒÔ²»Ö¸¶¨¹ØÁªµÄºÏÔ¼ĞÅÏ¢£¬¿ÉÒÔÌînullptr,½«ÓÉÄ¬ÈÏµÄ¹¤×÷Ïß³Ì´¦ÀíOnStrategyTimer»Øµ÷
+	//ç‰¹åˆ«æ³¨æ„ï¼š
+	//szInstrumentID æ˜¯å®šæ—¶å™¨å…³è”çš„åˆçº¦ä¿¡æ¯ï¼Œè¯¥å®šæ—¶å™¨å›è°ƒæ—¶å°†ç»‘å®šåœ¨è¯¥åˆçº¦å¯¹åº”çš„èµ„äº§ç»„åˆIDä¸‹ï¼Œ
+	//å³è¯¥å›è°ƒå°†å’Œè¿™ä¸ªportfolioä¸‹çš„å›è°ƒä¿¡æ¯åœ¨åŒä¸ªçº¿ç¨‹å¤„ç†OnStrategyTimerå›è°ƒ
+	//å¯ä»¥ä¸æŒ‡å®šå…³è”çš„åˆçº¦ä¿¡æ¯ï¼Œå¯ä»¥å¡«nullptr,å°†ç”±é»˜è®¤çš„å·¥ä½œçº¿ç¨‹å¤„ç†OnStrategyTimerå›è°ƒ
 	bool					SetTimer(int iTimerId, int iElapse, const char* szInstrumentID = nullptr);
 
-	//Î¯ÍĞ½»Ò×£¬PositionAgency´úÀí»ú¹¹½«»á°´ĞèÇó¹ÜÀíºÃ³Ö²Ö
-	//×¢Òâ£¬µ±ÆôÓÃPositionAgency¹¦ÄÜÖ®ºó£¬ÇëÎğ×öÏÂµ¥»òÕß³·µ¥²Ù×÷£¬ÒÔÃâ²úÉú³åÍ»¡£
+	//å§”æ‰˜äº¤æ˜“ï¼ŒPositionAgencyä»£ç†æœºæ„å°†ä¼šæŒ‰éœ€æ±‚ç®¡ç†å¥½æŒä»“
+	//æ³¨æ„ï¼Œå½“å¯ç”¨PositionAgencyåŠŸèƒ½ä¹‹åï¼Œè¯·å‹¿åšä¸‹å•æˆ–è€…æ’¤å•æ“ä½œï¼Œä»¥å…äº§ç”Ÿå†²çªã€‚
 	virtual void			SetAgentManager(void * pAgentMgr);
 
-	//ÉèÖÃºÏÔ¼ËùÔÚ×Ê²ú×éºÏID, ¶ÔÓÚÃ»ÓĞÉèÖÃµÄºÏÔ¼£¬Ä¬ÈÏÔÚ×Ê²ú×éºÏ£¨portfolio)IDÎª0µÄ×Ê²ú×éºÏÖĞ¡£
-	//¶ÔÓÚÍ¬¸öportfolioÏÂµÄºÏÔ¼£¬»áÓÃÍ¬¸öÏß³ÌÀ´´¦Àí£¬¶ÔÓÚÃ¿¸ö×Ê²ú×éºÏ¶¼ÓĞ×Ô¼ºµÄ´¦ÀíÏß³Ì
+	//è®¾ç½®åˆçº¦æ‰€åœ¨èµ„äº§ç»„åˆID, å¯¹äºæ²¡æœ‰è®¾ç½®çš„åˆçº¦ï¼Œé»˜è®¤åœ¨èµ„äº§ç»„åˆï¼ˆportfolio)IDä¸º0çš„èµ„äº§ç»„åˆä¸­ã€‚
+	//å¯¹äºåŒä¸ªportfolioä¸‹çš„åˆçº¦ï¼Œä¼šç”¨åŒä¸ªçº¿ç¨‹æ¥å¤„ç†ï¼Œå¯¹äºæ¯ä¸ªèµ„äº§ç»„åˆéƒ½æœ‰è‡ªå·±çš„å¤„ç†çº¿ç¨‹
 	void					SetPortfolioId(const char * szInstrumentID, unsigned int iPortfolioId);
 
-	//ÉèÖÃÍ¬²½Ä£Ê½
-	//true:Í¬²½, false:Òì²½
-	//Èç¹û²ÖÎ»ºÍ¹Òµ¥Ïà¹ØµÄĞÅÏ¢£¬ĞèÒª¸ù¾İ»Øµ÷½Ó¿ÚÀ´¸üĞÂÍ³¼ÆµÄ»°£¬ÇëÊ¹ÓÃÍ¬²½Ä£Ê½
-	//Èç¹û²ÖÎ»ºÍ¹Òµ¥Ïà¹ØµÄĞÅÏ¢£¬Ö»ÓÃÆ½Ì¨»Øµ÷½Ó¿ÚÀ´»ñÈ¡¼´¿É£¬×ö¶à×Ê²ú×éºÏµÄ»¯£¬¿ÉÒÔÓÃÒì²½Ä£Ê½ÌáËÙ
-	//½¨ÒéÔÚ»Ø²âµÄÊ±ºò£¬Ê¹ÓÃÍ¬²½Ä£Ê½
+	//è®¾ç½®åŒæ­¥æ¨¡å¼
+	//true:åŒæ­¥, false:å¼‚æ­¥
+	//å¦‚æœä»“ä½å’ŒæŒ‚å•ç›¸å…³çš„ä¿¡æ¯ï¼Œéœ€è¦æ ¹æ®å›è°ƒæ¥å£æ¥æ›´æ–°ç»Ÿè®¡çš„è¯ï¼Œè¯·ä½¿ç”¨åŒæ­¥æ¨¡å¼
+	//å¦‚æœä»“ä½å’ŒæŒ‚å•ç›¸å…³çš„ä¿¡æ¯ï¼Œåªç”¨å¹³å°å›è°ƒæ¥å£æ¥è·å–å³å¯ï¼Œåšå¤šèµ„äº§ç»„åˆçš„åŒ–ï¼Œå¯ä»¥ç”¨å¼‚æ­¥æ¨¡å¼æé€Ÿ
+	//å»ºè®®åœ¨å›æµ‹çš„æ—¶å€™ï¼Œä½¿ç”¨åŒæ­¥æ¨¡å¼
 	void					SetSynchronizeMode(bool bSynchronous);
 
-	//ÉèÖÃÊÇ·ñ½«ÓÃÓÚÖ¸Êı¼ÆËãµÄ×îĞÂĞĞÇéĞ´Èë»º´æÎÄ¼ş£¬
-	//Èç¹ûÓĞµ¥¶ÀÖ¸Êı¼ÆËã½ø³Ì£¬ÔòÉèÖÃÎª²»ĞèÒª£¨false£©,Èç¹ûÖ»ÓĞ×ÔÉí½ø³Ì£¬ÔòÉèÖÃÎªĞèÒª£¨true£©
+	//è®¾ç½®æ˜¯å¦å°†ç”¨äºæŒ‡æ•°è®¡ç®—çš„æœ€æ–°è¡Œæƒ…å†™å…¥ç¼“å­˜æ–‡ä»¶ï¼Œ
+	//å¦‚æœæœ‰å•ç‹¬æŒ‡æ•°è®¡ç®—è¿›ç¨‹ï¼Œåˆ™è®¾ç½®ä¸ºä¸éœ€è¦ï¼ˆfalseï¼‰,å¦‚æœåªæœ‰è‡ªèº«è¿›ç¨‹ï¼Œåˆ™è®¾ç½®ä¸ºéœ€è¦ï¼ˆtrueï¼‰
 	void					SetWriteIndexInfoCacheToFile(bool bNeedWriteToFile) { m_bNeedWriteCacheToFile = bNeedWriteToFile; };
 
-	//ÑĞ¾¿Ä£Ê½
+	//ç ”ç©¶æ¨¡å¼
 	void					SetResearchMode(bool bResearch, int iReserveTime = 5);
 
 
-	///ÏµÍ³×ÔÓÃ½Ó¿ÚĞÅÏ¢£¬Îğ¶¯
+	///ç³»ç»Ÿè‡ªç”¨æ¥å£ä¿¡æ¯ï¼Œå‹¿åŠ¨
 	void					_SetReady() override;
 	void					_OnDisConnect() override;
 	void					_OnSimulationBegin(int64_t timeStamp) override;
@@ -184,109 +184,109 @@ public:
 		cwKINDLE_TIMESCALE_DAILY = 86400
 	};
 private:
-	///ÏµÍ³×ÔÓÃ½Ó¿ÚĞÅÏ¢£¬Îğ¶¯
-	//¸üĞÂKÏß
+	///ç³»ç»Ÿè‡ªç”¨æ¥å£ä¿¡æ¯ï¼Œå‹¿åŠ¨
+	//æ›´æ–°Kçº¿
 	void					_UpdateKindleSeries(cwMarketDataPtr pPriceData, std::map<int, cwKindleSeriesPtr> & OnBarMap);
 	bool					_GetAgentWorking(std::string instrumentid);
 
 protected:
-	const int c_NightModeStartHour = 19;						//Ä¬ÈÏÒ¹ÅÌÆğÊ¼Ğ¡Ê±Îª19£¬¼´19µã£¨º¬00·Ö£©µ½Áè³¿3µã£¨º¬59·Ö£©
-	const int	c_NightModeEndHour = 3;							//Ä¬ÈÏÒ¹ÅÌ½áÊøĞ¡Ê±Îª03£¬¼´19µã£¨º¬00·Ö£©µ½Áè³¿3µã£¨º¬59·Ö£©
-	bool					m_bNightMode;						//Æô¶¯Ê±ºòÊÇ·ñÎªÒ¹ÅÌ
-	bool					m_bNightNextDay;					//Æô¶¯Ê±ºòÊÇ·ñÎªÒ¹ÅÌ¹ı12Ê±
+	const int c_NightModeStartHour = 19;						//é»˜è®¤å¤œç›˜èµ·å§‹å°æ—¶ä¸º19ï¼Œå³19ç‚¹ï¼ˆå«00åˆ†ï¼‰åˆ°å‡Œæ™¨3ç‚¹ï¼ˆå«59åˆ†ï¼‰
+	const int	c_NightModeEndHour = 3;							//é»˜è®¤å¤œç›˜ç»“æŸå°æ—¶ä¸º03ï¼Œå³19ç‚¹ï¼ˆå«00åˆ†ï¼‰åˆ°å‡Œæ™¨3ç‚¹ï¼ˆå«59åˆ†ï¼‰
+	bool					m_bNightMode;						//å¯åŠ¨æ—¶å€™æ˜¯å¦ä¸ºå¤œç›˜
+	bool					m_bNightNextDay;					//å¯åŠ¨æ—¶å€™æ˜¯å¦ä¸ºå¤œç›˜è¿‡12æ—¶
 
-	std::string				m_strAppStartDay;					//APPÆô¶¯ÈÕÆÚ
-	std::string				m_strAppStartNextDay;				//APPÆô¶¯µÚ¶şÌìÈÕÆÚ(×ÔÈ»ÈÕ£©
-	std::string				m_strAppStartNextTradingDay;				//ÏÂÒ»¸ö½»Ò×ÈÕ£¨ÒÔAPPÆô¶¯ÈÕÆÚ¼ÆËã£¬ÏÂÒ»¸ö½»Ò×ÈÕ,Èç2023.11.8£¨ÖÜÈı£©Ò¹ÅÌÆô¶¯£¬¸ÃÖµÎª20231109£©
-	std::string				m_strAppStartTime;					//³ÌĞò¿ªÆôÊ±¼ä
+	std::string				m_strAppStartDay;					//APPå¯åŠ¨æ—¥æœŸ
+	std::string				m_strAppStartNextDay;				//APPå¯åŠ¨ç¬¬äºŒå¤©æ—¥æœŸ(è‡ªç„¶æ—¥ï¼‰
+	std::string				m_strAppStartNextTradingDay;				//ä¸‹ä¸€ä¸ªäº¤æ˜“æ—¥ï¼ˆä»¥APPå¯åŠ¨æ—¥æœŸè®¡ç®—ï¼Œä¸‹ä¸€ä¸ªäº¤æ˜“æ—¥,å¦‚2023.11.8ï¼ˆå‘¨ä¸‰ï¼‰å¤œç›˜å¯åŠ¨ï¼Œè¯¥å€¼ä¸º20231109ï¼‰
+	std::string				m_strAppStartTime;					//ç¨‹åºå¼€å¯æ—¶é—´
 
-	const unsigned int		m_iDefaultWorkBenchId;				//Ä¬ÈÏ¹¤×÷ÇøID, Îª0£¬×Ô¶¨Òå¹¤×÷ÇøID,Çë´óÓÚ0.
+	const unsigned int		m_iDefaultWorkBenchId;				//é»˜è®¤å·¥ä½œåŒºID, ä¸º0ï¼Œè‡ªå®šä¹‰å·¥ä½œåŒºID,è¯·å¤§äº0.
 
-	bool					m_bResearchMode = false;			//ÑĞ¾¿Ä£Ê½
+	bool					m_bResearchMode = false;			//ç ”ç©¶æ¨¡å¼
 
 	std::string				m_strHisDataPath;
 
 private:
-	bool					m_bSynchronizeMode;					//ÊÇ·ñÍ¬²½	true:Í¬²½£¬ false:Òì²½
+	bool					m_bSynchronizeMode;					//æ˜¯å¦åŒæ­¥	true:åŒæ­¥ï¼Œ false:å¼‚æ­¥
 
-	cwMUTEX																			m_cwDealKindleMutex;			//KÏß´¦ÀíÍ¬²½
-	///KÏßÈİÆ÷ key:instrument key: TimeScale value :Kindle Series
+	cwMUTEX																			m_cwDealKindleMutex;			//Kçº¿å¤„ç†åŒæ­¥
+	///Kçº¿å®¹å™¨ key:instrument key: TimeScale value :Kindle Series
 	std::unordered_map<std::string, std::unordered_map<int, cwKindleSeriesPtr>>		m_KindleSeriesMap;
-	///ÀúÊ·kÏßÈİÆ÷ Key:Instrument key: TimeScale value:HisKindle Count
+	///å†å²kçº¿å®¹å™¨ Key:Instrument key: TimeScale value:HisKindle Count
 	std::unordered_map<std::string, std::unordered_map<int, int>>					m_HisKindleCountMap;
 
 	///Updating Thread 
-	///²ßÂÔÊÂ¼şÀàĞÍ
+	///ç­–ç•¥äº‹ä»¶ç±»å‹
 	enum StrategyEventType
 	{
-		EventType_OnReady = 0							//ÏµÍ³Ready»Øµ÷
-		, EventType_SimulationBegin						//»Ø²â¿ªÊ¼
-		, EventType_SimulationPartEnd					//»Ø²âÒ»¸ö²¿·Ö½áÊø£¨Ò»¸öĞĞÇéÊı¾İÎÄ¼ş£©
-		, EventType_SimulationFinish					//»Ø²âÍê³É
-		, EventType_OnTimer								//¶¨Ê±Æ÷»Øµ÷
-		, EventType_PriceUpdate							//TickĞĞÇé¸üĞÂ
-		, EventType_OnBar								//KÏß¸üĞÂ
-		, EventType_RtnTrade							//³É½»»Ø±¨
-		, EventType_RtnOrder							//±¨µ¥»Ø±¨
-		, EventType_OnCanceled							//³·µ¥»Ø±¨
-		, EventType_OnRspInsert							//±¨µ¥Â¼Èë»Ø±¨ÏìÓ¦
-		, EventType_OnRspCancel							//³·µ¥²Ù×÷ÇëÇóÏìÓ¦
-		, AgentType_PriceUpdate							//´úÀíÈËĞĞÇé¸üĞÂ
-		, AgentType_RtnTrade							//´úÀíÈË ³É½»»Ø±¨
-		, AgentType_RtnOrder							//´úÀíÈË ±¨µ¥»Ø±¨
-		, AgentType_OnCanceled							//´úÀíÈË ³·µ¥»Ø±¨
-		, AgentType_OnRspInsert							//´úÀíÈË ±¨µ¥Â¼Èë»Ø±¨ÏìÓ¦
-		, AgentType_OnRspCancel							//´úÀíÈË ³·µ¥²Ù×÷ÇëÇóÏìÓ¦
+		EventType_OnReady = 0							//ç³»ç»ŸReadyå›è°ƒ
+		, EventType_SimulationBegin						//å›æµ‹å¼€å§‹
+		, EventType_SimulationPartEnd					//å›æµ‹ä¸€ä¸ªéƒ¨åˆ†ç»“æŸï¼ˆä¸€ä¸ªè¡Œæƒ…æ•°æ®æ–‡ä»¶ï¼‰
+		, EventType_SimulationFinish					//å›æµ‹å®Œæˆ
+		, EventType_OnTimer								//å®šæ—¶å™¨å›è°ƒ
+		, EventType_PriceUpdate							//Tickè¡Œæƒ…æ›´æ–°
+		, EventType_OnBar								//Kçº¿æ›´æ–°
+		, EventType_RtnTrade							//æˆäº¤å›æŠ¥
+		, EventType_RtnOrder							//æŠ¥å•å›æŠ¥
+		, EventType_OnCanceled							//æ’¤å•å›æŠ¥
+		, EventType_OnRspInsert							//æŠ¥å•å½•å…¥å›æŠ¥å“åº”
+		, EventType_OnRspCancel							//æ’¤å•æ“ä½œè¯·æ±‚å“åº”
+		, AgentType_PriceUpdate							//ä»£ç†äººè¡Œæƒ…æ›´æ–°
+		, AgentType_RtnTrade							//ä»£ç†äºº æˆäº¤å›æŠ¥
+		, AgentType_RtnOrder							//ä»£ç†äºº æŠ¥å•å›æŠ¥
+		, AgentType_OnCanceled							//ä»£ç†äºº æ’¤å•å›æŠ¥
+		, AgentType_OnRspInsert							//ä»£ç†äºº æŠ¥å•å½•å…¥å›æŠ¥å“åº”
+		, AgentType_OnRspCancel							//ä»£ç†äºº æ’¤å•æ“ä½œè¯·æ±‚å“åº”
 	};
 
-	///²ßÂÔÊÂ¼şĞÅÏ¢ÄÚÈİ£¬ ²»Í¬ÊÂ¼şÀàĞÍÏÂ²»Í¬µÄÊı¾İ×Ö¶ÎÓĞÊı¾İ
+	///ç­–ç•¥äº‹ä»¶ä¿¡æ¯å†…å®¹ï¼Œ ä¸åŒäº‹ä»¶ç±»å‹ä¸‹ä¸åŒçš„æ•°æ®å­—æ®µæœ‰æ•°æ®
 	struct EventTypeStruct
 	{
-		StrategyEventType		EventType;				//ÊÂ¼şĞÅÏ¢ÀàĞÍ
-		cwMarketDataPtr			pPriceData;				//ĞĞÇéÊı¾İ
-		cwTradePtr				pTrade;					//³É½»ĞÅÏ¢
-		cwOrderPtr				pOrder;					//µ±Ç°±¨µ¥ĞÅÏ¢
-		cwOrderPtr				pOriginOrder;			//¸üĞÂÇ°±¨µ¥ĞÅÏ¢ÄÚÈİ
-		cwRspInfoPtr			pRspInfo;				//»Ø±¨ĞÅÏ¢
+		StrategyEventType		EventType;				//äº‹ä»¶ä¿¡æ¯ç±»å‹
+		cwMarketDataPtr			pPriceData;				//è¡Œæƒ…æ•°æ®
+		cwTradePtr				pTrade;					//æˆäº¤ä¿¡æ¯
+		cwOrderPtr				pOrder;					//å½“å‰æŠ¥å•ä¿¡æ¯
+		cwOrderPtr				pOriginOrder;			//æ›´æ–°å‰æŠ¥å•ä¿¡æ¯å†…å®¹
+		cwRspInfoPtr			pRspInfo;				//å›æŠ¥ä¿¡æ¯
 
-		std::string				strInstrumentID;		//ºÏÔ¼
-		int64_t					iBarId;					//kÏßºÅ
-		cwKindleSeriesPtr		pKindle;				//KÏßÄÚÈİ
+		std::string				strInstrumentID;		//åˆçº¦
+		int64_t					iBarId;					//kçº¿å·
+		cwKindleSeriesPtr		pKindle;				//Kçº¿å†…å®¹
 	};
 	typedef std::shared_ptr<EventTypeStruct>					EventTypeStructPtr;
 
-	//×Ê²ú×éºÏ¹¤×÷Çø
+	//èµ„äº§ç»„åˆå·¥ä½œåŒº
 	struct PortfolioWorkBench
 	{
-		unsigned int											iWorkBenchId;					//¹¤×÷ÇøID£¬±ØĞëÏî
-		std::string												strWorkBenchName;				//¹¤×÷ÇøÃû³Æ£¬¿É²»¸³Öµ
+		unsigned int											iWorkBenchId;					//å·¥ä½œåŒºIDï¼Œå¿…é¡»é¡¹
+		std::string												strWorkBenchName;				//å·¥ä½œåŒºåç§°ï¼Œå¯ä¸èµ‹å€¼
 
-		std::atomic<int>										iTradeInfoCnt;					//µ±Ç°ĞèÒª´¦ÀíµÄ½»Ò×ĞÅÏ¢ÊıÁ¿
+		std::atomic<int>										iTradeInfoCnt;					//å½“å‰éœ€è¦å¤„ç†çš„äº¤æ˜“ä¿¡æ¯æ•°é‡
 		std::condition_variable									TradeInfoDoneCv;				//
 
-		std::deque<EventTypeStructPtr>							EventTypeStructDeque;			//¹¤×÷ÇøÊÂ¼şĞÅÏ¢¶ÓÁĞ
-		cwMUTEX													EventTypeDequeMutex;			//ÊÂ¼şĞÅÏ¢¶ÓÁĞÍ¬²½
-		std::condition_variable									EventWorkingMutexCv;			//Ìí¼ÓÌõ¼ş±äÁ¿Í¨Öª¹¤×÷Çø¹¤×÷Ïß³Ì
+		std::deque<EventTypeStructPtr>							EventTypeStructDeque;			//å·¥ä½œåŒºäº‹ä»¶ä¿¡æ¯é˜Ÿåˆ—
+		cwMUTEX													EventTypeDequeMutex;			//äº‹ä»¶ä¿¡æ¯é˜Ÿåˆ—åŒæ­¥
+		std::condition_variable									EventWorkingMutexCv;			//æ·»åŠ æ¡ä»¶å˜é‡é€šçŸ¥å·¥ä½œåŒºå·¥ä½œçº¿ç¨‹
 		std::atomic<bool>										bEventFinished;
 
-		std::thread												EventTypeWorkingThread;			//¹¤×÷Çø¹¤×÷Ïß³Ì
-		volatile std::atomic<bool>								bEventTypeWorkingThreadRun;		//¹¤×÷ÇøÏß³ÌÔËĞĞ×´Ì¬
+		std::thread												EventTypeWorkingThread;			//å·¥ä½œåŒºå·¥ä½œçº¿ç¨‹
+		volatile std::atomic<bool>								bEventTypeWorkingThreadRun;		//å·¥ä½œåŒºçº¿ç¨‹è¿è¡ŒçŠ¶æ€
 	};
 	typedef std::shared_ptr<PortfolioWorkBench>					PortfolioWorkBenchPtr;
 
-	//Ö§³Ö¸ù¾İ×Ê²ú×éºÏ£¨portfolio)ÊıÁ¿£¬À´Éè¶¨¹¤×÷Ïß³ÌÊıÁ¿¡£
-	std::unordered_map<std::string, unsigned int>				m_InstrumentToPortfolioMap;		//Key:InstrumentID£¬ value:WorkBenchID
+	//æ”¯æŒæ ¹æ®èµ„äº§ç»„åˆï¼ˆportfolio)æ•°é‡ï¼Œæ¥è®¾å®šå·¥ä½œçº¿ç¨‹æ•°é‡ã€‚
+	std::unordered_map<std::string, unsigned int>				m_InstrumentToPortfolioMap;		//Key:InstrumentIDï¼Œ value:WorkBenchID
 	std::unordered_map<unsigned int, PortfolioWorkBenchPtr>		m_PortfolioMgrIntMap;			//key:WorkBenchID, value:WorkBench
 	std::unordered_map<std::string, PortfolioWorkBenchPtr>		m_PortfolioMgrStrMap;			//Key:InstrumentID, value:WorkBench
 
-	PortfolioWorkBenchPtr										m_pDefaultWorkBench;			//Ä¬ÈÏ¹¤×÷Çø
+	PortfolioWorkBenchPtr										m_pDefaultWorkBench;			//é»˜è®¤å·¥ä½œåŒº
 
-	//´´½¨¹¤×÷Çø
+	//åˆ›å»ºå·¥ä½œåŒº
 	PortfolioWorkBenchPtr						CreateWorkBench(unsigned int iBenchId, const char * pBenchName = "");
-	//»ñÈ¡¹¤×÷Çø
+	//è·å–å·¥ä½œåŒº
 	PortfolioWorkBenchPtr						GetWorkBench(std::string instrumentid);
 
-	//¹¤×÷Çø¹¤×÷Ïß³Ì
+	//å·¥ä½œåŒºå·¥ä½œçº¿ç¨‹
 	void										_EventTypeWorkingThread(PortfolioWorkBenchPtr pWorkBench);
 	void										_AddEventType(PortfolioWorkBenchPtr& pWorkBench, EventTypeStructPtr& EventPtr);
 
@@ -314,10 +314,10 @@ private:
 	//key Product, key InstrumentID
 	std::unordered_map <std::string, std::unordered_map<std::string, cwMarketDataPtr>>	m_IndexCalcuteDataCache;
 
-	//Ö¸Êı¼ÆËã¹¤×÷Ïß³Ì
+	//æŒ‡æ•°è®¡ç®—å·¥ä½œçº¿ç¨‹
 	cwMUTEX										m_UpdateIndexPriceDequeMutex;
 	bool										m_bUpdateIndexPriceThreadRun = false;
-	bool										m_bNeedWriteCacheToFile = false;		//Ä¬ÈÏ²»ĞèÒª½«Êı¾İĞ´ÈëCacheÎÄ¼ş£¬Ö»ÓĞĞĞÇé´æ´¢³ÌĞò²ÅĞèÒª¡£
+	bool										m_bNeedWriteCacheToFile = false;		//é»˜è®¤ä¸éœ€è¦å°†æ•°æ®å†™å…¥Cacheæ–‡ä»¶ï¼Œåªæœ‰è¡Œæƒ…å­˜å‚¨ç¨‹åºæ‰éœ€è¦ã€‚
 	void										_UpdateIndexPriceWorkingThread();
 	std::thread									m_UpdateIndexPriceWorkingThread;
 };

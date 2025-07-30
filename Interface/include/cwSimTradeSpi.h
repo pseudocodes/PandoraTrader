@@ -28,7 +28,7 @@ public:
 
 	virtual void RegisterBasicStrategy(cwBasicStrategy * pBasicStrategy, void * pSpi = NULL);
 
-	///请求响应
+	///璇锋眰鍝嶅簲
 	virtual void OnRspQryPosition(std::map<std::string, cwPositionPtr>& position);
 	virtual void OnRspQryOrders(std::map<std::string, cwOrderPtr>	orders);
 	virtual void OnRspQryTrade(std::map<std::string, cwTradePtr> trades);
@@ -37,22 +37,22 @@ public:
 
 
 	//User Trader Method
-	//行情更新
+	//琛屾儏鏇存柊
 	virtual void PriceUpdate(cwMarketDataPtr pPriceData);
 	
-	///报单通知
+	///鎶ュ崟閫氱煡
 	void OnRtnOrder(cwOrderPtr pOrder);
 
-	///成交通知
+	///鎴愪氦閫氱煡
 	virtual void OnRtnTrade(cwTradePtr pTrade);
 
-	///账户通知
+	///璐︽埛閫氱煡
 	virtual void OnRtnAccount(cwAccountPtr pAccount);
 
-	///报单录入请求响应
+	///鎶ュ崟褰曞叆璇锋眰鍝嶅簲
 	virtual void OnRspOrderInsert(cwOrderPtr pInputOrder, cwRspInfoPtr pRspInfo);
 
-	///报单操作请求响应
+	///鎶ュ崟鎿嶄綔璇锋眰鍝嶅簲
 	virtual void OnRspOrderAction(cwOrderPtr pInputOrderAction, cwRspInfoPtr pRspInfo, int nRequestID, bool bIsLast);
 
 
@@ -70,9 +70,9 @@ public:
 	virtual void CancelOrder(const char * szLocalOrderID);
 	virtual void CancelOrder(cwOrderPtr pOrder);
 
-	//查询保证金率
+	//鏌ヨ淇濊瘉閲戠巼
 	virtual cwMarginRateDataPtr			GetMarginRate(std::string InstrumentID);
-	//查询手续费率
+	//鏌ヨ鎵嬬画璐圭巼
 	virtual cwCommissionRateDataPtr		GetCommissionRate(std::string InstrumentID);
 
 	cwOrderPtr GetcwOrderPtr(const char * szExchangeID, const char * szInstrumentID, cwFtdcDirectionType direction,

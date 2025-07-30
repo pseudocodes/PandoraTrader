@@ -37,22 +37,22 @@ public:
 	cwPegasusSimulator();
 	~cwPegasusSimulator();
 
-	//³õÊ¼»¯Ä£ÄâÆ÷£¬¶ÁÈ¡ÅäÖÃºÍºÏÔ¼ĞÅÏ¢
+	//åˆå§‹åŒ–æ¨¡æ‹Ÿå™¨ï¼Œè¯»å–é…ç½®å’Œåˆçº¦ä¿¡æ¯
 	void		InitialSimulator(const char * pConfigFilePath) override;
 	//pParserTickDataRow, Only used for cache file
 	void		InitialSimulator(const char* pConfigFilePath,
 		bool(*pParserTickDataRow)(CsvRow* pRow, cwMarketDataPtr& pData));
 
-	//¶ÁÈ¡ÅäÖÃĞÅÏ¢
+	//è¯»å–é…ç½®ä¿¡æ¯
 	bool				ReadXmlConfigFile();
 
-	//Æô¶¯Ä£ÄâÆ÷
+	//å¯åŠ¨æ¨¡æ‹Ÿå™¨
 	bool				SimulationStart();
-	bool				NoTradingSimulationStart();				//Ö»»Ø·ÅÊı¾İ£¬²»Ìá¹©±¨µ¥½»Ò×Ïà¹Ø¹¦ÄÜ	
-	//Æô¶¯ĞĞÇé·şÎñ
+	bool				NoTradingSimulationStart();				//åªå›æ”¾æ•°æ®ï¼Œä¸æä¾›æŠ¥å•äº¤æ˜“ç›¸å…³åŠŸèƒ½	
+	//å¯åŠ¨è¡Œæƒ…æœåŠ¡
 	virtual bool		StartMarketDataServer();
 
-	//ÇëÇó
+	//è¯·æ±‚
 	//Md
 	virtual int			ReqUserMdLogin();
 	
@@ -71,12 +71,12 @@ public:
 	cwOrderPtr			GetOrder(cwOrderPtr pOrder);
 	cwTradePtr			GetTrade(cwOrderPtr pOrder, double dTradePrice, int iTradeCnt = 1);
 
-	cwFtdcDateType								m_CurrentTradingDay;					//»Ø²âÒıÇæ ½»Ò×ÈÕ
-	cwFtdcDateType								m_CurrentActionDay;						//»Ø²âÒıÇæ ×ÔÈ»ÈÕ
-	cwFtdcTimeType								m_CurrentSimulationTime;				//»Ø²âÒıÇæ Ê±¼ä
+	cwFtdcDateType								m_CurrentTradingDay;					//å›æµ‹å¼•æ“ äº¤æ˜“æ—¥
+	cwFtdcDateType								m_CurrentActionDay;						//å›æµ‹å¼•æ“ è‡ªç„¶æ—¥
+	cwFtdcTimeType								m_CurrentSimulationTime;				//å›æµ‹å¼•æ“ æ—¶é—´
 
-	volatile bool								m_bSimulationFinished;					//»Ø²â½áÊø
-	cwSettlement								m_cwSettlement;							//»Ø²âÒıÇæ ½áËãÄ£¿é
+	volatile bool								m_bSimulationFinished;					//å›æµ‹ç»“æŸ
+	cwSettlement								m_cwSettlement;							//å›æµ‹å¼•æ“ ç»“ç®—æ¨¡å—
 
 	//Custom Data interface return Data List Size
 	int					AddCustomData(cwMarketDataPtr pData, bool bSimulationPartEnd = false, bool bSimulationFinish = false, int SimPartID = 0);
@@ -89,13 +89,13 @@ public:
 private:
 	enum SIMTYPE:int
 	{
-		type_CSV_file = 0,				//CSVÎÄ¼ş
-		type_BIN_file,					//bin¶ş½øÖÆÎÄ¼ş
-		type_CSV_List_file,				//CSVÎÄ¼şĞòÁĞ
-		type_BIN_List_file,				//bin¶ş½øÖÆÎÄ¼şĞòÁĞ
-		type_DB,						//Êı¾İ¿â
-		type_REAL_Time_Quote,			//ÊµÊ±ĞĞÇé
-		type_Custom_Quote				//ÓÃ»§×Ô¶¨ÒåÊı¾İ
+		type_CSV_file = 0,				//CSVæ–‡ä»¶
+		type_BIN_file,					//binäºŒè¿›åˆ¶æ–‡ä»¶
+		type_CSV_List_file,				//CSVæ–‡ä»¶åºåˆ—
+		type_BIN_List_file,				//binäºŒè¿›åˆ¶æ–‡ä»¶åºåˆ—
+		type_DB,						//æ•°æ®åº“
+		type_REAL_Time_Quote,			//å®æ—¶è¡Œæƒ…
+		type_Custom_Quote				//ç”¨æˆ·è‡ªå®šä¹‰æ•°æ®
 	};
 
 	SIMTYPE				m_SimType;
@@ -119,23 +119,23 @@ private:
 
 	std::unordered_map<std::string, cwInstrumentDataPtr>	m_InstrumentMap;
 
-	//ÏµÍ³±¨µ¥±àºÅ
+	//ç³»ç»ŸæŠ¥å•ç¼–å·
 	int					m_iSysOrderID;
-	//ÏµÍ³³É½»±àºÅ
+	//ç³»ç»Ÿæˆäº¤ç¼–å·
 	int					m_iSysTradeID;
 
 
-	//×îĞÂµÄĞĞÇéÊı¾İ£¬key:InstrumentID
+	//æœ€æ–°çš„è¡Œæƒ…æ•°æ®ï¼Œkey:InstrumentID
 	std::map<std::string, cwMarketDataPtr>								m_LastestMarketDataMap;
 
-	//ËùÓĞµÄ¶©µ¥£¬ key:SysOrderId
+	//æ‰€æœ‰çš„è®¢å•ï¼Œ key:SysOrderId
 	std::map<std::string, cwOrderPtr>									m_TotalOrderMap;
 
-	//Î´Ê¹ÓÃ
+	//æœªä½¿ç”¨
 	std::map<std::string, std::map<int64_t, std::deque<cwOrderPtr>>>	m_TotalLongOrderMap;
 	std::map<std::string, std::map<int64_t, std::deque<cwOrderPtr>>>	m_TotalShortOrderMap;
 
-	//´éºÏ¶©µ¥²¾	key:InstrumentID, key:price*1000 value: OrderList
+	//æ’®åˆè®¢å•ç°¿	key:InstrumentID, key:price*1000 value: OrderList
 	std::map<std::string, std::map<int64_t, std::deque<cwOrderPtr>>>	m_LongWaitOrderListMap;
 	std::map<std::string, std::map<int64_t, std::deque<cwOrderPtr>>>	m_ShortWaitOrderListMap;
 
@@ -160,7 +160,7 @@ private:
 
 	cwMUTEX													m_ProcessMutex;
 
-	std::deque<cwMarketDataPtr>								m_MDCacheDeque;							//´ı´éºÏĞĞÇé¶ÓÁĞ
+	std::deque<cwMarketDataPtr>								m_MDCacheDeque;							//å¾…æ’®åˆè¡Œæƒ…é˜Ÿåˆ—
 	cwMUTEX													m_MDCacheMutex;
 	volatile std::atomic<bool>								m_bMDCacheMutexReady;
 	volatile std::atomic<bool>								m_bSimulationPartEnd;

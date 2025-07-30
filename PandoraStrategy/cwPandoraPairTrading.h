@@ -26,53 +26,53 @@ public:
 
 
 	///MarketData SPI
-	//ĞĞÇé¸üĞÂ
+	//è¡Œæƒ…æ›´æ–°
 	virtual void PriceUpdate(cwMarketDataPtr pPriceData);
 
 	///Trade SPI
-	//³É½»»Ø±¨
+	//æˆäº¤å›æŠ¥
 	virtual void OnRtnTrade(cwTradePtr pTrade) {};
-	//±¨µ¥»Ø±¨, pOrderÎª×îĞÂ±¨µ¥£¬pOriginOrderÎªÉÏÒ»´Î¸üĞÂ±¨µ¥½á¹¹Ìå£¬ÓĞ¿ÉÄÜÎªNULL
+	//æŠ¥å•å›æŠ¥, pOrderä¸ºæœ€æ–°æŠ¥å•ï¼ŒpOriginOrderä¸ºä¸Šä¸€æ¬¡æ›´æ–°æŠ¥å•ç»“æ„ä½“ï¼Œæœ‰å¯èƒ½ä¸ºNULL
 	virtual void OnRtnOrder(cwOrderPtr pOrder, cwOrderPtr pOriginOrder = cwOrderPtr()) {};
-	//³·µ¥³É¹¦
+	//æ’¤å•æˆåŠŸ
 	virtual void OnOrderCanceled(cwOrderPtr pOrder) {};
-	//±¨µ¥Â¼ÈëÇëÇóÏìÓ¦
+	//æŠ¥å•å½•å…¥è¯·æ±‚å“åº”
 	virtual void OnRspOrderInsert(cwOrderPtr pOrder, cwFtdcRspInfoField * pRspInfo) {};
-	//±¨µ¥²Ù×÷ÇëÇóÏìÓ¦
+	//æŠ¥å•æ“ä½œè¯·æ±‚å“åº”
 	virtual void OnRspOrderCancel(cwOrderPtr pOrder, cwFtdcRspInfoField * pRspInfo) {};
-	//µ±²ßÂÔ½»Ò×³õÊ¼»¯Íê³ÉÊ±»áµ÷ÓÃOnReady, ¿ÉÒÔÔÚ´Ëº¯Êı×ö²ßÂÔµÄ³õÊ¼»¯²Ù×÷
+	//å½“ç­–ç•¥äº¤æ˜“åˆå§‹åŒ–å®Œæˆæ—¶ä¼šè°ƒç”¨OnReady, å¯ä»¥åœ¨æ­¤å‡½æ•°åšç­–ç•¥çš„åˆå§‹åŒ–æ“ä½œ
 	virtual void OnReady();
 	
-	//²ßÂÔ½»Ò×´ÎÖ÷Á¦ºÏÔ¼
+	//ç­–ç•¥äº¤æ˜“æ¬¡ä¸»åŠ›åˆçº¦
 	void		 DoManualSpread();
 
-	std::string					m_strCurrentUpdateTime;			//×îĞÂĞĞÇéÊ±¼ä
+	std::string					m_strCurrentUpdateTime;			//æœ€æ–°è¡Œæƒ…æ—¶é—´
 
 protected:
-	std::string					m_MainInstrumentID;				//Ö÷Á¦ºÏÔ¼
-	std::string					m_SubMainInstrumentID;			//´ÎÖ÷Á¦ºÏÔ¼
+	std::string					m_MainInstrumentID;				//ä¸»åŠ›åˆçº¦
+	std::string					m_SubMainInstrumentID;			//æ¬¡ä¸»åŠ›åˆçº¦
 
-	//¼Û²î¶¨ÒåÎªÖ÷Á¦-´ÎÖ÷Á¦
-	double						m_dBuyThreadHold;				//¼Û²îÂòãĞÖµ
-	double						m_dSellThreadHold;				//¼Û²îÂôãĞÖµ
+	//ä»·å·®å®šä¹‰ä¸ºä¸»åŠ›-æ¬¡ä¸»åŠ›
+	double						m_dBuyThreadHold;				//ä»·å·®ä¹°é˜ˆå€¼
+	double						m_dSellThreadHold;				//ä»·å·®å–é˜ˆå€¼
 	
-	double						m_dVolumeCoefficient;			//¶Ô³å±ÈÂÊ
+	double						m_dVolumeCoefficient;			//å¯¹å†²æ¯”ç‡
 
-	cwMarketDataPtr				m_cwMainMarketData;				//Ö÷Á¦ºÏÔ¼ĞĞÇé
-	cwMarketDataPtr				m_cwSubMainMarketData;			//´ÎÖ÷Á¦ºÏÔ¼ĞĞÇé
+	cwMarketDataPtr				m_cwMainMarketData;				//ä¸»åŠ›åˆçº¦è¡Œæƒ…
+	cwMarketDataPtr				m_cwSubMainMarketData;			//æ¬¡ä¸»åŠ›åˆçº¦è¡Œæƒ…
 
-	cwOpenCloseMode				m_cwMainOpenCloseMode;			//Ö÷Á¦¿ªÆ½Ä£Ê½
-	cwOpenCloseMode				m_cwSubMainOpenCloseMode;		//´ÎÖ÷Á¦¿ªÆ½Ä£Ê½
+	cwOpenCloseMode				m_cwMainOpenCloseMode;			//ä¸»åŠ›å¼€å¹³æ¨¡å¼
+	cwOpenCloseMode				m_cwSubMainOpenCloseMode;		//æ¬¡ä¸»åŠ›å¼€å¹³æ¨¡å¼
 
-	int							m_iPositionLimit;				//³Ö²ÖÏŞÖÆ
-	int							m_iOrderVolume;					//±¨µ¥ÊÖÊı
+	int							m_iPositionLimit;				//æŒä»“é™åˆ¶
+	int							m_iOrderVolume;					//æŠ¥å•æ‰‹æ•°
 
-	cwStrategyLog				m_StrategyLog;					//²ßÂÔÈÕÖ¾
+	cwStrategyLog				m_StrategyLog;					//ç­–ç•¥æ—¥å¿—
 	cwBasicCout					m_cwShow;						//cout
 
 
-	cwPandoraAgentManager					m_PandoraAgentManager;		//´úÀíÈË¹ÜÀíÕß£¬¿ÉÍ¨¹ıËû´´½¨´úÀíÈË
+	cwPandoraAgentManager					m_PandoraAgentManager;		//ä»£ç†äººç®¡ç†è€…ï¼Œå¯é€šè¿‡ä»–åˆ›å»ºä»£ç†äºº
 
-	cwPandoraAgentManager::cwAgentDataPtr	m_pPositionAgent;			//²ÖÎ»¹ÜÀí´úÀíÈË£¬ÒªÖ¸¶¨ºÏÔ¼
+	cwPandoraAgentManager::cwAgentDataPtr	m_pPositionAgent;			//ä»“ä½ç®¡ç†ä»£ç†äººï¼Œè¦æŒ‡å®šåˆçº¦
 };
 

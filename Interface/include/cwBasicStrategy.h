@@ -21,70 +21,70 @@
 #include "cwStrategyLog.h"
 #include "cwBasicCout.h"
 
-//#define BasiStrategyLOG					//ÏÂµ¥ÈÕÖ¾
+//#define BasiStrategyLOG					//ä¸‹å•æ—¥å¿—
 
 class cwBasicStrategy
 {
 public:
 	enum cwOpenCloseMode :int
 	{
-		CloseTodayThenYd = 0,		//ÏÈÆ½½ñ£¬ÔÙÆ½×ò,¿É¿ª£¬ÓÃÓÚÆ½½ñÃâ£¨»òÕßÎŞËùÎ½£©µÄÆ·ÖÖ
-		OpenOnly = 1,				//Ö»¿ª
-		CloseOnly = 2,				//Ö»Æ½ Ö»»á±¨³öÆ½²Ö²¿·Ö±¨µ¥£¬Èç¹û±¨µ¥Á¿´óÓÚ³Ö²ÖÊı£¬Ò²Ö»±¨³ö³Ö²ÖÊı
-		CloseYdThenOpen = 3,		//ÏÈÆ½×ò£¬ºó¿ª²Ö£¬²»Æ½½ñ£¬ÓÃÓÚÆ½½ñºÜ¹óµÄÆ·ÖÖ£¬±×²¡ÊÇÒªµÈÈ«²¿Æ½ÍêÔÙ¿ª²Ö,¿ÉÄÜÏÂµÄÊÖÊı»áĞ¡ÓÚÊµ¼Ê±¨µ¥Êı
-		CloseYdOrOpen = 4,			//Ôİ²»Ö§³Ö£¬ÓÅÏÈÆ½×ò£¬¿É¿ª²Ö£¬¿ª²Öºó²»ÔÙÆ½²Ö£¬ÓÃÓÚÆ½½ñºÜ¹óµÄÆ·ÖÖ£¬ÓÖ²»µ¢Îó¿ª²Ö£¬±×²¡ÊÇÓĞÒ»µã×ò²Ö¿ÉÄÜÃ»Æ½
-		CloseYdThenToday = 5		//Ôİ²»Ö§³Ö£¬ÏÈÆ½×ò£¬ÔÙÆ½½ñ,¿É¿ª£¬ÓÃÓÚÆ½×ò±ãÒË£¬Æ½½ñºÍ¿ª²Ö²î²»¶àµÄÆ·ÖÖ
+		CloseTodayThenYd = 0,		//å…ˆå¹³ä»Šï¼Œå†å¹³æ˜¨,å¯å¼€ï¼Œç”¨äºå¹³ä»Šå…ï¼ˆæˆ–è€…æ— æ‰€è°“ï¼‰çš„å“ç§
+		OpenOnly = 1,				//åªå¼€
+		CloseOnly = 2,				//åªå¹³ åªä¼šæŠ¥å‡ºå¹³ä»“éƒ¨åˆ†æŠ¥å•ï¼Œå¦‚æœæŠ¥å•é‡å¤§äºæŒä»“æ•°ï¼Œä¹ŸåªæŠ¥å‡ºæŒä»“æ•°
+		CloseYdThenOpen = 3,		//å…ˆå¹³æ˜¨ï¼Œåå¼€ä»“ï¼Œä¸å¹³ä»Šï¼Œç”¨äºå¹³ä»Šå¾ˆè´µçš„å“ç§ï¼Œå¼Šç—…æ˜¯è¦ç­‰å…¨éƒ¨å¹³å®Œå†å¼€ä»“,å¯èƒ½ä¸‹çš„æ‰‹æ•°ä¼šå°äºå®é™…æŠ¥å•æ•°
+		CloseYdOrOpen = 4,			//æš‚ä¸æ”¯æŒï¼Œä¼˜å…ˆå¹³æ˜¨ï¼Œå¯å¼€ä»“ï¼Œå¼€ä»“åä¸å†å¹³ä»“ï¼Œç”¨äºå¹³ä»Šå¾ˆè´µçš„å“ç§ï¼Œåˆä¸è€½è¯¯å¼€ä»“ï¼Œå¼Šç—…æ˜¯æœ‰ä¸€ç‚¹æ˜¨ä»“å¯èƒ½æ²¡å¹³
+		CloseYdThenToday = 5		//æš‚ä¸æ”¯æŒï¼Œå…ˆå¹³æ˜¨ï¼Œå†å¹³ä»Š,å¯å¼€ï¼Œç”¨äºå¹³æ˜¨ä¾¿å®œï¼Œå¹³ä»Šå’Œå¼€ä»“å·®ä¸å¤šçš„å“ç§
 	};
 	const char * GetOpenCloseModeString(cwOpenCloseMode openclose);
 
 	enum cwInstrumentTradeDateSpace:int
 	{
-		cwFinishDeliver = 0,				//Íê³É½»¸î
-		cwDeliverMonth = 1,					//½»¸îÔÂ
-		cwFirstMonthBeforeDeliverMonth,		//½»¸îÔÂÇ°µÚÒ»¸öÔÂ
-		cwSecondMonthBeforeDeliverMonth,	//½»¸îÔÂÇ°µÚ¶ş¸öÔÂ
-		cwRegularTradingDateSpace				//ÆÕÍ¨½»Ò×ÈÕÆÚÊ±¼ä¶Î
+		cwFinishDeliver = 0,				//å®Œæˆäº¤å‰²
+		cwDeliverMonth = 1,					//äº¤å‰²æœˆ
+		cwFirstMonthBeforeDeliverMonth,		//äº¤å‰²æœˆå‰ç¬¬ä¸€ä¸ªæœˆ
+		cwSecondMonthBeforeDeliverMonth,	//äº¤å‰²æœˆå‰ç¬¬äºŒä¸ªæœˆ
+		cwRegularTradingDateSpace				//æ™®é€šäº¤æ˜“æ—¥æœŸæ—¶é—´æ®µ
 	};
 
 public:
 	cwBasicStrategy();
 	~cwBasicStrategy();
 
-	//±íÊ¾ÏµÍ³ÊÇ·ñ³õÊ¼»¯Íê³É£¬¿ÉÒÔÕı³£½øĞĞ±¨³·µ¥²Ù×÷
+	//è¡¨ç¤ºç³»ç»Ÿæ˜¯å¦åˆå§‹åŒ–å®Œæˆï¼Œå¯ä»¥æ­£å¸¸è¿›è¡ŒæŠ¥æ’¤å•æ“ä½œ
 	bool	m_bStrategyReady;
 
 	/*
-	PriceUpdate£¬OnRtnTrade£¬OnOrderCanceled£¬OnRspOrderInsert£¬OnRspOrderCancelÕâ¼¸¸öº¯ÊıÊÇÏµÍ³»Øµ÷º¯Êı£¬¼´²ßÂÔµÄÍ¬ÃûĞéº¯Êı
-	»áÔÚÏàÓ¦µÄÇé¿öÏÂ±»ÏµÍ³µ÷ÓÃ£¬²¢Ö´ĞĞÓÃÒÔÊµÏÖ²ßÂÔ¹¦ÄÜ¡£
+	PriceUpdateï¼ŒOnRtnTradeï¼ŒOnOrderCanceledï¼ŒOnRspOrderInsertï¼ŒOnRspOrderCancelè¿™å‡ ä¸ªå‡½æ•°æ˜¯ç³»ç»Ÿå›è°ƒå‡½æ•°ï¼Œå³ç­–ç•¥çš„åŒåè™šå‡½æ•°
+	ä¼šåœ¨ç›¸åº”çš„æƒ…å†µä¸‹è¢«ç³»ç»Ÿè°ƒç”¨ï¼Œå¹¶æ‰§è¡Œç”¨ä»¥å®ç°ç­–ç•¥åŠŸèƒ½ã€‚
 	*/
 	///MarketData SPI
-	//ĞĞÇé¸üĞÂ
+	//è¡Œæƒ…æ›´æ–°
 	virtual void PriceUpdate(cwMarketDataPtr pPriceData) = 0;
 	
 	///Trade SPI
-	//³É½»»Ø±¨
+	//æˆäº¤å›æŠ¥
 	virtual void OnRtnTrade(cwTradePtr pTrade) = 0;
-	//±¨µ¥»Ø±¨, pOrderÎª×îĞÂ±¨µ¥£¬pOriginOrderÎªÉÏÒ»´Î¸üĞÂ±¨µ¥½á¹¹Ìå£¬ÓĞ¿ÉÄÜÎªNULL
+	//æŠ¥å•å›æŠ¥, pOrderä¸ºæœ€æ–°æŠ¥å•ï¼ŒpOriginOrderä¸ºä¸Šä¸€æ¬¡æ›´æ–°æŠ¥å•ç»“æ„ä½“ï¼Œæœ‰å¯èƒ½ä¸ºNULL
 	virtual void OnRtnOrder(cwOrderPtr pOrder, cwOrderPtr pOriginOrder = cwOrderPtr()) = 0;
-	//³·µ¥³É¹¦
+	//æ’¤å•æˆåŠŸ
 	virtual void OnOrderCanceled(cwOrderPtr pOrder) = 0;
-	//±¨µ¥Â¼ÈëÇëÇóÏìÓ¦
+	//æŠ¥å•å½•å…¥è¯·æ±‚å“åº”
 	virtual void OnRspOrderInsert(cwOrderPtr pOrder, cwRspInfoPtr pRspInfo) {};
-	//±¨µ¥²Ù×÷ÇëÇóÏìÓ¦
+	//æŠ¥å•æ“ä½œè¯·æ±‚å“åº”
 	virtual void OnRspOrderCancel(cwOrderPtr pOrder, cwRspInfoPtr pRspInfo) {};
 
 	///Strategy Timer
 	virtual void OnStrategyTimer(int iTimerId, const char * szMsg) {};
-	//µ±²ßÂÔ½»Ò×³õÊ¼»¯Íê³ÉÊ±»áµ÷ÓÃOnReady, ¿ÉÒÔÔÚ´Ëº¯Êı×ö²ßÂÔµÄ³õÊ¼»¯²Ù×÷
+	//å½“ç­–ç•¥äº¤æ˜“åˆå§‹åŒ–å®Œæˆæ—¶ä¼šè°ƒç”¨OnReady, å¯ä»¥åœ¨æ­¤å‡½æ•°åšç­–ç•¥çš„åˆå§‹åŒ–æ“ä½œ
 	virtual void OnReady() {};
 
 	///Special For Simulation 
 	///These functions will NOT be called in normal mode
-	/// °´»Ø²â¿ªÊ¼µÚÒ»¸öĞĞÇé¹ıÀ´Ç°»Øµ÷£¨ÉÔÍíÓÚOnReady£©£¬ÈçÉ¾³ı¶ÁÈë¹ı¶àµÄkÏß
+	/// æŒ‰å›æµ‹å¼€å§‹ç¬¬ä¸€ä¸ªè¡Œæƒ…è¿‡æ¥å‰å›è°ƒï¼ˆç¨æ™šäºOnReadyï¼‰ï¼Œå¦‚åˆ é™¤è¯»å…¥è¿‡å¤šçš„kçº¿
 	virtual void OnSimulationBegin(int64_t timeStamp) {};
-	//»Ø²â²¿·Ö½áÊø£¨Ò¹ÅÌ½áÊøºÍÈÕÅÌ½áÊø£©½«±»µ÷ÓÃ
+	//å›æµ‹éƒ¨åˆ†ç»“æŸï¼ˆå¤œç›˜ç»“æŸå’Œæ—¥ç›˜ç»“æŸï¼‰å°†è¢«è°ƒç”¨
 	virtual void OnSimulationPartEnd(int iSimPartID = 0) {};
-	//Õû¸ö»Ø²â½áÊø½«±»µ÷ÓÃ
+	//æ•´ä¸ªå›æµ‹ç»“æŸå°†è¢«è°ƒç”¨
 	virtual void OnSimulationFinished() {};
 
 
@@ -92,83 +92,83 @@ public:
 	virtual void InitialStrategy(const char * pConfigFilePath);
 	std::string			m_strConfigFileFullPath;
 
-	//ÔÚTrade SPI×¼±¸¾ÍĞ÷Ç°£¬²ßÂÔĞèÒªÓÃµ½ºÏÔ¼ĞÅÏ¢£¬¿ÉÒÔÀûÓÃ¸Ãº¯ÊıÏÈ´ÓÎÄ¼şÖĞ»ñÈ¡ºÏÔ¼ĞÅÏ¢£¬²ÎÊıÎªNULLÊ±£¬Ä¬ÈÏºÍ³ÌĞòÔÚÍ¬Ò»Â·¾¶
+	//åœ¨Trade SPIå‡†å¤‡å°±ç»ªå‰ï¼Œç­–ç•¥éœ€è¦ç”¨åˆ°åˆçº¦ä¿¡æ¯ï¼Œå¯ä»¥åˆ©ç”¨è¯¥å‡½æ•°å…ˆä»æ–‡ä»¶ä¸­è·å–åˆçº¦ä¿¡æ¯ï¼Œå‚æ•°ä¸ºNULLæ—¶ï¼Œé»˜è®¤å’Œç¨‹åºåœ¨åŒä¸€è·¯å¾„
 	virtual bool InitalInstrumentData(const char * pInstrumentDataFilePath = NULL);
 
 	///Action  Function
-	//±íÊ¾²ßÂÔÃû³Æ
+	//è¡¨ç¤ºç­–ç•¥åç§°
 	virtual std::string  GetStrategyName() { return "BasicStrategy"; }
-	//»ñÈ¡²ßÂÔ°æ±¾ºÅ
+	//è·å–ç­–ç•¥ç‰ˆæœ¬å·
 	virtual std::string  GetStrategyVersion() { return "V1.0.0_20220820"; }
 
-	//»ñÈ¡×îĞÂµÄĞĞÇé
+	//è·å–æœ€æ–°çš„è¡Œæƒ…
 	cwMarketDataPtr	GetLastestMarketData(std::string InstrumentID);
-	//»ñÈ¡ÕË»§ĞÅÏ¢
+	//è·å–è´¦æˆ·ä¿¡æ¯
 	cwAccountPtr GetAccount();
-	//»ñÈ¡¹Òµ¥ÁĞ±í£¬´«ÈëmapÓÃÓÚ·µ»ØĞÅÏ¢£¬±¾µØ±¨µ¥±àºÅ(OrderRef)ÎªKey
+	//è·å–æŒ‚å•åˆ—è¡¨ï¼Œä¼ å…¥mapç”¨äºè¿”å›ä¿¡æ¯ï¼Œæœ¬åœ°æŠ¥å•ç¼–å·(OrderRef)ä¸ºKey
 	bool GetActiveOrders(std::map<cwActiveOrderKey, cwOrderPtr>& ActiveOrders);		///key OrderRef
-	//»ñÈ¡¹Òµ¥ÁĞ±í£¬´«ÈëºÏÔ¼£¬mapÓÃÓÚ·µ»ØĞÅÏ¢£¬±¾µØ±¨µ¥±àºÅ(OrderRef)ÎªKey
+	//è·å–æŒ‚å•åˆ—è¡¨ï¼Œä¼ å…¥åˆçº¦ï¼Œmapç”¨äºè¿”å›ä¿¡æ¯ï¼Œæœ¬åœ°æŠ¥å•ç¼–å·(OrderRef)ä¸ºKey
 	bool GetActiveOrders(std::string InstrumentID, std::map<cwActiveOrderKey, cwOrderPtr>& ActiveOrders);		///key OrderRef
-	//»ñÈ¡¶àÍ·¹Òµ¥ÊıÁ¿£¨ÊÖÊı£©£¬´«ÈëºÏÔ¼
+	//è·å–å¤šå¤´æŒ‚å•æ•°é‡ï¼ˆæ‰‹æ•°ï¼‰ï¼Œä¼ å…¥åˆçº¦
 	int GetActiveOrdersLong(std::string InstrumentID);		///key OrderRef
-	//»ñÈ¡¿ÕÍ·¹Òµ¥ÊıÁ¿£¨ÊÖÊı£©£¬´«ÈëºÏÔ¼
+	//è·å–ç©ºå¤´æŒ‚å•æ•°é‡ï¼ˆæ‰‹æ•°ï¼‰ï¼Œä¼ å…¥åˆçº¦
 	int GetActiveOrdersShort(std::string InstrumentID);		///key OrderRef
-	//»ñÈ¡ËùÓĞ±¨µ¥ÁĞ±í£¬´«ÈëmapÓÃÓÚ·µ»ØĞÅÏ¢£¬½»Ò×Ëù±¨µ¥±àºÅ(sysOrderID)ÎªKey
+	//è·å–æ‰€æœ‰æŠ¥å•åˆ—è¡¨ï¼Œä¼ å…¥mapç”¨äºè¿”å›ä¿¡æ¯ï¼Œäº¤æ˜“æ‰€æŠ¥å•ç¼–å·(sysOrderID)ä¸ºKey
 	bool GetAllOrders(std::map<cwSysOrderKey, cwOrderPtr>& Orders);				///Key OrderSysID
-	//»ñÈ¡ËùÓĞ³É½»ÁĞ±í£¬´«ÈëmapÓÃÓÚ·µ»ØĞÅÏ¢£¬³É½»±àºÅ£¨TradeID£©ÎªKey
+	//è·å–æ‰€æœ‰æˆäº¤åˆ—è¡¨ï¼Œä¼ å…¥mapç”¨äºè¿”å›ä¿¡æ¯ï¼Œæˆäº¤ç¼–å·ï¼ˆTradeIDï¼‰ä¸ºKey
 	bool GetTrades(std::map<std::string, cwTradePtr>& trades);					///Key TradeID
-	//»ñÈ¡³Ö²ÖÁĞ±í£¬´«ÈëmapÓÃÓÚ·µ»ØĞÅÏ¢£¬ºÏÔ¼IDÎªKey
+	//è·å–æŒä»“åˆ—è¡¨ï¼Œä¼ å…¥mapç”¨äºè¿”å›ä¿¡æ¯ï¼Œåˆçº¦IDä¸ºKey
 	bool GetPositions(std::map<std::string, cwPositionPtr>& PositionMap);		///Key InstrumentID
-	//»ñÈ¡ºÏÔ¼µÄ¾»³Ö²Ö£¬
+	//è·å–åˆçº¦çš„å‡€æŒä»“ï¼Œ
 	int	 GetNetPosition(std::string InstrumentID);
-	//»ñÈ¡³Ö²ÖºÍ¹Òµ¥ÁĞ±í
+	//è·å–æŒä»“å’ŒæŒ‚å•åˆ—è¡¨
 	bool GetPositionsAndActiveOrders(std::map<std::string, cwPositionPtr>& PositionMap,
 		std::map<cwActiveOrderKey, cwOrderPtr>& ActiveOrders);
-	//»ñÈ¡Ö¸¶¨ºÏÔ¼³Ö²ÖºÍ¹Òµ¥ÁĞ±í
+	//è·å–æŒ‡å®šåˆçº¦æŒä»“å’ŒæŒ‚å•åˆ—è¡¨
 	bool GetPositionsAndActiveOrders(std::string InstrumentID, cwPositionPtr& pPosition, std::map<cwActiveOrderKey, cwOrderPtr>& ActiveOrders);
-	//»ñÈ¡Ö¸¶¨ºÏÔ¼¾»³Ö²ÖºÍ¹Òµ¥ÁĞ±í
+	//è·å–æŒ‡å®šåˆçº¦å‡€æŒä»“å’ŒæŒ‚å•åˆ—è¡¨
 	bool GetNetPositionAndActiveOrders(std::string InstrumentID, int & iPosition, std::map<cwActiveOrderKey, cwOrderPtr> & ActiveOrders);
-	//»ñÈ¡ºÏÔ¼ĞÅÏ¢
+	//è·å–åˆçº¦ä¿¡æ¯
 	cwInstrumentDataPtr GetInstrumentData(std::string InstrumentID);
 
 
-	//¶©ÔÄºÏÔ¼
-	//Í¬Ê±¶©ÔÄ¶à¸öºÏÔ¼
+	//è®¢é˜…åˆçº¦
+	//åŒæ—¶è®¢é˜…å¤šä¸ªåˆçº¦
 	void	   SubScribePrice(std::vector<std::string>& SubscribeInstrument);
-	//Ò»´ÎÖ»Ğè¶©ÔÄÒ»¸öºÏÔ¼
+	//ä¸€æ¬¡åªéœ€è®¢é˜…ä¸€ä¸ªåˆçº¦
 	void	   SubScribePrice(const char * pInstrumentID);
-	//È¡Ïû¶©ÔÄºÏÔ¼
+	//å–æ¶ˆè®¢é˜…åˆçº¦
 	void	   UnSubScribePrice(std::vector<std::string>& UnSubscribeInstrument);
 
-	//ºÏÔ¼ĞÅÏ¢ÁĞ±í£¬ĞèÒª×îĞ¡±ä¶¯£¬ºÏÔ¼³ËÊıµÈĞÅÏ¢¿ÉÒÔÍ¨¹ıÕâ¸ömap»ñÈ¡£¬ºÏÔ¼IDÎªKey
+	//åˆçº¦ä¿¡æ¯åˆ—è¡¨ï¼Œéœ€è¦æœ€å°å˜åŠ¨ï¼Œåˆçº¦ä¹˜æ•°ç­‰ä¿¡æ¯å¯ä»¥é€šè¿‡è¿™ä¸ªmapè·å–ï¼Œåˆçº¦IDä¸ºKey
 	std::unordered_map<std::string, cwInstrumentDataPtr> m_InstrumentMap;
-	//»ñÈ¡ºÏÔ¼×îĞ¡±ä¶¯£¬Èç¹û»ñÈ¡Ê§°Ü·µ»Ø-1
+	//è·å–åˆçº¦æœ€å°å˜åŠ¨ï¼Œå¦‚æœè·å–å¤±è´¥è¿”å›-1
 	double    GetTickSize(const char * szInstrumentID);
-	//»ñÈ¡ºÏÔ¼³ËÊı£¬Èç¹û»ñÈ¡Ê§°Ü·µ»Ø-1
+	//è·å–åˆçº¦ä¹˜æ•°ï¼Œå¦‚æœè·å–å¤±è´¥è¿”å›-1
 	double	  GetMultiplier(const char * szInstrumentID);
-	//»ñÈ¡±£Ö¤½ğÂÊ£¬»á´Ó¹ñÌ¨ÖĞ²éÑ¯£¬ÔÚÎ´²éÑ¯µ½Ö®Ç°Ä¬ÈÏ·µ»Ø1£¬¼´°Ù·Ö°Ù±£Ö¤½ğÕ¼ÓÃ
+	//è·å–ä¿è¯é‡‘ç‡ï¼Œä¼šä»æŸœå°ä¸­æŸ¥è¯¢ï¼Œåœ¨æœªæŸ¥è¯¢åˆ°ä¹‹å‰é»˜è®¤è¿”å›1ï¼Œå³ç™¾åˆ†ç™¾ä¿è¯é‡‘å ç”¨
 	cwMarginRateDataPtr			GetMarginRate(const char * szInstrumentID);
-	//»ñÈ¡ÊÖĞø·ÑÂÊ£¬»á´Ó¹ñÌ¨ÖĞ²éÑ¯£¬ÔÚÎ´²éÑ¯µ½Ö®Ç°Ä¬ÈÏ·µ»Ø0£¬¼´²»ÊÕÊÖĞø·Ñ
+	//è·å–æ‰‹ç»­è´¹ç‡ï¼Œä¼šä»æŸœå°ä¸­æŸ¥è¯¢ï¼Œåœ¨æœªæŸ¥è¯¢åˆ°ä¹‹å‰é»˜è®¤è¿”å›0ï¼Œå³ä¸æ”¶æ‰‹ç»­è´¹
 	cwCommissionRateDataPtr		GetCommissionRate(const char * szInstrumentID);
-	//»ñÈ¡²úÆ·ID 
+	//è·å–äº§å“ID 
 	char *						GetProductID(const char * szInstrumentID);
-	//»ñÈ¡½»Ò×ËùID
+	//è·å–äº¤æ˜“æ‰€ID
 	char*						GetExchangeID(const char* szInstrumentID);
 
-	//»ñÈ¡½»Ò×Ê±¼ä¶Î£¬¾à¿ªÅÌ¶àÉÙÃëºÍ¾àÊÕÅÌ¶àÉÙÃë
-	//²ÎÊı£ººÏÔ¼Ãû£¬ĞĞÇéÊ±¼ä£¨102835->10:28:35),½»Ò×½×¶Î£¬ ¾à¸Ã½»Ò×Ê±¶Î¿ªÅÌ¶àÉÙÃë£¬¾àÊÕÅÌ¶àÉÙÃë
+	//è·å–äº¤æ˜“æ—¶é—´æ®µï¼Œè·å¼€ç›˜å¤šå°‘ç§’å’Œè·æ”¶ç›˜å¤šå°‘ç§’
+	//å‚æ•°ï¼šåˆçº¦åï¼Œè¡Œæƒ…æ—¶é—´ï¼ˆ102835->10:28:35),äº¤æ˜“é˜¶æ®µï¼Œ è·è¯¥äº¤æ˜“æ—¶æ®µå¼€ç›˜å¤šå°‘ç§’ï¼Œè·æ”¶ç›˜å¤šå°‘ç§’
 	bool	  GetTradeTimeSpace(const char * szInstrumentID, const char * updatetime,
 		cwProductTradeTime::cwTradeTimeSpace& iTradeIndex, int& iOpen, int& iClose);
-	//²ÎÊı£ººÏÔ¼Ãû£¬ĞĞÇéÊ±¼ä£¨102835->10:28:35),½»Ò×½×¶Î£¬ ¾à¸Ã½»Ò×Ê±¶Î¿ªÅÌ¶àÉÙÃë£¬¾àÊÕÅÌ¶àÉÙÃë
+	//å‚æ•°ï¼šåˆçº¦åï¼Œè¡Œæƒ…æ—¶é—´ï¼ˆ102835->10:28:35),äº¤æ˜“é˜¶æ®µï¼Œ è·è¯¥äº¤æ˜“æ—¶æ®µå¼€ç›˜å¤šå°‘ç§’ï¼Œè·æ”¶ç›˜å¤šå°‘ç§’
 	bool	  GetTradeTimeSpaceByProduct(const char* szProductId, const char* updatetime,
 		cwProductTradeTime::cwTradeTimeSpace& iTradeIndex, int& iOpen, int& iClose);
 
-	//»ñÈ¡Ç°Ò»¸ö½»Ò×Ê±¶Îµ½µ±Ç°½»Ò×Ê±¶Î¿ªÅÌÊ±¼ä¼ä¸ô
+	//è·å–å‰ä¸€ä¸ªäº¤æ˜“æ—¶æ®µåˆ°å½“å‰äº¤æ˜“æ—¶æ®µå¼€ç›˜æ—¶é—´é—´éš”
 	int		  GetPreTimeSpaceInterval(const char * szInstrumentID, cwProductTradeTime::cwTradeTimeSpace iTradeIndex);
-	//»ñÈ¡Ö¸¶¨½»Ò×Ê±¶Î
+	//è·å–æŒ‡å®šäº¤æ˜“æ—¶æ®µ
 	cwProductTradeTime::TradeTimePtr GetTradeTime(const char * szInstrumentID, cwProductTradeTime::cwTradeTimeSpace iTradeIndex);
 
-	//»ñÈ¡µ±Ç°½»Ò×ÈÕ
+	//è·å–å½“å‰äº¤æ˜“æ—¥
 	cwPandoraTrader::cwDate	  GetTradingDay();
 	const char *		      GetTradingDayStr();
 
@@ -178,18 +178,18 @@ public:
 	bool					  GetBuisnessDayRemain(const char* szInstrumentID,
 		cwInstrumentTradeDateSpace& iTradeDateSpace, int& iRemain);
 
-	//»ñÈ¡ºÏÔ¼µ±Ç°³·µ¥´ÎÊı
+	//è·å–åˆçº¦å½“å‰æ’¤å•æ¬¡æ•°
 	int		  GetInstrumentCancelCount(std::string InstrumentID);
-	//»ñÈ¡ºÏÔ¼µ±Ç°ĞÅÏ¢Á¿
+	//è·å–åˆçº¦å½“å‰ä¿¡æ¯é‡
 	int		  GetInstrumentDeclarationMsgCount(std::string InstrumentID);
-	//»ñÈ¡ºÏÔ¼ÊÇ·ñÊÇ¶©ÔÄ
+	//è·å–åˆçº¦æ˜¯å¦æ˜¯è®¢é˜…
 	bool	  IsThisStrategySubScribed(std::string InstrumentID);
-	//»ñÈ¡µ±Ç°×´Ì¬ÊÇ·ñÎª»Ø²âÄ£ÄâÇé¿ö Èç¹û»Ø²âÄ£Ê½ÏÂ·µ»Øtrue£¬·ñÔòfalse
+	//è·å–å½“å‰çŠ¶æ€æ˜¯å¦ä¸ºå›æµ‹æ¨¡æ‹Ÿæƒ…å†µ å¦‚æœå›æµ‹æ¨¡å¼ä¸‹è¿”å›trueï¼Œå¦åˆ™false
 	inline bool GetIsSimulation() { return m_bIsSimulation; }
 
 	void	  RemoveTimer(int iTimerId);
 
-	///ÏµÍ³×ÔÓÃ½Ó¿ÚĞÅÏ¢£¬Îğ¶¯
+	///ç³»ç»Ÿè‡ªç”¨æ¥å£ä¿¡æ¯ï¼Œå‹¿åŠ¨
 	bool					_SetTimer(int iTimerId, int iElapse, const char* szMsg = nullptr);
 
 	void					_SetMdSpi(cwMDAPIType apiType, void * pSpi);
@@ -210,30 +210,30 @@ public:
 	virtual void			_OnRspOrderCancel(cwOrderPtr& pOrder, cwRspInfoPtr& pRspInfo) = 0;
 	virtual void			_OnTimer(int iTimerId, const char * szMsg) = 0;
 protected:
-	///Êä³öÏÔÊ¾
+	///è¾“å‡ºæ˜¾ç¤º
 	cwBasicCout				m_cwShow;						
 
 
 
-	///ÏµÍ³×ÔÓÃ½Ó¿ÚĞÅÏ¢£¬Îğ¶¯
+	///ç³»ç»Ÿè‡ªç”¨æ¥å£ä¿¡æ¯ï¼Œå‹¿åŠ¨
 	std::set<std::string>	m_SubscribedInstrumentSet;
 
-	cwOrderPtr				_InputLimitOrder(const char * szInstrumentID, cwFtdcDirectionType direction, cwOpenClose openclose, int volume, double price);		///±¨µ¥º¯Êı--ÏŞ¼Ûµ¥
-	cwOrderPtr				_InputFAKOrder(const char * szInstrumentID, cwFtdcDirectionType direction, cwOpenClose openclose, int volume, double price);		///±¨µ¥º¯Êı--FAKµ¥£¨Filled And Kill Á¢¼´³É½»Ê£Óà×Ô¶¯³·ÏúÖ¸Áî£©
-	cwOrderPtr				_InputFOKOrder(const char * szInstrumentID, cwFtdcDirectionType direction, cwOpenClose openclose, int volume, double price);		///±¨µ¥º¯Êı--FOKµ¥(FOK Filled Or Kill Á¢¼´È«²¿³É½»·ñÔò×Ô¶¯³·ÏúÖ¸Áî)
+	cwOrderPtr				_InputLimitOrder(const char * szInstrumentID, cwFtdcDirectionType direction, cwOpenClose openclose, int volume, double price);		///æŠ¥å•å‡½æ•°--é™ä»·å•
+	cwOrderPtr				_InputFAKOrder(const char * szInstrumentID, cwFtdcDirectionType direction, cwOpenClose openclose, int volume, double price);		///æŠ¥å•å‡½æ•°--FAKå•ï¼ˆFilled And Kill ç«‹å³æˆäº¤å‰©ä½™è‡ªåŠ¨æ’¤é”€æŒ‡ä»¤ï¼‰
+	cwOrderPtr				_InputFOKOrder(const char * szInstrumentID, cwFtdcDirectionType direction, cwOpenClose openclose, int volume, double price);		///æŠ¥å•å‡½æ•°--FOKå•(FOK Filled Or Kill ç«‹å³å…¨éƒ¨æˆäº¤å¦åˆ™è‡ªåŠ¨æ’¤é”€æŒ‡ä»¤)
 
 	cwOrderPtr				_EasyInputOrder(const char * szInstrumentID, int volume, double price,
 		cwOpenCloseMode openclosemode = cwOpenCloseMode::CloseTodayThenYd,
-		cwInsertOrderType insertordertype = cwInsertOrderType::cwInsertLimitOrder);																				///¼ò»¯±¨µ¥º¯Êı£¬ volumeÕı±íÊ¾Âò£¬¸º±íÊ¾Âô£¬×Ô¶¯¿ªÆ½£¬ÓĞ³Ö²Ö¾ÍÆ½²Ö£¬Ã»ÓĞ¾Í¿ª²Ö
+		cwInsertOrderType insertordertype = cwInsertOrderType::cwInsertLimitOrder);																				///ç®€åŒ–æŠ¥å•å‡½æ•°ï¼Œ volumeæ­£è¡¨ç¤ºä¹°ï¼Œè´Ÿè¡¨ç¤ºå–ï¼Œè‡ªåŠ¨å¼€å¹³ï¼Œæœ‰æŒä»“å°±å¹³ä»“ï¼Œæ²¡æœ‰å°±å¼€ä»“
 
-	//¸Ãº¯Êı»á¶Ô¶©µ¥£¬¸ù¾İÏÂµ¥Ä£Ê½ºÍ½»Ò×ËùºÏÔ¼ĞÅÏ¢ÅäÖÃ£¬½øĞĞ²ğµ¥²Ù×÷¡£
+	//è¯¥å‡½æ•°ä¼šå¯¹è®¢å•ï¼Œæ ¹æ®ä¸‹å•æ¨¡å¼å’Œäº¤æ˜“æ‰€åˆçº¦ä¿¡æ¯é…ç½®ï¼Œè¿›è¡Œæ‹†å•æ“ä½œã€‚
 	std::deque<cwOrderPtr>	_EasyInputMultiOrder(const char * szInstrumentID, int volume, double price,
 		cwOpenCloseMode openclosemode = cwOpenCloseMode::CloseTodayThenYd,
 		cwInsertOrderType insertordertype = cwInsertOrderType::cwInsertLimitOrder);
 
 	bool					_CancelOrder(cwOrderPtr& pOrder);
 
-	///ÏµÍ³×ÔÓÃ½Ó¿ÚĞÅÏ¢£¬ÇëÎğ²Ù×÷
+	///ç³»ç»Ÿè‡ªç”¨æ¥å£ä¿¡æ¯ï¼Œè¯·å‹¿æ“ä½œ
 protected:
 	bool									m_bSimulationFinished;
 private:

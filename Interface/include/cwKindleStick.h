@@ -28,25 +28,25 @@ public:
 		en_Close
 	};
 
-	char				szStartTime[20];	//¿ªÊ¼Ê±¼ä
-	char				szEndTime[20];		//½áÊøÊ±¼ä
+	char				szStartTime[20];	//å¼€å§‹æ—¶é—´
+	char				szEndTime[20];		//ç»“æŸæ—¶é—´
 	
-	//Ê±¼ä´ÁÎªcwTimeStamp
-	std::uint64_t		StartTime;			//¿ªÊ¼Ê±¼ä´Á
-	std::uint64_t		EndTime;			//½áÊøÊ±¼ä´Á
-	std::uint64_t		HighTime;			//×î¸ß¼ÛÊ±¼ä
-	std::uint64_t		LowTime;			//×îµÍ¼ÛÊ±¼ä
+	//æ—¶é—´æˆ³ä¸ºcwTimeStamp
+	std::uint64_t		StartTime;			//å¼€å§‹æ—¶é—´æˆ³
+	std::uint64_t		EndTime;			//ç»“æŸæ—¶é—´æˆ³
+	std::uint64_t		HighTime;			//æœ€é«˜ä»·æ—¶é—´
+	std::uint64_t		LowTime;			//æœ€ä½ä»·æ—¶é—´
 
-	double				Open;				//¿ªÅÌ¼Û
-	double				Close;				//ÊÕÅÌÊÕ
-	double				High;				//×î¸ß¼Û
-	double				Low;				//×îµÍ¼Û
+	double				Open;				//å¼€ç›˜ä»·
+	double				Close;				//æ”¶ç›˜æ”¶
+	double				High;				//æœ€é«˜ä»·
+	double				Low;				//æœ€ä½ä»·
 
-	std::uint64_t		TotalVolume;		//×Ü³É½»
-	std::uint64_t		LastVolume;			//KÏß³É½»Á¿
-	double				OpenInterest;		//³Ö²ÖÁ¿
-	double				TotalTurnOver;		//×Ü³É½»¶î
-	double				LastTurnOver;		//KÏß³É½»¶î
+	std::uint64_t		TotalVolume;		//æ€»æˆäº¤
+	std::uint64_t		LastVolume;			//Kçº¿æˆäº¤é‡
+	double				OpenInterest;		//æŒä»“é‡
+	double				TotalTurnOver;		//æ€»æˆäº¤é¢
+	double				LastTurnOver;		//Kçº¿æˆäº¤é¢
 
 	static size_t GetLength()
 	{

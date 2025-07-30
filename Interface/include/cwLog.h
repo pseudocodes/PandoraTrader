@@ -100,7 +100,7 @@ private:
 private:
 	bool								m_bHasAddTitle;
 
-	//ฒปะ่าชนคื๗
+	//ไธ้€่ฆๅทฅไฝ
 	bool								m_bNoWorkRequired;
 	bool								m_bKeepFileOpen;
 	bool								m_bWritLogMsgOnly;

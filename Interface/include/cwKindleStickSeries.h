@@ -31,8 +31,8 @@ class cwKindleStickSeries
 public:
 	enum cwKindleSeriesType
 	{
-		cwKindleTypeMinute = 0,							//·ÖÖÓkÏß£¨ÔÊĞíÃëk£©£¬kÏßÖÜÆÚ¼¶±ğ°´ÃëÊıÀ´¼Ç
-		cwKindleTypeDaily,								//ÈÕÏß£¬				°´½»Ò×ÈÕÀ´¼ÇkÏß
+		cwKindleTypeMinute = 0,							//åˆ†é’Ÿkçº¿ï¼ˆå…è®¸ç§’kï¼‰ï¼Œkçº¿å‘¨æœŸçº§åˆ«æŒ‰ç§’æ•°æ¥è®°
+		cwKindleTypeDaily,								//æ—¥çº¿ï¼Œ				æŒ‰äº¤æ˜“æ—¥æ¥è®°kçº¿
 	};
 
 	static const uint32_t	c_1_minute{ 60 };
@@ -46,29 +46,29 @@ public:
 	cwKindleStickSeries();
 	~cwKindleStickSeries();
 
-	//³õÊ¼»¯KÏß  ²»Ğè¸ù¾İÆ·ÖÖ½»Ò×Ê±¼ä½øĞĞ
+	//åˆå§‹åŒ–Kçº¿  ä¸éœ€æ ¹æ®å“ç§äº¤æ˜“æ—¶é—´è¿›è¡Œ
 	bool InitialKindleStickSeries(const char * szInstrumentID, cwKindleSeriesType type = cwKindleTypeMinute, uint32_t m_iTimeScale = c_1_minute);
-	//³õÊ¼»¯KÏß  Ğè¸ù¾İÆ·ÖÖ½»Ò×Ê±¼ä½øĞĞ
+	//åˆå§‹åŒ–Kçº¿  éœ€æ ¹æ®å“ç§äº¤æ˜“æ—¶é—´è¿›è¡Œ
 	bool InitialKindleStickSeries(const char * szInstrumentID, const char * szProductID, 
 		cwKindleSeriesType type = cwKindleTypeMinute, uint32_t iTimeScale = c_1_minute, const char * TradeTimeFile = "");
 
-	//ĞĞÇé¸üĞÂ£¬µ÷ÓÃºó»á×Ô¶¯ĞÎ³ÉkÏß
+	//è¡Œæƒ…æ›´æ–°ï¼Œè°ƒç”¨åä¼šè‡ªåŠ¨å½¢æˆkçº¿
 	void PriceUpdate(cwMarketDataPtr pPriceData);
 
-	//ÀûÓÃkÏßÀ´¸üĞÂKÏßĞòÁĞ¡£Ö÷ÒªÀûÓÃÀûÓÃkÏßÀ´ºÏ²¢Êı¾İ,ÒªÇókÏßĞòÁĞĞèÒª°´Ë³Ğò½øĞĞ¸üĞÂ
+	//åˆ©ç”¨kçº¿æ¥æ›´æ–°Kçº¿åºåˆ—ã€‚ä¸»è¦åˆ©ç”¨åˆ©ç”¨kçº¿æ¥åˆå¹¶æ•°æ®,è¦æ±‚kçº¿åºåˆ—éœ€è¦æŒ‰é¡ºåºè¿›è¡Œæ›´æ–°
 	void UpdateKindle(cwKindleStickPtr pKindle);
-	//Ìæ»»ÏÖÓĞkÏßĞòÁĞÖĞµÄkÏß£¬ÒÀ¾İStartTimeÕâ¸ö×Ö¶Î½øĞĞÅĞ¶Ï
+	//æ›¿æ¢ç°æœ‰kçº¿åºåˆ—ä¸­çš„kçº¿ï¼Œä¾æ®StartTimeè¿™ä¸ªå­—æ®µè¿›è¡Œåˆ¤æ–­
 	void ReplaceKindle(cwKindleStickPtr pKindle);
-	//ÒÆ³ıÊ±¼äµãÖ®Ç°µÄKÏß
+	//ç§»é™¤æ—¶é—´ç‚¹ä¹‹å‰çš„Kçº¿
 	void RemoveKinldeBeforeTime(uint64_t time);
-	void RemoveKinldeBeforeTime(const char* sztime);		//Ö§³ÖµÄÊ±¼ä×Ö·û´® (year_month_day_hour:minute:second,Èç2023_10_11:10:08:09)
-	//ÒÆ³ıÊ±¼äµãÒÔºóµÄKÏß
+	void RemoveKinldeBeforeTime(const char* sztime);		//æ”¯æŒçš„æ—¶é—´å­—ç¬¦ä¸² (year_month_day_hour:minute:second,å¦‚2023_10_11:10:08:09)
+	//ç§»é™¤æ—¶é—´ç‚¹ä»¥åçš„Kçº¿
 	void RemoveKinldeAfterTime(uint64_t time);
-	void RemoveKinldeAfterTime(const char* sztime);			//Ö§³ÖµÄÊ±¼ä×Ö·û´® (year_month_day_hour:minute:second,Èç2023_10_11:10:08:09)
+	void RemoveKinldeAfterTime(const char* sztime);			//æ”¯æŒçš„æ—¶é—´å­—ç¬¦ä¸² (year_month_day_hour:minute:second,å¦‚2023_10_11:10:08:09)
 
-	//»ñÈ¡kÏßÖÜÆÚ
+	//è·å–kçº¿å‘¨æœŸ
 	inline uint32_t GetTimeScale() { return m_iTimeScale; }
-	//ÉèÖÃKÏßĞĞÇé´¦ÀíµÄÊı¾İ¾«¶È£¬Ä¬ÈÏÖµÎª0.00001
+	//è®¾ç½®Kçº¿è¡Œæƒ…å¤„ç†çš„æ•°æ®ç²¾åº¦ï¼Œé»˜è®¤å€¼ä¸º0.00001
 	void SetPrecision(double precision);
 public:
 	cwMarketDataPtr					m_PrePriceData;
@@ -80,58 +80,58 @@ public:
 	bool							m_bThisFinished;
 
 private:
-	//UpdateKindle	ÉÏÒ»´Î¸üĞÂKÏßµÄÊı¾İ£¬ÊÇÁÙÊ±ĞÅÏ¢
+	//UpdateKindle	ä¸Šä¸€æ¬¡æ›´æ–°Kçº¿çš„æ•°æ®ï¼Œæ˜¯ä¸´æ—¶ä¿¡æ¯
 	cwKindleStickPtr				_pTmpPreKindleStick;
 
 public:
-	//»ñÈ¡KÏßĞòÁĞ
+	//è·å–Kçº¿åºåˆ—
 	bool			 GetKindleSerise(std::deque<cwKindleStickPtr> &	KindleStickDeque);
 
-	//°´Ê±¼äË³Ğò»ñÈ¡kÏß£¬nCountÎªkÏßĞòÁĞ£¬×îÔçµÄkÏßnCountÎª0
+	//æŒ‰æ—¶é—´é¡ºåºè·å–kçº¿ï¼ŒnCountä¸ºkçº¿åºåˆ—ï¼Œæœ€æ—©çš„kçº¿nCountä¸º0
 	cwKindleStickPtr GetKindleStick(unsigned int nCount = 0);
-	//°´Ê±¼äÄæĞò»ñÈ¡kÏß£¬nCountÎªkÏßĞòÁĞ£¬×î½üµÄkÏßnCountÎª0
+	//æŒ‰æ—¶é—´é€†åºè·å–kçº¿ï¼ŒnCountä¸ºkçº¿åºåˆ—ï¼Œæœ€è¿‘çš„kçº¿nCountä¸º0
 	cwKindleStickPtr GetLastKindleStick(unsigned int nCount = 0);
 
-	/*º¯Êı¹¦ÄÜ£º»ñÈ¡KÏßĞòÁĞ³¤¶È
-	* ²ÎÊıÃèÊö£º
+	/*å‡½æ•°åŠŸèƒ½ï¼šè·å–Kçº¿åºåˆ—é•¿åº¦
+	* å‚æ•°æè¿°ï¼š
 	*     NULL
-	* ·µ»ØÖµ£º
-	*     kÏßĞòÁĞ³¤¶È
+	* è¿”å›å€¼ï¼š
+	*     kçº¿åºåˆ—é•¿åº¦
 	*
 	*/
 	inline size_t			GetKindleSize() { return m_KindleStickDeque.size(); }
 
-	///ÌØ±ğËµÃ÷£º±àºÅ´ÓÁã¿ªÊ¼£¬ºóĞøBegin,endµÈÊôÓÚ±ÕÇø¼ä£¬ÈçGetHighest(1,3,high)Ö¸µÄÊÇ»ñÈ¡µÚ¶ş¸ùKÏß£¬µÚÈı¸ù£¬µÚËÄ¸ùkÏßµÄ×î´óÖµ
+	///ç‰¹åˆ«è¯´æ˜ï¼šç¼–å·ä»é›¶å¼€å§‹ï¼Œåç»­Begin,endç­‰å±äºé—­åŒºé—´ï¼Œå¦‚GetHighest(1,3,high)æŒ‡çš„æ˜¯è·å–ç¬¬äºŒæ ¹Kçº¿ï¼Œç¬¬ä¸‰æ ¹ï¼Œç¬¬å››æ ¹kçº¿çš„æœ€å¤§å€¼
 
-	/*º¯Êı¹¦ÄÜ£º»ñÈ¡KÏß×î¸ßµÄkÏß£¬Èç¹ûÓĞ¶à¸öÒ»Ñù¸ßµÄ£¬·µ»Ø×î½üµÄÒ»¸ù
-	* ²ÎÊıÃèÊö£º
-	*     [in] nBegin	- KÏß·¶Î§¿ªÊ¼±àºÅ£»
-	*     [in] nEnd		- KÏß·¶Î§½áÊø±àºÅ£»
-	* ·µ»ØÖµ£º
-	*     ×î¸ßKÏßµÄ±àºÅ£¬Èç¹û-1.ÔòÊ§°Ü£¬²ÎÊıÓĞÎó
+	/*å‡½æ•°åŠŸèƒ½ï¼šè·å–Kçº¿æœ€é«˜çš„kçº¿ï¼Œå¦‚æœæœ‰å¤šä¸ªä¸€æ ·é«˜çš„ï¼Œè¿”å›æœ€è¿‘çš„ä¸€æ ¹
+	* å‚æ•°æè¿°ï¼š
+	*     [in] nBegin	- Kçº¿èŒƒå›´å¼€å§‹ç¼–å·ï¼›
+	*     [in] nEnd		- Kçº¿èŒƒå›´ç»“æŸç¼–å·ï¼›
+	* è¿”å›å€¼ï¼š
+	*     æœ€é«˜Kçº¿çš„ç¼–å·ï¼Œå¦‚æœ-1.åˆ™å¤±è´¥ï¼Œå‚æ•°æœ‰è¯¯
 	*/
 	int GetKindleStickHighest();
 	int GetKindleStickHighest(unsigned int nBegin, unsigned int nEnd);
 	int GetKindleStickHighest(unsigned int nCount);
 
-	/*º¯Êı¹¦ÄÜ£º»ñÈ¡KÏß×î¸ßµÄkÏß£¬Èç¹ûÓĞ¶à¸öÒ»Ñù¸ßµÄ£¬·µ»Ø×îÏÈ£¨Ôç£©µÄÒ»¸ù
-	* ²ÎÊıÃèÊö£º
-	*     [in] nBegin	- KÏß·¶Î§¿ªÊ¼±àºÅ£»
-	*     [in] nEnd		- KÏß·¶Î§½áÊø±àºÅ£»
-	* ·µ»ØÖµ£º
-	*     ×î¸ßKÏßµÄ±àºÅ£¬Èç¹û-1.ÔòÊ§°Ü£¬²ÎÊıÓĞÎó
+	/*å‡½æ•°åŠŸèƒ½ï¼šè·å–Kçº¿æœ€é«˜çš„kçº¿ï¼Œå¦‚æœæœ‰å¤šä¸ªä¸€æ ·é«˜çš„ï¼Œè¿”å›æœ€å…ˆï¼ˆæ—©ï¼‰çš„ä¸€æ ¹
+	* å‚æ•°æè¿°ï¼š
+	*     [in] nBegin	- Kçº¿èŒƒå›´å¼€å§‹ç¼–å·ï¼›
+	*     [in] nEnd		- Kçº¿èŒƒå›´ç»“æŸç¼–å·ï¼›
+	* è¿”å›å€¼ï¼š
+	*     æœ€é«˜Kçº¿çš„ç¼–å·ï¼Œå¦‚æœ-1.åˆ™å¤±è´¥ï¼Œå‚æ•°æœ‰è¯¯
 	*/
 	int GetKindleStickHighestFirstOne();
 	int GetKindleStickHighestFirstOne(unsigned int nBegin, unsigned int nEnd);
 	int GetKindleStickHighestFirstOne(unsigned int nCount);
 
-	/*º¯Êı¹¦ÄÜ£º»ñÈ¡KÏß×î¸ßµÄkÏßµÄ×î´óÖµ
-	* ²ÎÊıÃèÊö£º
-	*     [in] nBegin	- KÏß·¶Î§¿ªÊ¼±àºÅ£»
-	*     [in] nEnd		- KÏß·¶Î§½áÊø±àºÅ£»
-	*	  [in,out] High - KÏß×î´óÖµ
-	* ·µ»ØÖµ£º
-	*     true£¬HighÖµÓĞĞ§£¬·ñÔòHighÖµÎŞĞ§¡£
+	/*å‡½æ•°åŠŸèƒ½ï¼šè·å–Kçº¿æœ€é«˜çš„kçº¿çš„æœ€å¤§å€¼
+	* å‚æ•°æè¿°ï¼š
+	*     [in] nBegin	- Kçº¿èŒƒå›´å¼€å§‹ç¼–å·ï¼›
+	*     [in] nEnd		- Kçº¿èŒƒå›´ç»“æŸç¼–å·ï¼›
+	*	  [in,out] High - Kçº¿æœ€å¤§å€¼
+	* è¿”å›å€¼ï¼š
+	*     trueï¼ŒHighå€¼æœ‰æ•ˆï¼Œå¦åˆ™Highå€¼æ— æ•ˆã€‚
 	*/
 	bool GetHighest(double &High);
 	bool GetHighest(unsigned int nBegin, unsigned int nEnd, double &High);
@@ -141,45 +141,45 @@ public:
 	bool GetHighest(unsigned int nBegin, unsigned int nEnd, double& High, cwKindleStick::KindlePriceType type);
 	bool GetHighest(unsigned int nCount, double& High, cwKindleStick::KindlePriceType type);
 
-	/*º¯Êı¹¦ÄÜ£º»ñÈ¡ÏÂÒ»¸ö£¨×î½üÒ»¸ö,°üÀ¨nBegin£©±ÈÖ¸¶¨Öµ¸ü¸ßµÄKÏß
-	* ²ÎÊıÃèÊö£º
-	*     [in] nBegin	- KÏß·¶Î§¿ªÊ¼±àºÅ£»
-	*     [in] nEnd		- KÏß·¶Î§½áÊø±àºÅ£»
-	* ·µ»ØÖµ£º
-	*     Âú×ãÒªÇóµÄKÏß±àºÅ£¬Èç¹û-1£¬Ôò²éÎŞ´ËkÏß¡£
+	/*å‡½æ•°åŠŸèƒ½ï¼šè·å–ä¸‹ä¸€ä¸ªï¼ˆæœ€è¿‘ä¸€ä¸ª,åŒ…æ‹¬nBeginï¼‰æ¯”æŒ‡å®šå€¼æ›´é«˜çš„Kçº¿
+	* å‚æ•°æè¿°ï¼š
+	*     [in] nBegin	- Kçº¿èŒƒå›´å¼€å§‹ç¼–å·ï¼›
+	*     [in] nEnd		- Kçº¿èŒƒå›´ç»“æŸç¼–å·ï¼›
+	* è¿”å›å€¼ï¼š
+	*     æ»¡è¶³è¦æ±‚çš„Kçº¿ç¼–å·ï¼Œå¦‚æœ-1ï¼Œåˆ™æŸ¥æ— æ­¤kçº¿ã€‚
 	*/
 	int GetKindleStickNextHigher(double High, unsigned int nBegin);
 	int GetKindleStickNextHigher(double High, unsigned int nBegin, unsigned int nEnd);
 
-	/*º¯Êı¹¦ÄÜ£º»ñÈ¡KÏß×îµÍµÄkÏß£¬Èç¹ûÓĞ¶à¸öÒ»ÑùµÍµÄ£¬·µ»Ø×î½üµÄÒ»¸ù
-	* ²ÎÊıÃèÊö£º
-	*     [in] nBegin	- KÏß·¶Î§¿ªÊ¼±àºÅ£»
-	*     [in] nEnd		- KÏß·¶Î§½áÊø±àºÅ£»
-	* ·µ»ØÖµ£º
-	*     ×îµÍKÏßµÄ±àºÅ£¬Èç¹û-1.ÔòÊ§°Ü£¬²ÎÊıÓĞÎó
+	/*å‡½æ•°åŠŸèƒ½ï¼šè·å–Kçº¿æœ€ä½çš„kçº¿ï¼Œå¦‚æœæœ‰å¤šä¸ªä¸€æ ·ä½çš„ï¼Œè¿”å›æœ€è¿‘çš„ä¸€æ ¹
+	* å‚æ•°æè¿°ï¼š
+	*     [in] nBegin	- Kçº¿èŒƒå›´å¼€å§‹ç¼–å·ï¼›
+	*     [in] nEnd		- Kçº¿èŒƒå›´ç»“æŸç¼–å·ï¼›
+	* è¿”å›å€¼ï¼š
+	*     æœ€ä½Kçº¿çš„ç¼–å·ï¼Œå¦‚æœ-1.åˆ™å¤±è´¥ï¼Œå‚æ•°æœ‰è¯¯
 	*/
 	int GetKindleStickLowest();
 	int GetKindleStickLowest(unsigned int nBegin, unsigned int nEnd);
 	int GetKindleStickLowest(unsigned int nCount);
 
-	/*º¯Êı¹¦ÄÜ£º»ñÈ¡KÏß×îµÍµÄkÏß£¬Èç¹ûÓĞ¶à¸öÒ»ÑùµÍµÄ£¬·µ»Ø×îÏÈ£¨Ôç£©µÄÒ»¸ù
-	* ²ÎÊıÃèÊö£º
-	*     [in] nBegin	- KÏß·¶Î§¿ªÊ¼±àºÅ£»
-	*     [in] nEnd		- KÏß·¶Î§½áÊø±àºÅ£»
-	* ·µ»ØÖµ£º
-	*     ×îµÍKÏßµÄ±àºÅ£¬Èç¹û-1.ÔòÊ§°Ü£¬²ÎÊıÓĞÎó
+	/*å‡½æ•°åŠŸèƒ½ï¼šè·å–Kçº¿æœ€ä½çš„kçº¿ï¼Œå¦‚æœæœ‰å¤šä¸ªä¸€æ ·ä½çš„ï¼Œè¿”å›æœ€å…ˆï¼ˆæ—©ï¼‰çš„ä¸€æ ¹
+	* å‚æ•°æè¿°ï¼š
+	*     [in] nBegin	- Kçº¿èŒƒå›´å¼€å§‹ç¼–å·ï¼›
+	*     [in] nEnd		- Kçº¿èŒƒå›´ç»“æŸç¼–å·ï¼›
+	* è¿”å›å€¼ï¼š
+	*     æœ€ä½Kçº¿çš„ç¼–å·ï¼Œå¦‚æœ-1.åˆ™å¤±è´¥ï¼Œå‚æ•°æœ‰è¯¯
 	*/
 	int GetKindleStickLowestFirstOne();
 	int GetKindleStickLowestFirstOne(unsigned int nBegin, unsigned int nEnd);
 	int GetKindleStickLowestFirstOne(unsigned int nCount);
 
-	/*º¯Êı¹¦ÄÜ£º»ñÈ¡KÏß×îµÍµÄkÏßµÄ×îĞ¡Öµ
-	* ²ÎÊıÃèÊö£º
-	*     [in] nBegin	- KÏß·¶Î§¿ªÊ¼±àºÅ£»
-	*     [in] nEnd		- KÏß·¶Î§½áÊø±àºÅ£»
-	*	  [in,out] Low  - KÏß×îĞ¡Öµ
-	* ·µ»ØÖµ£º
-	*     true£¬LowÖµÓĞĞ§£¬·ñÔòLowÖµÎŞĞ§¡£
+	/*å‡½æ•°åŠŸèƒ½ï¼šè·å–Kçº¿æœ€ä½çš„kçº¿çš„æœ€å°å€¼
+	* å‚æ•°æè¿°ï¼š
+	*     [in] nBegin	- Kçº¿èŒƒå›´å¼€å§‹ç¼–å·ï¼›
+	*     [in] nEnd		- Kçº¿èŒƒå›´ç»“æŸç¼–å·ï¼›
+	*	  [in,out] Low  - Kçº¿æœ€å°å€¼
+	* è¿”å›å€¼ï¼š
+	*     trueï¼ŒLowå€¼æœ‰æ•ˆï¼Œå¦åˆ™Lowå€¼æ— æ•ˆã€‚
 	*/
 	bool GetLowest(double &Low);
 	bool GetLowest(unsigned int nBegin, unsigned int nEnd, double &Low);
@@ -189,67 +189,67 @@ public:
 	bool GetLowest(unsigned int nBegin, unsigned int nEnd, double& Low, cwKindleStick::KindlePriceType type);
 	bool GetLowest(unsigned int nCount, double& Low, cwKindleStick::KindlePriceType type);
 
-	/*º¯Êı¹¦ÄÜ£º»ñÈ¡ÏÂÒ»¸ö£¨×î½üÒ»¸ö,°üÀ¨nBegin£©±ÈÖ¸¶¨Öµ¸üµÍµÄKÏß
-* ²ÎÊıÃèÊö£º
-*     [in] nBegin	- KÏß·¶Î§¿ªÊ¼±àºÅ£»
-*     [in] nEnd		- KÏß·¶Î§½áÊø±àºÅ£»
-* ·µ»ØÖµ£º
-*     Âú×ãÒªÇóµÄKÏß±àºÅ£¬Èç¹û-1£¬Ôò²éÎŞ´ËkÏß¡£
+	/*å‡½æ•°åŠŸèƒ½ï¼šè·å–ä¸‹ä¸€ä¸ªï¼ˆæœ€è¿‘ä¸€ä¸ª,åŒ…æ‹¬nBeginï¼‰æ¯”æŒ‡å®šå€¼æ›´ä½çš„Kçº¿
+* å‚æ•°æè¿°ï¼š
+*     [in] nBegin	- Kçº¿èŒƒå›´å¼€å§‹ç¼–å·ï¼›
+*     [in] nEnd		- Kçº¿èŒƒå›´ç»“æŸç¼–å·ï¼›
+* è¿”å›å€¼ï¼š
+*     æ»¡è¶³è¦æ±‚çš„Kçº¿ç¼–å·ï¼Œå¦‚æœ-1ï¼Œåˆ™æŸ¥æ— æ­¤kçº¿ã€‚
 */
 	int GetKindleStickNextLower(double Low, unsigned int nBegin);
 	int GetKindleStickNextLower(double Low, unsigned int nBegin, unsigned int nEnd);
 
-	/*º¯Êı¹¦ÄÜ£º»ñÈ¡Ö¸¶¨·¶Î§KÏßµÄ²¨·åÎ»ÖÃ
-	* ²ÎÊıÃèÊö£º
-	*     [in] nBegin	- KÏß·¶Î§¿ªÊ¼±àºÅ£»
-	*     [in] nEnd		- KÏß·¶Î§½áÊø±àºÅ£»
-	*	  [in] nUnilateralCompareNum - µ¥±ß±È½ÏÊıÁ¿£¬Èç2£¬Ôò±íÊ¾±È×óÆğ2¸ùKÏß¶¼¸ß£¬ÇÒ±ÈÓÒÆğÁ½¸ùKÏß¶¼¸ßÎª²¨·å£¬Èç¹ûÎªÁã£¬½«Êä³öËùÓĞKÏß
-	*     [in, out] nIndexVector - ·ûºÏÒªÇóµÄKÏß±àºÅ(°´Ê±¼äË³ĞòÁĞ³ö£©
-	*	  [in, out] nIndexHighestPeak - ×î¸ß²¨·åµÄÎ»ÖÃ
-	* ·µ»ØÖµ£º
-	*     true ÕÒµ½·ûºÏÒªÇóµÄKÏß£¬false Î´ÕÒµ½·ûºÏÒªÇóµÄKÏß
+	/*å‡½æ•°åŠŸèƒ½ï¼šè·å–æŒ‡å®šèŒƒå›´Kçº¿çš„æ³¢å³°ä½ç½®
+	* å‚æ•°æè¿°ï¼š
+	*     [in] nBegin	- Kçº¿èŒƒå›´å¼€å§‹ç¼–å·ï¼›
+	*     [in] nEnd		- Kçº¿èŒƒå›´ç»“æŸç¼–å·ï¼›
+	*	  [in] nUnilateralCompareNum - å•è¾¹æ¯”è¾ƒæ•°é‡ï¼Œå¦‚2ï¼Œåˆ™è¡¨ç¤ºæ¯”å·¦èµ·2æ ¹Kçº¿éƒ½é«˜ï¼Œä¸”æ¯”å³èµ·ä¸¤æ ¹Kçº¿éƒ½é«˜ä¸ºæ³¢å³°ï¼Œå¦‚æœä¸ºé›¶ï¼Œå°†è¾“å‡ºæ‰€æœ‰Kçº¿
+	*     [in, out] nIndexVector - ç¬¦åˆè¦æ±‚çš„Kçº¿ç¼–å·(æŒ‰æ—¶é—´é¡ºåºåˆ—å‡ºï¼‰
+	*	  [in, out] nIndexHighestPeak - æœ€é«˜æ³¢å³°çš„ä½ç½®
+	* è¿”å›å€¼ï¼š
+	*     true æ‰¾åˆ°ç¬¦åˆè¦æ±‚çš„Kçº¿ï¼Œfalse æœªæ‰¾åˆ°ç¬¦åˆè¦æ±‚çš„Kçº¿
 	*/
 	bool GetKindleStickPeak(unsigned int nBegin, unsigned int nEnd,
 		unsigned int nUnilateralCompareNum, std::vector<unsigned int>& nIndexVector, unsigned int& nIndexHighestPeak);
 	
-	/*º¯Êı¹¦ÄÜ£º»ñÈ¡Ö¸¶¨·¶Î§KÏßµÄ²¨¹ÈÎ»ÖÃ
-	* ²ÎÊıÃèÊö£º
-	*     [in] nBegin	- KÏß·¶Î§¿ªÊ¼±àºÅ£»
-	*     [in] nEnd		- KÏß·¶Î§½áÊø±àºÅ£»
-	*	  [in] nUnilateralCompareNum - µ¥±ß±È½ÏÊıÁ¿£¬Èç2£¬Ôò±íÊ¾±È×óÆğ2¸ùKÏß¶¼µÍ£¬ÇÒ±ÈÓÒÆğÁ½¸ùKÏß¶¼µÍÎª²¨¹È£¬Èç¹ûÎªÁã£¬½«Êä³öËùÓĞKÏß
-	*     [in, out] nIndexVector - ·ûºÏÒªÇóµÄKÏß±àºÅ(°´Ê±¼äË³ĞòÁĞ³ö£©
-	*	  [in, out] nIndexLowestTrough - ×îµÍ²¨¹ÈµÄÎ»ÖÃ
-	* ·µ»ØÖµ£º
-	*     true ÕÒµ½·ûºÏÒªÇóµÄKÏß£¬false Î´ÕÒµ½·ûºÏÒªÇóµÄKÏß
+	/*å‡½æ•°åŠŸèƒ½ï¼šè·å–æŒ‡å®šèŒƒå›´Kçº¿çš„æ³¢è°·ä½ç½®
+	* å‚æ•°æè¿°ï¼š
+	*     [in] nBegin	- Kçº¿èŒƒå›´å¼€å§‹ç¼–å·ï¼›
+	*     [in] nEnd		- Kçº¿èŒƒå›´ç»“æŸç¼–å·ï¼›
+	*	  [in] nUnilateralCompareNum - å•è¾¹æ¯”è¾ƒæ•°é‡ï¼Œå¦‚2ï¼Œåˆ™è¡¨ç¤ºæ¯”å·¦èµ·2æ ¹Kçº¿éƒ½ä½ï¼Œä¸”æ¯”å³èµ·ä¸¤æ ¹Kçº¿éƒ½ä½ä¸ºæ³¢è°·ï¼Œå¦‚æœä¸ºé›¶ï¼Œå°†è¾“å‡ºæ‰€æœ‰Kçº¿
+	*     [in, out] nIndexVector - ç¬¦åˆè¦æ±‚çš„Kçº¿ç¼–å·(æŒ‰æ—¶é—´é¡ºåºåˆ—å‡ºï¼‰
+	*	  [in, out] nIndexLowestTrough - æœ€ä½æ³¢è°·çš„ä½ç½®
+	* è¿”å›å€¼ï¼š
+	*     true æ‰¾åˆ°ç¬¦åˆè¦æ±‚çš„Kçº¿ï¼Œfalse æœªæ‰¾åˆ°ç¬¦åˆè¦æ±‚çš„Kçº¿
 	*/
 	bool GetKindleStickTrough(unsigned int nBegin, unsigned int nEnd,
 		unsigned int nUnilateralCompareNum, std::vector<unsigned int>& nIndexVector, unsigned int& nIndexLowestTrough);
 
-	/*º¯Êı¹¦ÄÜ£º»ñÈ¡µ±ÈÕKÏßÊı£¬
-	* ²ÎÊıÃèÊö£º
+	/*å‡½æ•°åŠŸèƒ½ï¼šè·å–å½“æ—¥Kçº¿æ•°ï¼Œ
+	* å‚æ•°æè¿°ï¼š
 	*  
-	* ·µ»ØÖµ£º
-	*     ·µ»Øµ±ÈÕKÏßÊı£¬Èç¹û²»ÓÃ²úÆ·³õÊ¼Ê±¼ä£¬Ôò·µ»Ø-1£¬±íÊ¾´íÎó£¬µ±Ç°´¦ÓÚ¿ªÅÌµÚÒ»¸ùKÏßÔò£¬·µ»Ø1.
+	* è¿”å›å€¼ï¼š
+	*     è¿”å›å½“æ—¥Kçº¿æ•°ï¼Œå¦‚æœä¸ç”¨äº§å“åˆå§‹æ—¶é—´ï¼Œåˆ™è¿”å›-1ï¼Œè¡¨ç¤ºé”™è¯¯ï¼Œå½“å‰å¤„äºå¼€ç›˜ç¬¬ä¸€æ ¹Kçº¿åˆ™ï¼Œè¿”å›1.
 	*/
 	int  GetBarCountSinceToday();
 
 	const char* GetInstrumentID() { return m_strInstrumentID.c_str(); }
 private:
 	std::string								m_strInstrumentID;
-	std::string								m_strProductID;							//²úÆ·ĞÅÏ¢£¬ÔÚm_bUsingProductTradeTimeÎªtrueµÄÊ±ºòÓĞĞ§
+	std::string								m_strProductID;							//äº§å“ä¿¡æ¯ï¼Œåœ¨m_bUsingProductTradeTimeä¸ºtrueçš„æ—¶å€™æœ‰æ•ˆ
 
 	cwKindleSeriesType						m_cwKindleSeriesType;
-	//KÏßÖÜÆÚ£¬ÃëÎªµ¥Î»
+	//Kçº¿å‘¨æœŸï¼Œç§’ä¸ºå•ä½
 	uint32_t								m_iTimeScale;
 	bool									m_bIsInitialed;
 	std::uint64_t							m_LastestUpdateTime;
 
-	//ÊÇ·ñ¸ù¾İÆ·ÖÖ½»Ò×Ê±¼äÀ´ºÏ³É
+	//æ˜¯å¦æ ¹æ®å“ç§äº¤æ˜“æ—¶é—´æ¥åˆæˆ
 	bool									m_bUsingProductTradeTime;
 	cwProductTradeTime						m_ProductTradeTime;
 
-	std::uint64_t							m_iTodayBeginTime;						//¸Ã½»Ò×ÈÕµÄ¿ªÊ¼Ê±¼ä£¬ÔÚm_bUsingProductTradeTimeÎªtrueµÄÊ±ºòÓĞĞ§
-	std::uint64_t							m_iTodayEndTime;						//¸Ã½»Ò×ÈÕµÄ½áÊøÊ±¼ä£¬ÔÚm_bUsingProductTradeTimeÎªtrueµÄÊ±ºòÓĞĞ§
+	std::uint64_t							m_iTodayBeginTime;						//è¯¥äº¤æ˜“æ—¥çš„å¼€å§‹æ—¶é—´ï¼Œåœ¨m_bUsingProductTradeTimeä¸ºtrueçš„æ—¶å€™æœ‰æ•ˆ
+	std::uint64_t							m_iTodayEndTime;						//è¯¥äº¤æ˜“æ—¥çš„ç»“æŸæ—¶é—´ï¼Œåœ¨m_bUsingProductTradeTimeä¸ºtrueçš„æ—¶å€™æœ‰æ•ˆ
 
 #ifdef KINDLE_MULTI_THREAD
 	cwMUTEX									m_KindleQueueMutex;

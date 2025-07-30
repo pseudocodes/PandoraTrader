@@ -75,11 +75,11 @@ public:
 
 	struct TimeBalanceData
 	{
-		std::string		strDateTime;			//Ê±¼ä×Ö·û´®
-		std::uint64_t	iTimeStamp;				//Ê±¼ä´Á
-		double			dBalance;				//×ÜÓ¯¿÷
-		double			dMaxFundOccupied;		//×î´ó×Ê½ğÕ¼ÓÃ
-		double			dNetAsset;				//¾»Öµ
+		std::string		strDateTime;			//æ—¶é—´å­—ç¬¦ä¸²
+		std::uint64_t	iTimeStamp;				//æ—¶é—´æˆ³
+		double			dBalance;				//æ€»ç›ˆäº
+		double			dMaxFundOccupied;		//æœ€å¤§èµ„é‡‘å ç”¨
+		double			dNetAsset;				//å‡€å€¼
 	};
 	typedef std::shared_ptr<TimeBalanceData> TimeBalanceDataPtr;
 
@@ -87,30 +87,30 @@ public:
 	struct EvaluatorTimeSeriesData
 	{
 		std::uint64_t	iTimeStamp;
-		double			dNetAsset;					//¾»ÖµÇúÏß
-		double			dTradingYears;				//ÀÛ¼Æ½»Ò×ÄêÏŞ£¨×ÔÈ»ÈÕ¼ÆËã£©
-		double          dIRR;						//Äê»¯¸´Àû
-		double          dVolatility;				//ÈÕÊÕÒæÂÊµÄ²¨¶¯ÂÊ
-		double          dVolatilityDownward;		//ÏÂĞĞ²¨¶¯ÂÊ
-		double          dAR;						//Äê»¯µ¥Àû
+		double			dNetAsset;					//å‡€å€¼æ›²çº¿
+		double			dTradingYears;				//ç´¯è®¡äº¤æ˜“å¹´é™ï¼ˆè‡ªç„¶æ—¥è®¡ç®—ï¼‰
+		double          dIRR;						//å¹´åŒ–å¤åˆ©
+		double          dVolatility;				//æ—¥æ”¶ç›Šç‡çš„æ³¢åŠ¨ç‡
+		double          dVolatilityDownward;		//ä¸‹è¡Œæ³¢åŠ¨ç‡
+		double          dAR;						//å¹´åŒ–å•åˆ©
 
-		double          dDrawDownRatio;				//µ±Ç°»Ø³·±ÈÂÊ
-		double          dMaxDrawDownRatio;			//×î´ó»Ø³·ÂÊ
-		double          dAverageDDR;				//¼òµ¥Æ½¾ù»Ø³·ÂÊ
+		double          dDrawDownRatio;				//å½“å‰å›æ’¤æ¯”ç‡
+		double          dMaxDrawDownRatio;			//æœ€å¤§å›æ’¤ç‡
+		double          dAverageDDR;				//ç®€å•å¹³å‡å›æ’¤ç‡
 
-		double          dSharpeRatio;				//ÏÄÆÕ±ÈÂÊ
-		double          dSortinoRatio;				//Ë÷ÌáÅµ±ÈÂÊ
-		double          dCalmarRatio;				//¿¨Âê±ÈÂÊ
-		double          dSterlingRatio;				//Ë¹ÌØÁÖ±ÈÂÊ
+		double          dSharpeRatio;				//å¤æ™®æ¯”ç‡
+		double          dSortinoRatio;				//ç´¢æè¯ºæ¯”ç‡
+		double          dCalmarRatio;				//å¡ç›æ¯”ç‡
+		double          dSterlingRatio;				//æ–¯ç‰¹æ—æ¯”ç‡
 	};
 
 public:
 	cwBasicCTAStrategy(const char* szStrategyName);
 	~cwBasicCTAStrategy();
 
-	//³õÊ¼»¯²ßÂÔ
+	//åˆå§‹åŒ–ç­–ç•¥
 	virtual void			InitialStrategy() {};
-	//µ±Éú³ÉÒ»¸ùĞÂKÏßµÄÊ±ºò£¬»áµ÷ÓÃ¸Ã»Øµ÷
+	//å½“ç”Ÿæˆä¸€æ ¹æ–°Kçº¿çš„æ—¶å€™ï¼Œä¼šè°ƒç”¨è¯¥å›è°ƒ
 	virtual void			OnBar(bool bFinished, int iTimeScale, cwBasicKindleStrategy::cwKindleSeriesPtr pKindleSeries) = 0;
 
 	inline const char*		GetStrategyName() { return m_strStrategyName.c_str(); }
@@ -149,17 +149,17 @@ private:
 	std::unordered_map<std::string, size_t>			m_iEntryIndex;
 	std::unordered_map<std::string, std::string>	m_strEntryTime;
 public:
-	double					m_dLastPrice;			//µ±Ç°¼Û¸ñ
-	size_t					m_iLastIndex;			//µ±Ç°kÏßÊı
-	std::string				m_strLastUpdateTime;	//µ±Ç°ĞĞÇéÊ±¼ä
+	double					m_dLastPrice;			//å½“å‰ä»·æ ¼
+	size_t					m_iLastIndex;			//å½“å‰kçº¿æ•°
+	std::string				m_strLastUpdateTime;	//å½“å‰è¡Œæƒ…æ—¶é—´
 
-	//ÓÃÓÚ¼ÇÂ¼²ßÂÔ¾»Öµ±ä»¯
+	//ç”¨äºè®°å½•ç­–ç•¥å‡€å€¼å˜åŒ–
 	cwSettlement									m_cwSettlement;
-	std::deque<TimeBalanceDataPtr>					m_dTimeBalanceDQ;//²ÉÓÃpush back·½·¨Ôö¼ÓÔªËØ
+	std::deque<TimeBalanceDataPtr>					m_dTimeBalanceDQ;//é‡‡ç”¨push backæ–¹æ³•å¢åŠ å…ƒç´ 
 	
 
-	//²ßÂÔÆÀ¼ÛÆ÷
+	//ç­–ç•¥è¯„ä»·å™¨
 	cwNetValueEvaluation                            m_cwEvaluator;
-	std::deque< EvaluatorTimeSeriesData>            m_dEvaluatorDQ;//²ßÂÔÆÀ¼ÛÊı¾İ¼ÇÂ¼
+	std::deque< EvaluatorTimeSeriesData>            m_dEvaluatorDQ;//ç­–ç•¥è¯„ä»·æ•°æ®è®°å½•
 };
 

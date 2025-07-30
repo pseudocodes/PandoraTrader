@@ -6,7 +6,7 @@
 //--	Copyright (c) by Wu Chang Sheng. All rights reserved.
 //--    Consult your license regarding permissions and restrictions.
 //--
-//--	Æô¶¯¸ÄAgentÖ®ºó£¬µ÷ÓÃSetExpectPosition¼´¿ÉÊµÏÖ¶Ô¸ÃºÏÔ¼²ÖÎ»¿ØÖÆ
+//--	å¯åŠ¨æ”¹Agentä¹‹åï¼Œè°ƒç”¨SetExpectPositionå³å¯å®ç°å¯¹è¯¥åˆçº¦ä»“ä½æ§åˆ¶
 //*******************************************************************************
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -34,10 +34,10 @@ public:
 	int						m_iExpectPosition;
 	std::string				m_strInstrumentID;
 
-	cwBasicStrategy::cwOpenCloseMode OpenCloseMode;			//¿ªÆ½Ä£Ê½
-	int			InsLargeOrderVolume;		//´óµ¥Á¿£¬´óÓÚÆäÈÏÎª´óµ¥
-	int			InsLittleOrderVolume;		//Ğ¡µ¥Á¿£¬Ğ¡ÓÚÆäÈÏÎªĞ¡µ¥
-	int			InsAskBidGap;				//ÅÌ¿Ú¼Û²î
+	cwBasicStrategy::cwOpenCloseMode OpenCloseMode;			//å¼€å¹³æ¨¡å¼
+	int			InsLargeOrderVolume;		//å¤§å•é‡ï¼Œå¤§äºå…¶è®¤ä¸ºå¤§å•
+	int			InsLittleOrderVolume;		//å°å•é‡ï¼Œå°äºå…¶è®¤ä¸ºå°å•
+	int			InsAskBidGap;				//ç›˜å£ä»·å·®
 
 protected:
 	void					DealExpectedPosition(std::string InstrumentID, int iExpectedMaintain = 0, const char * szCallMsg = NULL);

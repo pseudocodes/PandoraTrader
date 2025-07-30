@@ -26,17 +26,17 @@ public:
 	std::string  GetStrategyName();
 
 	//MarketData SPI
-	///行情更新
+	///琛屾儏鏇存柊
 	virtual void PriceUpdate(cwMarketDataPtr pPriceData);
-	//当生成一根新K线的时候，会调用该回调
+	//褰撶敓鎴愪竴鏍规柊K绾跨殑鏃跺�欙紝浼氳皟鐢ㄨ鍥炶皟
 	virtual void			OnBar(cwMarketDataPtr pPriceData, int iTimeScale, cwBasicKindleStrategy::cwKindleSeriesPtr pKindleSeries);
 
 	//Trade SPI
-	///成交回报
+	///鎴愪氦鍥炴姤
 	virtual void OnRtnTrade(cwTradePtr pTrade) {};
-	///报单回报
+	///鎶ュ崟鍥炴姤
 	virtual void OnRtnOrder(cwOrderPtr pOrder, cwOrderPtr pOriginOrder = cwOrderPtr()) {};
-	///撤单成功
+	///鎾ゅ崟鎴愬姛
 	virtual void OnOrderCanceled(cwOrderPtr pOrder) {};
 
 	virtual void OnReady();
@@ -47,9 +47,9 @@ public:
 	std::string	m_strCurrentUpdateTime;
 
 	///strategy parameter
-	//策略运行代号
+	//绛栫暐杩愯浠ｅ彿
 	std::string m_strStrategyName;		
-	//策略是否运行
+	//绛栫暐鏄惁杩愯
 	bool		m_bStrategyRun;					
 
 	bool												m_bSaveInstrument = true;

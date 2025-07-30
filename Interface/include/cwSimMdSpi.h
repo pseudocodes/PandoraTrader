@@ -20,10 +20,10 @@ public:
 	cwSimMdSpi();
 	~cwSimMdSpi();
 
-		///登录请求响应
+		///鐧诲綍璇锋眰鍝嶅簲
 	virtual void OnRspUserLogin();
 
-	///深度行情通知
+	///娣卞害琛屾儏閫氱煡
 	virtual void OnRtnDepthMarketData(cwMarketDataPtr pDepthMarketData);
 
 

@@ -14,12 +14,12 @@
 namespace cwCommonUtility
 {
 
-	//Math ÊıÖµ²»ÄÜ³¬¹ıint£¬·ñÔò»á³öÏÖÒç³ö
-	//ÏòÉÏÈ¡Öµ£¬µ÷Õûµ½×îĞ¡µ¥Î»
+	//Math æ•°å€¼ä¸èƒ½è¶…è¿‡intï¼Œå¦åˆ™ä¼šå‡ºç°æº¢å‡º
+	//å‘ä¸Šå–å€¼ï¼Œè°ƒæ•´åˆ°æœ€å°å•ä½
 	double cwCeil(double dValue, double dTickSize = 1);
-	//ÏòÏÂÈ¡Öµ£¬µ÷Õûµ½×îĞ¡µ¥Î»
+	//å‘ä¸‹å–å€¼ï¼Œè°ƒæ•´åˆ°æœ€å°å•ä½
 	double cwFloor(double dValue, double dTickSize = 1);
-	//ËÄÉáÎåÈë£¬µ÷Õûµ½×îĞ¡µ¥Î»
+	//å››èˆäº”å…¥ï¼Œè°ƒæ•´åˆ°æœ€å°å•ä½
 	inline double cwRound(double dValue, double dTickSize = 1) 
 	{
 		return cwFloor(dValue + 0.5 * dTickSize, dTickSize);

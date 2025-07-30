@@ -2,7 +2,7 @@
 //
 //For more information, please visit https://github.com/pegasusTrader/PandoraTrader
 //
-//³ı¶ÔÍâÏúÊÛ£¬Ãâ·ÑÌá¹©£¬»¶Ó­ºÏ¹æÊ¹ÓÃ
+//é™¤å¯¹å¤–é”€å”®ï¼Œå…è´¹æä¾›ï¼Œæ¬¢è¿åˆè§„ä½¿ç”¨
 //
 //Please use the platform with legal and regulatory permission.
 //This software is released into the public domain.You are free to use it in any way you like, except that you may not sell this source code.
@@ -34,7 +34,7 @@
 #endif // WIN32
 
 
-//±¾³ÌĞò»¥³âÁ¿£¬ÓÃÓÚÅĞ¶ÏÊÇ·ñÓĞ¸Ã³ÌĞòÔÚÔËĞĞ
+//æœ¬ç¨‹åºäº’æ–¥é‡ï¼Œç”¨äºåˆ¤æ–­æ˜¯å¦æœ‰è¯¥ç¨‹åºåœ¨è¿è¡Œ
 #ifdef WIN32
 HANDLE  m_hAppMutex(NULL);
 #endif
@@ -100,9 +100,9 @@ bool ReadXmlConfigFile()
 
 	GetModuleFileName(NULL, TexeFullPath, MAX_PATH);
 	int iLength;
-	//»ñÈ¡×Ö½Ú³¤¶È   
+	//è·å–å­—èŠ‚é•¿åº¦   
 	iLength = WideCharToMultiByte(CP_ACP, 0, TexeFullPath, -1, NULL, 0, NULL, NULL);
-	//½«tcharÖµ¸³¸ø_char    
+	//å°†tcharå€¼èµ‹ç»™_char    
 	WideCharToMultiByte(CP_ACP, 0, TexeFullPath, -1, exeFullPath, iLength, NULL, NULL);
 #else
 	size_t cnt = readlink("/proc/self/exe", exeFullPath, MAX_PATH);
@@ -323,7 +323,7 @@ int main()
 	if (!ReadXmlConfigFile())
 	{
 		m_cwShow.AddLog("Init Config Failed!!");
-		m_cwShow.AddLog("The Program will shut down in 5s£¡");
+		m_cwShow.AddLog("The Program will shut down in 5sï¼");
 
 		int nCnt = 0;
 		while (nCnt < 6)
@@ -338,7 +338,7 @@ int main()
 	m_cwShow.AddLog("User: %s ProductInfo:%s", m_szTdUserID, m_szTdProductInfo);
 
 
-	//ÉèÖÃmutex ·ÀÖ¹Ò»¸ö³ÌĞò¿ª¶à¸ö
+	//è®¾ç½®mutex é˜²æ­¢ä¸€ä¸ªç¨‹åºå¼€å¤šä¸ª
 	std::string strAppMutexName;
 	strAppMutexName = m_szTdUserID;
 	strAppMutexName.append("_");
@@ -350,12 +350,12 @@ int main()
 	memset(TAppMutexName, 0, (unicodeLen + 1)*sizeof(wchar_t));
 	::MultiByteToWideChar(CP_ACP, 0, strAppMutexName.c_str(), -1,(LPWSTR)TAppMutexName,	unicodeLen);
 
-	//ÉùÃ÷»¥³âÌå£¬Í¬Ò»¸öÃû³ÆÖ»ÄÜÉùÃ÷Ò»´Î£¬Èç¹ûÉùÃ÷Á½´Î£¬½«·µ»ØERROR_ALREADY_EXISTS´íÎó¡£
+	//å£°æ˜äº’æ–¥ä½“ï¼ŒåŒä¸€ä¸ªåç§°åªèƒ½å£°æ˜ä¸€æ¬¡ï¼Œå¦‚æœå£°æ˜ä¸¤æ¬¡ï¼Œå°†è¿”å›ERROR_ALREADY_EXISTSé”™è¯¯ã€‚
 	m_hAppMutex = ::CreateMutex(NULL, TRUE, TAppMutexName);
 	if (m_hAppMutex == NULL || GetLastError() == ERROR_ALREADY_EXISTS)
 	{
-		m_cwShow.AddLog("ÒÑ¾­¼ì²âµ½Ò»ÑùµÄ²ßÂÔ³ÌĞòÔÚÔËĞĞ£¬Çë²»ÒªÖØ¸´´ò¿ª²ßÂÔ³ÌĞò£¡");
-		m_cwShow.AddLog("³ÌĞò½«ÔÚ5Ãëºó×Ô¶¯ÍË³ö£¡£¡");
+		m_cwShow.AddLog("å·²ç»æ£€æµ‹åˆ°ä¸€æ ·çš„ç­–ç•¥ç¨‹åºåœ¨è¿è¡Œï¼Œè¯·ä¸è¦é‡å¤æ‰“å¼€ç­–ç•¥ç¨‹åºï¼");
+		m_cwShow.AddLog("ç¨‹åºå°†åœ¨5ç§’åè‡ªåŠ¨é€€å‡ºï¼ï¼");
 		CloseHandle(m_hAppMutex);
 		m_hAppMutex = NULL;
 		delete [] TAppMutexName;

@@ -2,7 +2,7 @@
 //
 //For more information, please visit https://github.com/pegasusTrader/PandoraTrader
 //
-//³ı¶ÔÍâÏúÊÛ£¬Ãâ·ÑÌá¹©£¬»¶Ó­ºÏ¹æÊ¹ÓÃ
+//é™¤å¯¹å¤–é”€å”®ï¼Œå…è´¹æä¾›ï¼Œæ¬¢è¿åˆè§„ä½¿ç”¨
 //
 //Please use the platform with legal and regulatory permission.
 //This software is released into the public domain.You are free to use it in any way you like, except that you may not sell this source code.
@@ -96,9 +96,9 @@ int main()
 
 	GetModuleFileName(NULL, TexeFullPath, MAX_PATH);
 	int iLength;
-	//»ñÈ¡×Ö½Ú³¤¶È   
+	//è·å–å­—èŠ‚é•¿åº¦   
 	iLength = WideCharToMultiByte(CP_ACP, 0, TexeFullPath, -1, NULL, 0, NULL, NULL);
-	//½«tcharÖµ¸³¸ø_char    
+	//å°†tcharå€¼èµ‹ç»™_char    
 	WideCharToMultiByte(CP_ACP, 0, TexeFullPath, -1, exeFullPath, iLength, NULL, NULL);
 #else
 	size_t cnt = readlink("/proc/self/exe", exeFullPath, MAX_PATH);
@@ -141,7 +141,7 @@ int main()
 	while (true)
 	{
 		cwSleep(3000);
-		m_cwShow.AddLog("%s %s È¨Òæ:%.3f Æ½²ÖÓ¯¿÷:%.3f ³Ö²ÖÓ¯¿÷:%.3f",
+		m_cwShow.AddLog("%s %s æƒç›Š:%.3f å¹³ä»“ç›ˆäº:%.3f æŒä»“ç›ˆäº:%.3f",
 			m_PegasusSimulator.m_CurrentTradingDay,
 			m_PegasusSimulator.m_CurrentSimulationTime,
 			m_PegasusSimulator.m_cwSettlement.m_dBalance,

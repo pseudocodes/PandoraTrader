@@ -113,19 +113,19 @@ public:
 	struct TradeParameter
 	{
 		// Instrument
-		bool		Pause;						//ÔİÍ£³ÌĞò¶Ô¸ÃºÏÔ¼µÄ½»Ò×
+		bool		Pause;						//æš‚åœç¨‹åºå¯¹è¯¥åˆçº¦çš„äº¤æ˜“
 
-		std::string InstrumentID;				//½»Ò×ºÏÔ¼
-		std::string	SignalInstrumentID;			//ĞÅºÅÀï¶ÔÓ¦µÄºÏÔ¼Ãû
-		double		Ratio;						//ºÏÔ¼ÏÂµ¥±ÈÀı£¬
-		bool		Mod;						//ÏÂµ¥ºÏÔ¼mod£¬1ÔòÏòÏÂÈ¡Õû£¬0ÔòÏòÉÏÈ¥Õû¡£
+		std::string InstrumentID;				//äº¤æ˜“åˆçº¦
+		std::string	SignalInstrumentID;			//ä¿¡å·é‡Œå¯¹åº”çš„åˆçº¦å
+		double		Ratio;						//åˆçº¦ä¸‹å•æ¯”ä¾‹ï¼Œ
+		bool		Mod;						//ä¸‹å•åˆçº¦modï¼Œ1åˆ™å‘ä¸‹å–æ•´ï¼Œ0åˆ™å‘ä¸Šå»æ•´ã€‚
 
-		cwOpenCloseMode InsOpenCloseMode;		//¿ªÆ½Ä£Ê½
-		int			InsLargeOrderVolume;		//´óµ¥Á¿£¬´óÓÚÆäÈÏÎª´óµ¥
-		int			InsLittleOrderVolume;		//Ğ¡µ¥Á¿£¬Ğ¡ÓÚÆäÈÏÎªĞ¡µ¥
-		int			InsAskBidGap;				//ÅÌ¿Ú¼Û²î
-		int			InsAddTick;					//±¨µ¥³¬¼Û
-		int			InsWaitInterval;			//¹Òµ¥ÀëÅÌ¿Ú¼Û²î ³·µ¥ÃÅÏŞÖµ
+		cwOpenCloseMode InsOpenCloseMode;		//å¼€å¹³æ¨¡å¼
+		int			InsLargeOrderVolume;		//å¤§å•é‡ï¼Œå¤§äºå…¶è®¤ä¸ºå¤§å•
+		int			InsLittleOrderVolume;		//å°å•é‡ï¼Œå°äºå…¶è®¤ä¸ºå°å•
+		int			InsAskBidGap;				//ç›˜å£ä»·å·®
+		int			InsAddTick;					//æŠ¥å•è¶…ä»·
+		int			InsWaitInterval;			//æŒ‚å•ç¦»ç›˜å£ä»·å·® æ’¤å•é—¨é™å€¼
 
 		TradeParameter()
 			: Pause(false)
@@ -183,7 +183,7 @@ public:
 
 		std::string SignalID;
 
-		double		StrategyInsRatio;			//¶ÔÓÚÄ³¸ö²ßÂÔ
+		double		StrategyInsRatio;			//å¯¹äºæŸä¸ªç­–ç•¥
 
 		bool		NoLong;
 		bool		NoShort;
@@ -250,15 +250,15 @@ public:
 
 	//struct 
 public:
-	//»ñÈ¡²ßÂÔ°æ±¾ºÅ
+	//è·å–ç­–ç•¥ç‰ˆæœ¬å·
 	virtual std::string  GetStrategyVersion();
-	//±íÊ¾²ßÂÔÃû³Æ
+	//è¡¨ç¤ºç­–ç•¥åç§°
 	virtual std::string  GetStrategyName();
 
 	//MarketData SPI
-	///ĞĞÇé¸üĞÂ
+	///è¡Œæƒ…æ›´æ–°
 	virtual void			PriceUpdate(cwMarketDataPtr pPriceData);
-	//µ±Éú³ÉÒ»¸ùĞÂKÏßµÄÊ±ºò£¬»áµ÷ÓÃ¸Ã»Øµ÷
+	//å½“ç”Ÿæˆä¸€æ ¹æ–°Kçº¿çš„æ—¶å€™ï¼Œä¼šè°ƒç”¨è¯¥å›è°ƒ
 	virtual void			OnBar(cwMarketDataPtr pPriceData, int iTimeScale, cwBasicKindleStrategy::cwKindleSeriesPtr pKindleSeries);
 
 	virtual void			OnReady();
@@ -286,11 +286,11 @@ public:
 
 
 	///strategy parameter
-	//²ßÂÔÔËĞĞ´úºÅ
+	//ç­–ç•¥è¿è¡Œä»£å·
 	std::string				m_strStrategyName;
 	std::string				m_strCurrentUpdateTime;
 
-	//²ßÂÔÊÇ·ñÔËĞĞ
+	//ç­–ç•¥æ˜¯å¦è¿è¡Œ
 	bool					m_bStrategyRun;
 	bool					m_bShowPosition;
 
@@ -299,14 +299,14 @@ public:
 	uint64_t				m_iKindleBeginTime = 0;
 
 
-	//ÕË»§È¨ÒæĞÅÏ¢
-	double					m_dSignalPreBalance;				//ÕË»§ĞÅºÅÆô¶¯Ê±È¨Òæ£¨µ±ÈÕ£©
-	double                  m_dSignalBalance;					//ÕË»§ĞÅºÅ×îĞÂÈ¨Òæ£¨µ±ÈÕ£©
+	//è´¦æˆ·æƒç›Šä¿¡æ¯
+	double					m_dSignalPreBalance;				//è´¦æˆ·ä¿¡å·å¯åŠ¨æ—¶æƒç›Šï¼ˆå½“æ—¥ï¼‰
+	double                  m_dSignalBalance;					//è´¦æˆ·ä¿¡å·æœ€æ–°æƒç›Šï¼ˆå½“æ—¥ï¼‰
 
-	double					m_dPreBalance;						//ÕË»§Êµ¼ÊÆô¶¯Ê±È¨Òæ£¨µ±ÈÕ£©
-	double					m_dBalance;							//ÕË»§Êµ¼Ê×îĞÂÈ¨Òæ£¨µ±ÈÕ£©
+	double					m_dPreBalance;						//è´¦æˆ·å®é™…å¯åŠ¨æ—¶æƒç›Šï¼ˆå½“æ—¥ï¼‰
+	double					m_dBalance;							//è´¦æˆ·å®é™…æœ€æ–°æƒç›Šï¼ˆå½“æ—¥ï¼‰
 protected:
-	//ÅäÖÃ²ÎÊı
+	//é…ç½®å‚æ•°
 	//Key:StrategyID
 	std::unordered_map<std::string, StrategyParaPtr>					m_StrategyParameterMap;
 	//Key:TradeInstrumentID
@@ -318,13 +318,13 @@ protected:
 	std::map<std::string, DirectionMaskPtr>								m_DirectionMaskMap;			
 
 
-	//Strategy pool²ßÂÔ³Ø
+	//Strategy poolç­–ç•¥æ± 
 	//key:SignalInstrument, key:TimeScale
 	std::unordered_map<std::string, std::unordered_map<int, std::deque<CTAStrategyInfoPtr>>>		m_InsCTAStrategyList;
 	//Key:StrategyID
 	std::unordered_map<std::string, CTAStrategyInfoPtr>					m_NameCTAStrategy;
 
-	//²ßÂÔ×éºÏ Portfolio
+	//ç­–ç•¥ç»„åˆ Portfolio
 	//key:
 	//std::unordered_map<std::string, std::deque<CTAStrategyInfoPtr>>		m_PortfolioStrategyList;
 
@@ -341,7 +341,7 @@ protected:
 
 
 	//Agent
-	cwPandoraAgentManager											m_PandoraAgentManager;		//´úÀíÈË¹ÜÀíÕß£¬¿ÉÍ¨¹ıËû´´½¨´úÀíÈË
+	cwPandoraAgentManager											m_PandoraAgentManager;		//ä»£ç†äººç®¡ç†è€…ï¼Œå¯é€šè¿‡ä»–åˆ›å»ºä»£ç†äºº
 	std::map<std::string, cwPandoraAgentManager::cwAgentDataPtr>	m_cwAgentDataMap;			//key Instrument value AgentData
 
 

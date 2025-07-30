@@ -27,10 +27,10 @@ public:
 
 	enum cwPandoraAgentEnum : int
 	{
-		Enum_Agent_Postion = 0,					//cwPandoraPositionAgent		ÓÃËã·¨À´¹ÜÀí³Ö²Ö
-		Enum_Agent_TakeOver,					//cwPandoraTakeOverAgent		ÓÃËã·¨À´½Ó¹Ü³Ö²Ö£¬×Ô¶¯Ö¹Ó¯Ö¹Ëğ,Î´Íê³É
-		Enum_Agent_Prerequisite,				//cwPandoraPrerequisiteAgent	ÓÃËã·¨À´¹ÜÀí±¨µ¥£¬Èç¹û²»Âú×ãÒªÇóÌõ¼şÔò³·µ¥£¬Î´Íê³É
-		Enum_Agent_ProfitLost,					//cwPandoraProfitLostAgent		ÓÃËã·¨À´¹ÜÀí±¨µ¥£¬³É½»ºó£¬×Ô¶¯±¨³öÖ¹Ó¯µ¥;ÈçÓöµ½Ö¹Ëğ£¬Ôò±¨Ö¹Ëğµ¥£¬Î´Íê³É
+		Enum_Agent_Postion = 0,					//cwPandoraPositionAgent		ç”¨ç®—æ³•æ¥ç®¡ç†æŒä»“
+		Enum_Agent_TakeOver,					//cwPandoraTakeOverAgent		ç”¨ç®—æ³•æ¥æ¥ç®¡æŒä»“ï¼Œè‡ªåŠ¨æ­¢ç›ˆæ­¢æŸ,æœªå®Œæˆ
+		Enum_Agent_Prerequisite,				//cwPandoraPrerequisiteAgent	ç”¨ç®—æ³•æ¥ç®¡ç†æŠ¥å•ï¼Œå¦‚æœä¸æ»¡è¶³è¦æ±‚æ¡ä»¶åˆ™æ’¤å•ï¼Œæœªå®Œæˆ
+		Enum_Agent_ProfitLost,					//cwPandoraProfitLostAgent		ç”¨ç®—æ³•æ¥ç®¡ç†æŠ¥å•ï¼Œæˆäº¤åï¼Œè‡ªåŠ¨æŠ¥å‡ºæ­¢ç›ˆå•;å¦‚é‡åˆ°æ­¢æŸï¼Œåˆ™æŠ¥æ­¢æŸå•ï¼Œæœªå®Œæˆ
 		Enum_Agent_TWAP,
 		Enum_Agent_VWAP,
 		Enum_Agent_Count
@@ -38,9 +38,9 @@ public:
 
 	struct cwAgentData
 	{
-		int							AgentID;			//´úÀíÈË±àºÅ
-		cwPandoraAgentEnum			AgentType;			//´úÀíÈËÀàĞÍ
-		cwPositionAgentPtr			pPositionAgent;		//³Ö²Ö¹ÜÀí´úÀíÈË
+		int							AgentID;			//ä»£ç†äººç¼–å·
+		cwPandoraAgentEnum			AgentType;			//ä»£ç†äººç±»å‹
+		cwPositionAgentPtr			pPositionAgent;		//æŒä»“ç®¡ç†ä»£ç†äºº
 	};
 	typedef std::shared_ptr<cwAgentData> cwAgentDataPtr;
 #ifdef _MSC_VER

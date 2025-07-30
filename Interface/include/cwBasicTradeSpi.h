@@ -17,15 +17,15 @@
 #include "cwDate.h"
 
 
-#define CWCANCELRISK				//³·µ¥´ÎÊı·ç¿Ø¹ÜÀí
-#define CWDeclarationFeeRISK		//Õë¶ÔÉê±¨·ÑµÄ·ç¿Ø¹ÜÀí
+#define CWCANCELRISK				//æ’¤å•æ¬¡æ•°é£æ§ç®¡ç†
+#define CWDeclarationFeeRISK		//é’ˆå¯¹ç”³æŠ¥è´¹çš„é£æ§ç®¡ç†
 
-//#define CWORDERSPEEDLIMIT			//±¨µ¥ËÙ¶ÈÏŞÖÆ
-#define CWORDERSPEEDCNT	15			//±¨µ¥ËÙ¶ÈÏŞÖÆ,Ã¿Ãë15µ¥
+//#define CWORDERSPEEDLIMIT			//æŠ¥å•é€Ÿåº¦é™åˆ¶
+#define CWORDERSPEEDCNT	15			//æŠ¥å•é€Ÿåº¦é™åˆ¶,æ¯ç§’15å•
 
-#define TRADELOG					//½»Ò×ÈÕÖ¾
-#define UPDATE_ORDERRANKED			//¸üĞÂ¹ÜÀí¶©µ¥ÅÅ¶ÓÎ»ÖÃ
-#define	NoCancelTooMuchPerTick		//ÔÚ¼«¶ÌÊ±¼äÄÚ²»µÃ¶à´Î³·µ¥ÒÔ¼õÉÙ´íµ¥
+#define TRADELOG					//äº¤æ˜“æ—¥å¿—
+#define UPDATE_ORDERRANKED			//æ›´æ–°ç®¡ç†è®¢å•æ’é˜Ÿä½ç½®
+#define	NoCancelTooMuchPerTick		//åœ¨æçŸ­æ—¶é—´å†…ä¸å¾—å¤šæ¬¡æ’¤å•ä»¥å‡å°‘é”™å•
 
 #ifdef UPDATE_ORDERRANKED
 #define NO_TRADEINFO_LOG
@@ -153,13 +153,13 @@ public:
 	int			GetOrderCancelCount(std::string InstrumentID);
 	int			GetInsDeclarationMsgCount(std::string InstrumentID);
 
-	//²éÑ¯±£Ö¤½ğÂÊ
+	//æŸ¥è¯¢ä¿è¯é‡‘ç‡
 	virtual cwMarginRateDataPtr			GetMarginRate(std::string InstrumentID) = 0;
-	//²éÑ¯ÊÖĞø·ÑÂÊ
+	//æŸ¥è¯¢æ‰‹ç»­è´¹ç‡
 	virtual cwCommissionRateDataPtr		GetCommissionRate(std::string InstrumentID) = 0;
 
 	//User Trader Method
-	//ĞĞÇé¸üĞÂ
+	//è¡Œæƒ…æ›´æ–°
 	virtual void PriceUpdate(cwMarketDataPtr pPriceData) = 0;
 	virtual	cwOrderPtr InputLimitOrder(const char * szInstrumentID, cwFtdcDirectionType direction,
 		cwOpenClose openclose, int volume, double price) = 0;
@@ -221,7 +221,7 @@ protected:
 	bool						m_bHasGetTrades;
 	bool						m_bOrderRankedUpdate;
 
-	//ÊÇ·ñº¬ÓĞ¿ª²ÖµÄ±¨µ¥(Îª½÷É÷Æğ¼û£¬±¨³ö¿ª²Öµ¥¼´ÈÏÎªÓĞ,µ«²éÑ¯´íµ¥£¬Ôò²»±»ÈÏÎªÓĞ£© 
+	//æ˜¯å¦å«æœ‰å¼€ä»“çš„æŠ¥å•(ä¸ºè°¨æ…èµ·è§ï¼ŒæŠ¥å‡ºå¼€ä»“å•å³è®¤ä¸ºæœ‰,ä½†æŸ¥è¯¢é”™å•ï¼Œåˆ™ä¸è¢«è®¤ä¸ºæœ‰ï¼‰ 
 	std::unordered_map<std::string, bool>					m_bHasLongOpenOffsetOrderMap;	//Key InstrumentID
 	std::unordered_map<std::string, bool>					m_bHasShortOpenOffsetOrderMap;	//Key InstrumentID
 
@@ -249,10 +249,10 @@ protected:
 public:
 	inline	void				SetMaxCancelLimit(int iMaxLimit = 480) { m_iMaxCancelLimitNum = iMaxLimit; }
 protected:
-	int															m_iMaxCancelLimitNum;					//×î´ó³·µ¥´ÎÊı(¸ÃÖµ»á´ïµ½£¬Èç½»Ò×ËùÏŞÖÆ500£¬Ó¦µ±ÉèÖÃ480.490µÈĞ¡ÓÚ½»Ò×ËùÏŞÖÆµÄÊıÖµ£©
-	std::unordered_map<std::string, int>						m_iCancelCountMap;						//³·µ¥´ÎÊıÍ³¼Æ£¬key:InstrumentID
+	int															m_iMaxCancelLimitNum;					//æœ€å¤§æ’¤å•æ¬¡æ•°(è¯¥å€¼ä¼šè¾¾åˆ°ï¼Œå¦‚äº¤æ˜“æ‰€é™åˆ¶500ï¼Œåº”å½“è®¾ç½®480.490ç­‰å°äºäº¤æ˜“æ‰€é™åˆ¶çš„æ•°å€¼ï¼‰
+	std::unordered_map<std::string, int>						m_iCancelCountMap;						//æ’¤å•æ¬¡æ•°ç»Ÿè®¡ï¼Œkey:InstrumentID
 
-	//±¾µØ±¨µ¥ RefµÇ¼Ç£¬ Óöµ½´íµ¥£¬¼õ»Ø³·µ¥´ÎÊı£¬±ãÓÚ×¼È·Í³¼Æ
+	//æœ¬åœ°æŠ¥å• Refç™»è®°ï¼Œ é‡åˆ°é”™å•ï¼Œå‡å›æ’¤å•æ¬¡æ•°ï¼Œä¾¿äºå‡†ç¡®ç»Ÿè®¡
 	//key Isntrument, value : OrderRefSet;
 	std::unordered_map<std::string, std::set<std::string>>		m_MayCancelOrderRefSetMap;
 #endif // CWRISK
@@ -262,11 +262,11 @@ protected:
 public:
 		inline	void			SetMaxDeclarationMsgLimit(int iMaxLimit = 3950) { m_iMaxDeclarationMsgLimitNum = iMaxLimit; }
 protected:
-	int															m_iMaxDeclarationMsgLimitNum;			//×î´óĞÅÏ¢Á¿ÉèÖÃ(¸ÃÖµ»á´ïµ½£¬Èç½»Ò×ËùÏŞÖÆ4000£¬Ó¦µ±ÉèÖÃ3800.3900µÈĞ¡ÓÚ½»Ò×ËùÏŞÖÆµÄÊıÖµ£©
-	std::unordered_map<std::string, int>						m_iDeclarationMsgCountMap;				//Éê±¨ĞÅÏ¢Á¿Í³¼Æ£¬key:InstrumentID
+	int															m_iMaxDeclarationMsgLimitNum;			//æœ€å¤§ä¿¡æ¯é‡è®¾ç½®(è¯¥å€¼ä¼šè¾¾åˆ°ï¼Œå¦‚äº¤æ˜“æ‰€é™åˆ¶4000ï¼Œåº”å½“è®¾ç½®3800.3900ç­‰å°äºäº¤æ˜“æ‰€é™åˆ¶çš„æ•°å€¼ï¼‰
+	std::unordered_map<std::string, int>						m_iDeclarationMsgCountMap;				//ç”³æŠ¥ä¿¡æ¯é‡ç»Ÿè®¡ï¼Œkey:InstrumentID
 
 #ifndef CWCANCELRISK
-	//±¾µØ±¨µ¥ RefµÇ¼Ç£¬ Óöµ½´íµ¥£¬¼õ»Ø³·µ¥´ÎÊı£¬±ãÓÚ×¼È·Í³¼Æ
+	//æœ¬åœ°æŠ¥å• Refç™»è®°ï¼Œ é‡åˆ°é”™å•ï¼Œå‡å›æ’¤å•æ¬¡æ•°ï¼Œä¾¿äºå‡†ç¡®ç»Ÿè®¡
 	//key Isntrument, value : OrderRefSet;
 	std::unordered_map<std::string, std::set<std::string>>		m_MayCancelOrderRefSetMap;
 #endif // !CWRISK

@@ -336,7 +336,7 @@ void cwPandoraPositionAgent::DealExpectedPosition(std::string InstrumentID, int 
 					int iLittleVol = InsLittleOrderVolume;
 					if (MarketData->UpperLimitPrice - MarketData->AskPrice1 < dInsEQ)
 					{
-						//¿ìÕÇÍ£
+						//å¿«æ¶¨åœ
 						iLittleVol = (int)(iLittleVol * 10);
 					}
 					if (MarketData->AskVolume1 <= iLittleVol
@@ -353,7 +353,7 @@ void cwPandoraPositionAgent::DealExpectedPosition(std::string InstrumentID, int 
 				
 				if (MarketData->BidPrice1 >= MarketData->UpperLimitPrice - dInsEQ)
 				{
-					//ÒÑ¾­ÕÇÍ£
+					//å·²ç»æ¶¨åœ
 					orderprice = MarketData->UpperLimitPrice;
 				}
 
@@ -361,7 +361,7 @@ void cwPandoraPositionAgent::DealExpectedPosition(std::string InstrumentID, int 
 					&& MarketData->BidVolume1 <= 0)
 					|| orderprice < MarketData->LowerLimitPrice - dInsEQ)
 				{
-					//ÒÑ¾­µøÍ£
+					//å·²ç»è·Œåœ
 					orderprice = MarketData->LowerLimitPrice;
 				}
 
@@ -430,7 +430,7 @@ void cwPandoraPositionAgent::DealExpectedPosition(std::string InstrumentID, int 
 					int iLittleVol = InsLittleOrderVolume;
 					if (MarketData->BidPrice1 - MarketData->LowerLimitPrice < dInsEQ)
 					{
-						//¿ìµøÍ£
+						//å¿«è·Œåœ
 						iLittleVol = (int)(iLittleVol * 10);
 					}
 					if (MarketData->BidVolume1 <= iLittleVol
@@ -447,14 +447,14 @@ void cwPandoraPositionAgent::DealExpectedPosition(std::string InstrumentID, int 
 				if (MarketData->AskPrice1 <= MarketData->LowerLimitPrice + dInsEQ
 					&& MarketData->BidVolume1 <= 0)
 				{
-					//ÒÑ¾­µøÍ£
+					//å·²ç»è·Œåœ
 					orderprice = MarketData->LowerLimitPrice;
 				}
 
 				if (MarketData->BidPrice1 >= MarketData->UpperLimitPrice - dInsEQ
 					|| orderprice < MarketData->LowerLimitPrice - dInsEQ)
 				{
-					//ÒÑ¾­ÕÇÍ£
+					//å·²ç»æ¶¨åœ
 					orderprice = MarketData->UpperLimitPrice;
 				}
 
@@ -491,7 +491,7 @@ void cwPandoraPositionAgent::DealExpectedPosition(std::string InstrumentID, int 
 				int iLittleVol = InsLittleOrderVolume;
 				if (MarketData->UpperLimitPrice - MarketData->AskPrice1 < dInsEQ)
 				{
-					//¿ìÕÇÍ£
+					//å¿«æ¶¨åœ
 					iLittleVol = (int)(iLittleVol * 10);
 				}
 
@@ -529,7 +529,7 @@ void cwPandoraPositionAgent::DealExpectedPosition(std::string InstrumentID, int 
 				int iLittleVol = InsLittleOrderVolume;
 				if (MarketData->BidPrice1 - MarketData->LowerLimitPrice < dInsEQ)
 				{
-					//¿ìµøÍ£
+					//å¿«è·Œåœ
 					iLittleVol = (int)(iLittleVol * 10);
 				}
 

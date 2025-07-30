@@ -61,7 +61,7 @@ public:
 	virtual void SubscribeMarketData(std::vector<std::string>& SubscribeInstrument) = 0;
 	virtual void UnSubscribeMarketData(std::vector<std::string>& SubscribeInstrument) = 0;
 
-	//部分行情API支持订阅所有，故不保证该接口有效，请关注相应的子类的函数，有该函数再用
+	//閮ㄥ垎琛屾儏API鏀寔璁㈤槄鎵�鏈夛紝鏁呬笉淇濊瘉璇ユ帴鍙ｆ湁鏁堬紝璇峰叧娉ㄧ浉搴旂殑瀛愮被鐨勫嚱鏁帮紝鏈夎鍑芥暟鍐嶇敤
 	virtual void SubscribeMarketDataAll(bool bAll);
 
 	inline PriceServerStatus GetCurrentStatus()

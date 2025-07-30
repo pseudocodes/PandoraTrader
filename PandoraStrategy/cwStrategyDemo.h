@@ -9,17 +9,17 @@ public:
 	~cwStrategyDemo();
 
 	//MarketData SPI
-	///ĞĞÇé¸üĞÂ
+	///è¡Œæƒ…æ›´æ–°
 	virtual void PriceUpdate(cwMarketDataPtr pPriceData);
 
 	//Trade SPI
-	///³É½»»Ø±¨
+	///æˆäº¤å›æŠ¥
 	virtual void OnRtnTrade(cwTradePtr pTrade);
-	//±¨µ¥»Ø±¨
+	//æŠ¥å•å›æŠ¥
 	virtual void OnRtnOrder(cwOrderPtr pOrder, cwOrderPtr pOriginOrder = cwOrderPtr());
-	//³·µ¥³É¹¦
+	//æ’¤å•æˆåŠŸ
 	virtual void OnOrderCanceled(cwOrderPtr pOrder);
-	//µ±²ßÂÔ½»Ò×³õÊ¼»¯Íê³ÉÊ±»áµ÷ÓÃOnReady, ¿ÉÒÔÔÚ´Ëº¯Êı×ö²ßÂÔµÄ³õÊ¼»¯²Ù×÷
+	//å½“ç­–ç•¥äº¤æ˜“åˆå§‹åŒ–å®Œæˆæ—¶ä¼šè°ƒç”¨OnReady, å¯ä»¥åœ¨æ­¤å‡½æ•°åšç­–ç•¥çš„åˆå§‹åŒ–æ“ä½œ
 	virtual void			OnReady();
 
 	std::string m_strCurrentUpdateTime;

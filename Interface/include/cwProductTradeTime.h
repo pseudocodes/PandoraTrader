@@ -16,7 +16,7 @@
 #include <vector>
 #include "cwMarketTime.h"
 
-//Æ·ÖÖ½»Ò×Ê±¼ä
+//å“ç§äº¤æ˜“æ—¶é—´
 class cwProductTradeTime
 {
 	
@@ -27,26 +27,26 @@ public:
 
 	enum cwTradeTimeSpace
 	{
-		NoTrading = 0										//·Ç½»Ò×Ê±¶Î
-		, NightPartOne = 1									//Ò¹ÅÌ
-		, AMPartOne = 2									    //ÉÏÎçµÚÒ»½×¶Î
-		, AMPartTwo = 3									    //ÉÏÎçµÚ¶ş½×¶Î
-		, PMPartOne = 4									    //ÏÂÎçµÚÒ»½×¶Î
-		, AMCallAuctionOrderingOpen = 5					    //¼¯ºÏ¾º¼Û±¨µ¥£¨ÉÏÎç¿ªÅÌ£©
-		, AMCallAuctionMatchOpen = 6						//¼¯ºÏ¾º¼Û´éºÏ£¨ÉÏÎç¿ªÅÌ£©
-		, NightCallAuctionOrderingOpen = 7					//¼¯ºÏ¾º¼Û±¨µ¥£¨Ò¹ÅÌ¿ªÅÌ£©
-		, NightCallAuctionMatchOpen = 8					    //¼¯ºÏ¾º¼Û´éºÏ£¨Ò¹ÅÌ¿ªÅÌ£©
-		, CallAuctionOrderingClose = 9					    //¼¯ºÏ¾º¼Û±¨µ¥£¨ÊÕÅÌ£©
-		, CallAuctionMatchClose = 10					    //¼¯ºÏ¾º¼Û´éºÏ£¨ÊÕÅÌ£©
+		NoTrading = 0										//éäº¤æ˜“æ—¶æ®µ
+		, NightPartOne = 1									//å¤œç›˜
+		, AMPartOne = 2									    //ä¸Šåˆç¬¬ä¸€é˜¶æ®µ
+		, AMPartTwo = 3									    //ä¸Šåˆç¬¬äºŒé˜¶æ®µ
+		, PMPartOne = 4									    //ä¸‹åˆç¬¬ä¸€é˜¶æ®µ
+		, AMCallAuctionOrderingOpen = 5					    //é›†åˆç«ä»·æŠ¥å•ï¼ˆä¸Šåˆå¼€ç›˜ï¼‰
+		, AMCallAuctionMatchOpen = 6						//é›†åˆç«ä»·æ’®åˆï¼ˆä¸Šåˆå¼€ç›˜ï¼‰
+		, NightCallAuctionOrderingOpen = 7					//é›†åˆç«ä»·æŠ¥å•ï¼ˆå¤œç›˜å¼€ç›˜ï¼‰
+		, NightCallAuctionMatchOpen = 8					    //é›†åˆç«ä»·æ’®åˆï¼ˆå¤œç›˜å¼€ç›˜ï¼‰
+		, CallAuctionOrderingClose = 9					    //é›†åˆç«ä»·æŠ¥å•ï¼ˆæ”¶ç›˜ï¼‰
+		, CallAuctionMatchClose = 10					    //é›†åˆç«ä»·æ’®åˆï¼ˆæ”¶ç›˜ï¼‰
 		, TradeTimeSpaceCnt
 	};
 
 	enum cwRangeOpenClose
 	{
-		cwLeftOpenRightOpen = 0,							//(a,b)£º ×ó¿ªÓÒ¿ªÇø¼ä
-		cwLeftOpenRightClose = 1,							//(a,b]£º ×ó¿ªÓÒ±ÕÇø¼ä
-		cwLeftCloseRightOpen = 2,							//[a,b)£º ×ó±ÕÓÒ¿ªÇø¼ä
-		cwLeftCloseRightClose = 3							//[a,b]£º ×ó±ÕÓÒ±ÕÇø¼ä
+		cwLeftOpenRightOpen = 0,							//(a,b)ï¼š å·¦å¼€å³å¼€åŒºé—´
+		cwLeftOpenRightClose = 1,							//(a,b]ï¼š å·¦å¼€å³é—­åŒºé—´
+		cwLeftCloseRightOpen = 2,							//[a,b)ï¼š å·¦é—­å³å¼€åŒºé—´
+		cwLeftCloseRightClose = 3							//[a,b]ï¼š å·¦é—­å³é—­åŒºé—´
 	};
 
 	typedef struct tagProductTradeTime
@@ -60,7 +60,7 @@ public:
 	}ProductTradeTime;
 	typedef std::shared_ptr<ProductTradeTime> TradeTimePtr;
 
-	//¸ù¾İÆ·ÖÖID,ºÍÊ±¼ä»ñÈ¡½»Ò×Ê±¶Î
+	//æ ¹æ®å“ç§ID,å’Œæ—¶é—´è·å–äº¤æ˜“æ—¶æ®µ
 	bool GetTradeTimeSpace(std::string ProductId, std::string updatetime,
 		cwTradeTimeSpace& iTradeIndex, int& iOpen, int& iClose);
 	bool GetTradeTimeSpace(std::string ProductId, uint32_t hour, uint32_t minute, uint32_t second,
@@ -70,7 +70,7 @@ public:
 
 	TradeTimePtr GetTradeTime(std::string ProductId, cwTradeTimeSpace iTradeIndex);
 
-	//»ñÈ¡µ½Ç°Ò»¸ö½»Ò×Ê±¶ÎµÄÊ±¼ä²î
+	//è·å–åˆ°å‰ä¸€ä¸ªäº¤æ˜“æ—¶æ®µçš„æ—¶é—´å·®
 	int	 GetPreTimeSpaceInterval(std::string ProductId, cwTradeTimeSpace iTradeIndex);
 	int	 GetTimeSpaceInterval(std::string productId, std::string starttime, std::string endTime);
 

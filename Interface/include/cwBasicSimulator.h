@@ -42,16 +42,16 @@ public:
 	virtual cwPandoraTrader::cwDate GetTradingDay() = 0;
 
 	/// MD
-	//¶©ÔÄºÏÔ¼
+	//è®¢é˜…åˆçº¦
 	void		SubScribePrice(std::vector<std::string>& SubscribeInstrument);
-	//È¡Ïû¶©ÔÄºÏÔ¼
+	//å–æ¶ˆè®¢é˜…åˆçº¦
 	void		UnSubScribePrice(std::vector<std::string>& UnSubscribeInstrument);
 
 	bool		GetIsSubscribedInstrument(const char * Ins);
 	size_t		GetSubscribedInstrumentCount() { return m_SubscribeInstrumentMap.size(); };
 	///Trade
 
-	///ÏµÍ³×ÔÓÃ½Ó¿ÚĞÅÏ¢£¬Îğ¶¯
+	///ç³»ç»Ÿè‡ªç”¨æ¥å£ä¿¡æ¯ï¼Œå‹¿åŠ¨
 	void			   SetMdSpi(void * pSpi);
 	void			   SetTradeSpi(void *pSpi);
 

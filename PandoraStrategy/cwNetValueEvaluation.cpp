@@ -49,17 +49,17 @@ void cwNetValueEvaluation::Deposit(double deposit)
         }
     }
 
-    // ·İ¶îµ÷Õû
+    // ä»½é¢è°ƒæ•´
     m_dUnits = m_dUnits + dFund / m_dCurNetAsset;
     m_dLastEquity += dFund;
 }
 
 void cwNetValueEvaluation::UpdateNetValueByTotalPNL(std::uint64_t timestamp, double totalPNL, double fundUsed)
 {
-    // ¸üĞÂÊ±¼ä
+    // æ›´æ–°æ—¶é—´
     m_iTimeStamp = timestamp;
 
-    // ³õÊ¼½»Ò×Ê±¼ä
+    // åˆå§‹äº¤æ˜“æ—¶é—´
     if (m_iStartTimeStamp == 0 && fundUsed > 0) {
         m_iStartTimeStamp = timestamp;
 
@@ -81,7 +81,7 @@ void cwNetValueEvaluation::UpdateNetValueByTotalPNL(std::uint64_t timestamp, dou
         return;
     }
 
-    // »»ÈÕ´¦Àí
+    // æ¢æ—¥å¤„ç†
     if (timestamp > m_iThisDayEndTimeStamp) {
         double ret = m_dCurNetAsset / m_dPreNetAsset - 1;
         m_dailyRetDQ.push_back(ret);
@@ -94,21 +94,21 @@ void cwNetValueEvaluation::UpdateNetValueByTotalPNL(std::uint64_t timestamp, dou
         }
     }
 
-    // KÏßÊıÁ¿Í³¼Æ
+    // Kçº¿æ•°é‡ç»Ÿè®¡
     m_iKindleCount++;
 
     if (fundUsed > m_dLastEquity) {
-        // Èë½ğ
+        // å…¥é‡‘
         Deposit(fundUsed - m_dLastEquity);
     }
 
     m_dLastEquity += (totalPNL - m_dPreTotalPNL);
     m_dPreTotalPNL = totalPNL;
 
-    // ¾»Öµ
+    // å‡€å€¼
     m_dCurNetAsset = m_dLastEquity / m_dUnits;
 
-    // ¼ÆËã»Ø³·ÂÊºÍ×î´ó»Ø³·ÂÊ
+    // è®¡ç®—å›æ’¤ç‡å’Œæœ€å¤§å›æ’¤ç‡
     if (m_dCurNetAsset > m_HighestNetAsset) {
         m_HighestNetAsset = m_dCurNetAsset;
     }
@@ -123,13 +123,13 @@ void cwNetValueEvaluation::Calculate()
 {
     m_dAverageDDR = (m_dAverageDDR * (m_iKindleCount - 1) + m_dDrawDownRatio) / m_iKindleCount;
 
-    m_dTradingYears = (m_iTimeStamp - m_iStartTimeStamp) / (1000.0 * 1000 * 24 * 60 * 60 * 365); // 24Ğ¡Ê±*60·ÖÖÓ*60Ãë*365ÈÕ
+    m_dTradingYears = (m_iTimeStamp - m_iStartTimeStamp) / (1000.0 * 1000 * 24 * 60 * 60 * 365); // 24å°æ—¶*60åˆ†é’Ÿ*60ç§’*365æ—¥
 
-    // ¼ÆËãÊÕÒæÂÊ
+    // è®¡ç®—æ”¶ç›Šç‡
     m_dAR = (m_dCurNetAsset - 1) / m_dTradingYears;
     m_dIRR = pow(m_dCurNetAsset, m_dTradingYears);
 
-    // m_dVolatility²¨¶¯ÂÊ¼ÆËã ¼° m_dVolatilityDownwardÏÂĞĞ²¨¶¯ÂÊ¼ÆËã
+    // m_dVolatilityæ³¢åŠ¨ç‡è®¡ç®— åŠ m_dVolatilityDownwardä¸‹è¡Œæ³¢åŠ¨ç‡è®¡ç®—
     int size = m_dailyRetDQ.size();
     double sum1 = 0;
     double sum2 = 0;
@@ -143,7 +143,7 @@ void cwNetValueEvaluation::Calculate()
         m_dVolatilityDownward = sqrt(sum2 / (size - 1) * 252);
     }
 
-    // ¸üĞÂÏÄÆÕ±ÈÂÊ¡¢¿¨Âê±ÈÂÊ¡¢Ë¹ÌØÁÖ±ÈÂÊ
+    // æ›´æ–°å¤æ™®æ¯”ç‡ã€å¡ç›æ¯”ç‡ã€æ–¯ç‰¹æ—æ¯”ç‡
     m_dSharpeRatio = m_dIRR / m_dVolatility;
     m_dSortinoRatio = m_dIRR / m_dVolatilityDownward;
 

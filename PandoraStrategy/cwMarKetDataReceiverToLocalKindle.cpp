@@ -121,7 +121,7 @@ bool cwMarKetDataReceiverToLocalKindle::InitialHisKindleFromHisKindleFolder(cons
 void cwMarKetDataReceiverToLocalKindle::WorkingThread()
 {
 	{
-		//´´½¨ÎÄ¼ş¼Ğ
+		//åˆ›å»ºæ–‡ä»¶å¤¹
 		struct stat buf;
 
 		for (auto it = m_InstrumentMap.begin(); it != m_InstrumentMap.end(); it++)
@@ -197,7 +197,7 @@ void cwMarKetDataReceiverToLocalKindle::WorkingThread()
 			it->second.NothingToWriteCount = 0;
 			iWriteCout++;
 
-			//ÉèÖÃmutex ·ÀÖ¹Ò»¸ö³ÌĞò¿ª¶à¸ö
+			//è®¾ç½®mutex é˜²æ­¢ä¸€ä¸ªç¨‹åºå¼€å¤šä¸ª
 			std::string strAppMutexName = it->first;
 			strAppMutexName.append("_Kindle_1m");
 
@@ -211,7 +211,7 @@ void cwMarKetDataReceiverToLocalKindle::WorkingThread()
 			memset(TAppMutexName, 0, (unicodeLen + 1) * sizeof(wchar_t));
 			::MultiByteToWideChar(CP_ACP, 0, strAppMutexName.c_str(), -1, (LPWSTR)TAppMutexName, unicodeLen);
 
-			//ÉùÃ÷»¥³âÌå£¬Í¬Ò»¸öÃû³ÆÖ»ÄÜÉùÃ÷Ò»´Î£¬Èç¹ûÉùÃ÷Á½´Î£¬½«·µ»ØERROR_ALREADY_EXISTS´íÎó¡£
+			//å£°æ˜äº’æ–¥ä½“ï¼ŒåŒä¸€ä¸ªåç§°åªèƒ½å£°æ˜ä¸€æ¬¡ï¼Œå¦‚æœå£°æ˜ä¸¤æ¬¡ï¼Œå°†è¿”å›ERROR_ALREADY_EXISTSé”™è¯¯ã€‚
 
 			int nCnt = 0;
 			while (nCnt < 3)

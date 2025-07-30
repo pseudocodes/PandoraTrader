@@ -18,15 +18,15 @@ void cwStrategyDemo::PriceUpdate(cwMarketDataPtr pPriceData)
 	}
 	m_strCurrentUpdateTime = pPriceData->UpdateTime;
 
-	//¶¨Òåmap£¬ÓÃÓÚ±£´æ³Ö²ÖĞÅÏ¢ 
+	//å®šä¹‰mapï¼Œç”¨äºä¿å­˜æŒä»“ä¿¡æ¯ 
 	std::map<std::string, cwPositionPtr> CurrentPosMap;
 
-	//¶¨Òåmap£¬ÓÃÓÚ±£´æ¹Òµ¥ĞÅÏ¢ 
+	//å®šä¹‰mapï¼Œç”¨äºä¿å­˜æŒ‚å•ä¿¡æ¯ 
 	std::map<cwActiveOrderKey, cwOrderPtr> WaitOrderList;
-	//»ñÈ¡¹Òµ¥ĞÅ  µ±Ç°³Ö²ÖĞÅÏ¢
+	//è·å–æŒ‚å•ä¿¡  å½“å‰æŒä»“ä¿¡æ¯
 	GetPositionsAndActiveOrders(CurrentPosMap, WaitOrderList);
 
-	//ÕÒ³öµ±Ç°ºÏÔ¼µÄ³Ö²Ö
+	//æ‰¾å‡ºå½“å‰åˆçº¦çš„æŒä»“
 	std::map<std::string, cwPositionPtr>::iterator PosIt;
 	PosIt = CurrentPosMap.find(pPriceData->InstrumentID);
 	if (PosIt != CurrentPosMap.end())
@@ -34,26 +34,26 @@ void cwStrategyDemo::PriceUpdate(cwMarketDataPtr pPriceData)
 		int iPos = PosIt->second->GetLongTotalPosition();
 		if (iPos > 0)
 		{
-			//ÓĞ¶à²Ö
+			//æœ‰å¤šä»“
 			bool bHasWaitOrder = false;
-			//¼ì²éËùÓĞ¹Òµ¥
+			//æ£€æŸ¥æ‰€æœ‰æŒ‚å•
 			for (auto WaitOrderIt = WaitOrderList.begin();
 			WaitOrderIt != WaitOrderList.end(); WaitOrderIt++)
 			{
-				//È·¶¨Õâ¸ö¹Òµ¥ÊÇÕâ¸öºÏÔ¼µÄ
+				//ç¡®å®šè¿™ä¸ªæŒ‚å•æ˜¯è¿™ä¸ªåˆçº¦çš„
 				if ((std::string)pPriceData->InstrumentID == (std::string)WaitOrderIt->second->InstrumentID)
 				{
-					//¶àµ¥³·È¥
+					//å¤šå•æ’¤å»
 					if (WaitOrderIt->second->Direction == CW_FTDC_D_Buy)
 					{
 						CancelOrder(WaitOrderIt->second);
 					}
 					else
 					{
-						//±êÊ¶ÓĞ¹Òµ¥
+						//æ ‡è¯†æœ‰æŒ‚å•
 						bHasWaitOrder = true;
 
-						//¹Òµ¥¼Û¸ñ´óÓÚ×îĞÂ¼Û+2£¬³·µ¥
+						//æŒ‚å•ä»·æ ¼å¤§äºæœ€æ–°ä»·+2ï¼Œæ’¤å•
 						if (WaitOrderIt->second->LimitPrice > pPriceData->LastPrice + 2)
 						{
 							CancelOrder(WaitOrderIt->second);
@@ -61,20 +61,20 @@ void cwStrategyDemo::PriceUpdate(cwMarketDataPtr pPriceData)
 					}
 				}
 			}
-			//Ã»ÓĞ¹Òµ¥£¬¾Í¹Òµ¥Æ½²Ö
+			//æ²¡æœ‰æŒ‚å•ï¼Œå°±æŒ‚å•å¹³ä»“
 			if (!bHasWaitOrder)
 			{
-				//¹ÒÎ¯ÍĞÏŞ¼Ûµ¥£¬
+				//æŒ‚å§”æ‰˜é™ä»·å•ï¼Œ
 				EasyInputOrder(pPriceData->InstrumentID, -1 * iPos, pPriceData->BidPrice1);
 			}
 		}
 		iPos = PosIt->second->GetShortTotalPosition();
 		if (iPos > 0)
 		{
-			//ÓĞ¿Õ²Ö
-			//¶¨Òåmap£¬ÓÃÓÚ±£´æ¹Òµ¥ĞÅÏ¢ 
+			//æœ‰ç©ºä»“
+			//å®šä¹‰mapï¼Œç”¨äºä¿å­˜æŒ‚å•ä¿¡æ¯ 
 			std::map<cwActiveOrderKey, cwOrderPtr> WaitOrderList;
-			//»ñÈ¡¹Òµ¥ĞÅÏ¢
+			//è·å–æŒ‚å•ä¿¡æ¯
 			GetActiveOrders(WaitOrderList);
 
 			bool bHasWaitOrder = false;
@@ -89,10 +89,10 @@ void cwStrategyDemo::PriceUpdate(cwMarketDataPtr pPriceData)
 					}
 					else
 					{
-						//ÓĞ¹Òµ¥
+						//æœ‰æŒ‚å•
 						bHasWaitOrder = true;
 
-						//¹Òµ¥¼Û¸ñĞ¡ÓÚ×îĞÂ¼Û-2£¬³·µ¥
+						//æŒ‚å•ä»·æ ¼å°äºæœ€æ–°ä»·-2ï¼Œæ’¤å•
 						if (WaitOrderIt->second->LimitPrice < pPriceData->LastPrice - 2)
 						{
 							CancelOrder(WaitOrderIt->second);
@@ -101,7 +101,7 @@ void cwStrategyDemo::PriceUpdate(cwMarketDataPtr pPriceData)
 				}
 			}
 
-			//Ã»ÓĞ¹Òµ¥£¬¾Í¹Òµ¥Æ½²Ö
+			//æ²¡æœ‰æŒ‚å•ï¼Œå°±æŒ‚å•å¹³ä»“
 			if (!bHasWaitOrder)
 			{
 				EasyInputOrder(pPriceData->InstrumentID, iPos, pPriceData->AskPrice1);
@@ -109,22 +109,22 @@ void cwStrategyDemo::PriceUpdate(cwMarketDataPtr pPriceData)
 		}
 		if (PosIt->second->GetLongTotalPosition() + PosIt->second->GetShortTotalPosition() == 0)
 		{
-			//¶¨Òåmap£¬ÓÃÓÚ±£´æ¹Òµ¥ĞÅÏ¢ 
+			//å®šä¹‰mapï¼Œç”¨äºä¿å­˜æŒ‚å•ä¿¡æ¯ 
 			std::map<cwActiveOrderKey, cwOrderPtr> WaitOrderList;
-			//»ñÈ¡¹Òµ¥ĞÅÏ¢
+			//è·å–æŒ‚å•ä¿¡æ¯
 			GetActiveOrders(WaitOrderList);
 
-			//¿´¿´ÓĞÃ»ÓĞ¹Òµ¥
+			//çœ‹çœ‹æœ‰æ²¡æœ‰æŒ‚å•
 			bool bHasWaitOrder = false;
 			for (auto WaitOrderIt = WaitOrderList.begin();
 			WaitOrderIt != WaitOrderList.end(); WaitOrderIt++)
 			{
 				if ((std::string)pPriceData->InstrumentID == (std::string)WaitOrderIt->second->InstrumentID)
 				{
-					//ÓĞ¹Òµ¥
+					//æœ‰æŒ‚å•
 					bHasWaitOrder = true;
 
-					//¹Òµ¥¼Û¸ñĞ¡ÓÚ×îĞÂ¼Û-2£¬³·µ¥
+					//æŒ‚å•ä»·æ ¼å°äºæœ€æ–°ä»·-2ï¼Œæ’¤å•
 					if (WaitOrderIt->second->LimitPrice < pPriceData->LastPrice - 2)
 					{
 						CancelOrder(WaitOrderIt->second);
@@ -132,7 +132,7 @@ void cwStrategyDemo::PriceUpdate(cwMarketDataPtr pPriceData)
 				}
 			}
 
-			//Ã»ÓĞ¹Òµ¥¾Í±¨Î¯ÍĞµ¥£¬·½Ïò¶à£¬¼Û¸ñÂòÒ»¼Û
+			//æ²¡æœ‰æŒ‚å•å°±æŠ¥å§”æ‰˜å•ï¼Œæ–¹å‘å¤šï¼Œä»·æ ¼ä¹°ä¸€ä»·
 			if (!bHasWaitOrder)
 			{
 				EasyInputOrder(pPriceData->InstrumentID, 1, pPriceData->BidPrice1);
@@ -141,13 +141,13 @@ void cwStrategyDemo::PriceUpdate(cwMarketDataPtr pPriceData)
 	}
 	else
 	{
-		//Ã»ÕÒµ½³Ö²ÖĞÅÏ¢
-		//¶¨Òåmap£¬ÓÃÓÚ±£´æ¹Òµ¥ĞÅÏ¢ 
+		//æ²¡æ‰¾åˆ°æŒä»“ä¿¡æ¯
+		//å®šä¹‰mapï¼Œç”¨äºä¿å­˜æŒ‚å•ä¿¡æ¯ 
 		std::map<cwActiveOrderKey, cwOrderPtr> WaitOrderList;
-		//»ñÈ¡¹Òµ¥ĞÅÏ¢
+		//è·å–æŒ‚å•ä¿¡æ¯
 		GetActiveOrders(WaitOrderList);
 
-		//¿´¿´ÓĞÃ»ÓĞ¹Òµ¥
+		//çœ‹çœ‹æœ‰æ²¡æœ‰æŒ‚å•
 		bool bHasWaitOrder = false;
 		for (auto WaitOrderIt = WaitOrderList.begin();
 		WaitOrderIt != WaitOrderList.end(); WaitOrderIt++)
@@ -157,7 +157,7 @@ void cwStrategyDemo::PriceUpdate(cwMarketDataPtr pPriceData)
 			{
 				bHasWaitOrder = true;
 
-				//¹Òµ¥¼Û¸ñĞ¡ÓÚ×îĞÂ¼Û-2£¬³·µ¥
+				//æŒ‚å•ä»·æ ¼å°äºæœ€æ–°ä»·-2ï¼Œæ’¤å•
 				if (WaitOrderIt->second->LimitPrice < pPriceData->LastPrice - 2)
 				{
 					CancelOrder(WaitOrderIt->second);
@@ -165,7 +165,7 @@ void cwStrategyDemo::PriceUpdate(cwMarketDataPtr pPriceData)
 			}
 		}
 
-		//Ã»ÓĞ¹Òµ¥¾Í±¨Î¯ÍĞµ¥£¬·½Ïò¶à£¬¼Û¸ñÂòÒ»¼Û
+		//æ²¡æœ‰æŒ‚å•å°±æŠ¥å§”æ‰˜å•ï¼Œæ–¹å‘å¤šï¼Œä»·æ ¼ä¹°ä¸€ä»·
 		if (!bHasWaitOrder)
 		{
 			EasyInputOrder(pPriceData->InstrumentID, 1, pPriceData->BidPrice1);

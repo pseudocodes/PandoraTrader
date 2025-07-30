@@ -3,9 +3,9 @@
 //---
 //---	author: Liao Peng, Wu Chang Sheng
 //---
-//--	2023/8/27 Îâ³¤Ê¢ÔÚÁÎÅô²©Ê¿µÄcwEvaluator»ù´¡ÉÏ£¬½øĞĞµ÷Õû¸üĞÂ
+//--	2023/8/27 å´é•¿ç››åœ¨å»–é¹åšå£«çš„cwEvaluatoråŸºç¡€ä¸Šï¼Œè¿›è¡Œè°ƒæ•´æ›´æ–°
 //
-//--	¸ĞĞ»ÁÎÅô²©Ê¿ÎªPandoraTrader¹±Ï×´úÂë¡£
+//--	æ„Ÿè°¢å»–é¹åšå£«ä¸ºPandoraTraderè´¡çŒ®ä»£ç ã€‚
 //--    Consult your license regarding permissions and restrictions.
 //--
 //*******************************************************************************
@@ -35,53 +35,53 @@ public:
     std::deque<TimeBalancePtr> m_cwTimeBalanceSeries;
 
     // variable
-    std::uint64_t m_iStartTimeStamp; // ¿ªÊ¼Ê±¼ä´Á
-    std::string m_strStartTimeStamp; // ¿ªÊ¼Ê±¼ä×Ö·û´®
-    std::uint64_t m_iTimeStamp; // ×îĞÂÊ±¼ä´Á
-    std::string m_strTimeStamp; // ×îĞÂÊ±¼ä×Ö·û´®
-    std::uint64_t m_iThisDayEndTimeStamp; // µ±ÈÕ½áÊøÊ±¼ä´Á£¨Ä¬ÈÏÎªÖÜÒ»µ½ÖÜÎå£¬16Ê±£©
+    std::uint64_t m_iStartTimeStamp; // å¼€å§‹æ—¶é—´æˆ³
+    std::string m_strStartTimeStamp; // å¼€å§‹æ—¶é—´å­—ç¬¦ä¸²
+    std::uint64_t m_iTimeStamp; // æœ€æ–°æ—¶é—´æˆ³
+    std::string m_strTimeStamp; // æœ€æ–°æ—¶é—´å­—ç¬¦ä¸²
+    std::uint64_t m_iThisDayEndTimeStamp; // å½“æ—¥ç»“æŸæ—¶é—´æˆ³ï¼ˆé»˜è®¤ä¸ºå‘¨ä¸€åˆ°å‘¨äº”ï¼Œ16æ—¶ï¼‰
 
-    double m_dPreTotalPNL; // ÉÏ´Î×ÜÓ¯¿÷
-    double m_dLastEquity; // ×îĞÂĞŞÕıºóµÄÈ¨Òæ£¨¿¼ÂÇ³öÈë½ğ£©
-    double m_dUnits; // »ù½ğ·İ¶î
-    double m_dPreNetAsset; // Ç°Ò»ÈÕ¾»Öµ
-    double m_dCurNetAsset; // µ±Ç°¾»Öµ
+    double m_dPreTotalPNL; // ä¸Šæ¬¡æ€»ç›ˆäº
+    double m_dLastEquity; // æœ€æ–°ä¿®æ­£åçš„æƒç›Šï¼ˆè€ƒè™‘å‡ºå…¥é‡‘ï¼‰
+    double m_dUnits; // åŸºé‡‘ä»½é¢
+    double m_dPreNetAsset; // å‰ä¸€æ—¥å‡€å€¼
+    double m_dCurNetAsset; // å½“å‰å‡€å€¼
 
     // Statistics
-    TimeBalancePtr m_MaxBalanceStamp; // ×î´óÈ¨ÒæÊ±¿Ì
-    TimeBalancePtr m_MaxDrupDowmStamp; // ×î´ó»Ø³·Ê±¿Ì
+    TimeBalancePtr m_MaxBalanceStamp; // æœ€å¤§æƒç›Šæ—¶åˆ»
+    TimeBalancePtr m_MaxDrupDowmStamp; // æœ€å¤§å›æ’¤æ—¶åˆ»
 
-    double m_dTradingYears; // ½»Ò×ÄêÏŞ
-    double m_dIRR; // Äê»¯¸´Àû
-    double m_dAR; // Äê»¯µ¥Àû
+    double m_dTradingYears; // äº¤æ˜“å¹´é™
+    double m_dIRR; // å¹´åŒ–å¤åˆ©
+    double m_dAR; // å¹´åŒ–å•åˆ©
 
-    double m_dVolatility; // ÈÕÊÕÒæÂÊµÄ²¨¶¯ÂÊ
-    double m_dVolatilityDownward; // ÏÂĞĞ²¨¶¯ÂÊ
+    double m_dVolatility; // æ—¥æ”¶ç›Šç‡çš„æ³¢åŠ¨ç‡
+    double m_dVolatilityDownward; // ä¸‹è¡Œæ³¢åŠ¨ç‡
 
-    double m_HighestNetAsset; // ×î¸ß¾»Öµ
-    double m_dDrawDownRatio; // µ±Ç°»Ø³·±ÈÂÊ
-    double m_dMaxDrawDownRatio; // ×î´ó»Ø³·ÂÊ
-    double m_dAverageDDR; // ¼òµ¥Æ½¾ù»Ø³·ÂÊ
+    double m_HighestNetAsset; // æœ€é«˜å‡€å€¼
+    double m_dDrawDownRatio; // å½“å‰å›æ’¤æ¯”ç‡
+    double m_dMaxDrawDownRatio; // æœ€å¤§å›æ’¤ç‡
+    double m_dAverageDDR; // ç®€å•å¹³å‡å›æ’¤ç‡
 
-    double m_dSharpeRatio; // ÏÄÆÕ±ÈÂÊ
-    double m_dSortinoRatio; // Ë÷ÌáÅµ±ÈÂÊ
-    double m_dCalmarRatio; // ¿¨Âê±ÈÂÊ
-    double m_dSterlingRatio; // Ë¹ÌØÁÖ±ÈÂÊ
+    double m_dSharpeRatio; // å¤æ™®æ¯”ç‡
+    double m_dSortinoRatio; // ç´¢æè¯ºæ¯”ç‡
+    double m_dCalmarRatio; // å¡ç›æ¯”ç‡
+    double m_dSterlingRatio; // æ–¯ç‰¹æ—æ¯”ç‡
 
-    int m_iKindleCount; // KÏßÊıÁ¿
-    double m_dAvgDailyRet; // ÈÕ¾ùÊÕÒæÂÊ£¨ÔöÁ¿¼ÆËã·¨£©
+    int m_iKindleCount; // Kçº¿æ•°é‡
+    double m_dAvgDailyRet; // æ—¥å‡æ”¶ç›Šç‡ï¼ˆå¢é‡è®¡ç®—æ³•ï¼‰
 
-    double m_dExpectedRet; // Ô¤ÆÚÊÕÒæ£¬Ä¬ÈÏÖµÎª0.05
+    double m_dExpectedRet; // é¢„æœŸæ”¶ç›Šï¼Œé»˜è®¤å€¼ä¸º0.05
     const double m_dDoubleEQ;
-    std::deque<double> m_dailyRetDQ; // ÈÕÊÕÒæÂÊĞòÁĞ
+    std::deque<double> m_dailyRetDQ; // æ—¥æ”¶ç›Šç‡åºåˆ—
 
     // Interface
-    // ³öÈë½ğ
+    // å‡ºå…¥é‡‘
     void Deposit(double deposit);
-    // ¸üĞÂ¾»Öµ
+    // æ›´æ–°å‡€å€¼
     void UpdateNetValueByTotalPNL(std::uint64_t timestamp, double totalPNL, double fundUsed);
     void Calculate();
 
-    // ÉèÖÃÔ¤ÆÚÊÕÒæ
+    // è®¾ç½®é¢„æœŸæ”¶ç›Š
     void SetExpectedReturn(double expectedret);
 };

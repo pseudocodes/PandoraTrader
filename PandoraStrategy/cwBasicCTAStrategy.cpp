@@ -37,12 +37,12 @@ void cwBasicCTAStrategy::_PreOnBar(bool bFinished, int iTimeScale, cwBasicKindle
 
 	if (bFinished)
 	{
-		//更新权益
+		//鏇存柊鏉冪泭
 		m_cwSettlement.SettlementPrice(pKindleSeries->GetInstrumentID(), m_dLastPrice, m_pInstrument->VolumeMultiple);
 
 		UpdateEvaluator(m_cwSettlement.m_dMaxFundOccupied, m_cwSettlement.m_dBalance, m_strLastUpdateTime, pKindle->StartTime, 0.05);
 
-		//存储更新权益
+		//瀛樺偍鏇存柊鏉冪泭
 		TimeBalanceDataPtr tbdPtr = std::make_shared<TimeBalanceData>();
 		tbdPtr->strDateTime = m_strLastUpdateTime;
 		tbdPtr->iTimeStamp = pKindle->StartTime;
@@ -54,12 +54,12 @@ void cwBasicCTAStrategy::_PreOnBar(bool bFinished, int iTimeScale, cwBasicKindle
 	}
 }
 
-//策略评价更新函数
+//绛栫暐璇勪环鏇存柊鍑芥暟
 void cwBasicCTAStrategy::UpdateEvaluator(double dCurrentMoneyUsed, double dCurrentTotalProfit, std::string str_time, std::uint64_t timeStamp, double dExpectedRet)
 {
 	m_cwEvaluator.UpdateNetValueByTotalPNL(timeStamp, dCurrentTotalProfit, dCurrentMoneyUsed);
 	
-	//copy 数据
+	//copy 鏁版嵁
 	EvaluatorTimeSeriesData tsd;
 
 	tsd.iTimeStamp = m_cwEvaluator.m_iTimeStamp;

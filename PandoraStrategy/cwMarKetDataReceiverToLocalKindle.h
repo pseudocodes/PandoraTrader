@@ -14,10 +14,10 @@ public:
 	std::string  GetStrategyName();
 
 	//MarketData SPI
-	///ĞĞÇé¸üĞÂ
+	///è¡Œæƒ…æ›´æ–°
 	virtual void PriceUpdate(cwMarketDataPtr pPriceData);
 
-	//µ±Éú³ÉÒ»¸ùĞÂKÏßµÄÊ±ºò£¬»áµ÷ÓÃ¸Ã»Øµ÷
+	//å½“ç”Ÿæˆä¸€æ ¹æ–°Kçº¿çš„æ—¶å€™ï¼Œä¼šè°ƒç”¨è¯¥å›è°ƒ
 	virtual void			OnBar(cwMarketDataPtr pPriceData, int iTimeScale, cwBasicKindleStrategy::cwKindleSeriesPtr pKindleSeries);
 	virtual void			OnReady();
 
@@ -29,11 +29,11 @@ public:
 
 	struct WriterControlFiled
 	{
-		int TotalCount;				//×ÜÊı
-		int Finished;				//ÒÑÍê³É£¨¿ÉĞ´Èë£©Êı
+		int TotalCount;				//æ€»æ•°
+		int Finished;				//å·²å®Œæˆï¼ˆå¯å†™å…¥ï¼‰æ•°
 
-		int WriteCount;				//ÒÑĞ´ÈëÊı
-		int NothingToWriteCount;	//¾­xx´Î£¬ÎŞÄÚÈİ¿ÉĞ´ÈëÊı
+		int WriteCount;				//å·²å†™å…¥æ•°
+		int NothingToWriteCount;	//ç»xxæ¬¡ï¼Œæ— å†…å®¹å¯å†™å…¥æ•°
 
 
 		WriterControlFiled()
@@ -56,8 +56,8 @@ public:
 	cwMUTEX													m_DequeMutex;
 	std::unordered_map<std::string, WriterControlFiled>		m_KindleFinishedIndex;
 
-	std::thread									m_WorkingThread;			//¹¤×÷Çø¹¤×÷Ïß³Ì
-	volatile std::atomic<bool>					m_bWorkingThreadRun;		//¹¤×÷ÇøÏß³ÌÔËĞĞ×´Ì¬
+	std::thread									m_WorkingThread;			//å·¥ä½œåŒºå·¥ä½œçº¿ç¨‹
+	volatile std::atomic<bool>					m_bWorkingThreadRun;		//å·¥ä½œåŒºçº¿ç¨‹è¿è¡ŒçŠ¶æ€
 
 	void										WorkingThread();
 

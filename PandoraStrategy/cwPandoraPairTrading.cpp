@@ -33,7 +33,7 @@ void cwPandoraPairTrading::PriceUpdate(cwMarketDataPtr pPriceData)
 
 	m_strCurrentUpdateTime = pPriceData->UpdateTime;
 
-	//¸üĞÂĞĞÇéÊı¾İ
+	//æ›´æ–°è¡Œæƒ…æ•°æ®
 	if (m_MainInstrumentID == (std::string)pPriceData->InstrumentID)
 	{
 		m_cwMainMarketData = pPriceData;
@@ -44,14 +44,14 @@ void cwPandoraPairTrading::PriceUpdate(cwMarketDataPtr pPriceData)
 		m_cwSubMainMarketData = pPriceData;
 	}
 
-	//È·¶¨ĞĞÇéÊı¾İÊÇ·ñÒÑ¾­¶¼ÓĞĞ§
+	//ç¡®å®šè¡Œæƒ…æ•°æ®æ˜¯å¦å·²ç»éƒ½æœ‰æ•ˆ
 	if (m_cwSubMainMarketData.get() == NULL
 		|| m_cwMainMarketData.get() == NULL)
 	{
 		return;
 	}
 
-	//È·¶¨³õÊ¼»¯Íê³É
+	//ç¡®å®šåˆå§‹åŒ–å®Œæˆ
 	if ((!m_bStrategyReady))
 	{
 		return;
@@ -74,7 +74,7 @@ void cwPandoraPairTrading::OnReady()
 	if (m_pPositionAgent.get() != NULL
 		&& m_pPositionAgent->pPositionAgent.get() != NULL)
 	{
-		//ÉèÖÃËã·¨²ÎÊı
+		//è®¾ç½®ç®—æ³•å‚æ•°
 		m_pPositionAgent->pPositionAgent->InsLargeOrderVolume = 100;
 		m_pPositionAgent->pPositionAgent->InsLittleOrderVolume = 5;
 		m_pPositionAgent->pPositionAgent->InsAskBidGap = 1;
@@ -82,7 +82,7 @@ void cwPandoraPairTrading::OnReady()
 		m_pPositionAgent->pPositionAgent->SetExpectPosition(-1 * GetNetPosition(m_SubMainInstrumentID));
 	}
 
-	//¶©ÔÄĞĞÇé
+	//è®¢é˜…è¡Œæƒ…
 	std::vector<std::string> SubscribeInstrument;
 
 	SubscribeInstrument.push_back(m_MainInstrumentID);
@@ -97,7 +97,7 @@ void cwPandoraPairTrading::DoManualSpread()
 
 	bool bStrategyCanOpen = true;
 
-	//»ñÈ¡Ö÷Á¦ºÍ´ÎÖ÷Á¦ºÏÔ¼µÄ×îĞ¡±ä¶¯
+	//è·å–ä¸»åŠ›å’Œæ¬¡ä¸»åŠ›åˆçº¦çš„æœ€å°å˜åŠ¨
 	double dMainTickSize = GetTickSize(m_MainInstrumentID.c_str());
 	if (dMainTickSize < 0)
 	{
@@ -109,13 +109,13 @@ void cwPandoraPairTrading::DoManualSpread()
 		return;
 	}
 
-	//»ñÈ¡³·µ¥´ÎÊı
+	//è·å–æ’¤å•æ¬¡æ•°
 	int iSubMainCancelCount = GetInstrumentCancelCount(m_SubMainInstrumentID);
-	//¶¨ÒåĞèÒª´¦ÀíµÄdouble¾«¶È
+	//å®šä¹‰éœ€è¦å¤„ç†çš„doubleç²¾åº¦
 	const double dInsEQ = (double)(std::min)(dMainTickSize, dSubMainTickSize) / 10.0;
 
 
-	//Ã¿¸ö½»Ò×Ê±¶Î¿ªÊÕÅÌÒ»Ğ¡¶ÎÊ±¼ä²»½»Ò×
+	//æ¯ä¸ªäº¤æ˜“æ—¶æ®µå¼€æ”¶ç›˜ä¸€å°æ®µæ—¶é—´ä¸äº¤æ˜“
 	{
 		cwProductTradeTime::cwTradeTimeSpace TradeTimeSpace;
 		int iOpen = 0, iClose = 0;
@@ -232,14 +232,14 @@ void cwPandoraPairTrading::DoManualSpread()
 #ifdef _MSC_VER
 #pragma region BearSpread
 #endif
-	///ĞÜÊĞÌ×Àû£¬×ö¶àÔ¶ÆÚºÏÔ¼¡£µ±Ç°¼Û²î´óÓÚ¾ùÖµ
+	///ç†Šå¸‚å¥—åˆ©ï¼Œåšå¤šè¿œæœŸåˆçº¦ã€‚å½“å‰ä»·å·®å¤§äºå‡å€¼
 	if (iSubMainPosition< 0)
 	{
-		///µ±Ç°¾»³Ö²ÖÎª¿Õ²Ö£¬ÔòÆ½²Ö, ÓÃÆ½²Ö²ÎÊı£¬Æ½²ÖÌõ¼şµÍÓÚ¿ª²ÖÌõ¼ş
+		///å½“å‰å‡€æŒä»“ä¸ºç©ºä»“ï¼Œåˆ™å¹³ä»“, ç”¨å¹³ä»“å‚æ•°ï¼Œå¹³ä»“æ¡ä»¶ä½äºå¼€ä»“æ¡ä»¶
 
 		bool bNeedCancel = false;
 		bool bCanOpen = false;
-		//ÏÈ¼ì²é¹Òµ¥
+		//å…ˆæ£€æŸ¥æŒ‚å•
 		int iSubMainWaitLongOrder = 0;
 		for (auto WaitOrderIt = WaitOrderList.begin();
 			WaitOrderIt != WaitOrderList.end(); WaitOrderIt++)
@@ -266,7 +266,7 @@ void cwPandoraPairTrading::DoManualSpread()
 			}
 		}
 
-		//ÂòÆ½²Ö
+		//ä¹°å¹³ä»“
 		if (bCanOpen
 			|| m_cwMainMarketData->BidPrice1 - m_cwSubMainMarketData->AskPrice1 > m_dSellThreadHold - dInsEQ)
 		{
@@ -294,10 +294,10 @@ void cwPandoraPairTrading::DoManualSpread()
 	}
 	else
 	{
-		///ÓÃ¿ª²Ö²ÎÊı
+		///ç”¨å¼€ä»“å‚æ•°
 		bool bNeedCancel = true;
 		bool bCanOpen = false;
-		//ÏÈ¼ì²é¹Òµ¥
+		//å…ˆæ£€æŸ¥æŒ‚å•
 		int iSubMainWaitLongOrder = 0;
 		for (auto WaitOrderIt = WaitOrderList.begin();
 			WaitOrderIt != WaitOrderList.end(); WaitOrderIt++)
@@ -324,7 +324,7 @@ void cwPandoraPairTrading::DoManualSpread()
 			}
 		}
 
-		//Âò¿ª²Ö
+		//ä¹°å¼€ä»“
 		if (bCanOpen
 			|| (m_cwMainMarketData->BidPrice1 - m_cwSubMainMarketData->AskPrice1 > m_dSellThreadHold - dInsEQ))
 		{
@@ -358,13 +358,13 @@ void cwPandoraPairTrading::DoManualSpread()
 #ifdef _MSC_VER
 #pragma region BullSpread
 #endif
-	///Å£ÊĞÌ×Àû£¬×ö¿ÕÔ¶ÆÚºÏÔ¼¡£
+	///ç‰›å¸‚å¥—åˆ©ï¼Œåšç©ºè¿œæœŸåˆçº¦ã€‚
 	if (iSubMainPosition > 0)
 	{
-		///µ±Ç°¾»³Ö²ÖÎª¶à²Ö£¬ÔòÆ½²Ö, ÓÃÆ½²Ö²ÎÊı£¬Æ½²ÖÌõ¼şµÍÓÚ¿ª²ÖÌõ¼ş
+		///å½“å‰å‡€æŒä»“ä¸ºå¤šä»“ï¼Œåˆ™å¹³ä»“, ç”¨å¹³ä»“å‚æ•°ï¼Œå¹³ä»“æ¡ä»¶ä½äºå¼€ä»“æ¡ä»¶
 		bool bNeedCancel = false;
 		bool bCanOpen = false;
-		//ÏÈ¼ì²é¹Òµ¥
+		//å…ˆæ£€æŸ¥æŒ‚å•
 		int iSubMainWaitShortOrder = 0;
 		for (auto WaitOrderIt = WaitOrderList.begin();
 			WaitOrderIt != WaitOrderList.end(); WaitOrderIt++)
@@ -390,7 +390,7 @@ void cwPandoraPairTrading::DoManualSpread()
 			}
 		}
 
-		//ÂôÆ½²Ö
+		//å–å¹³ä»“
 		if (bCanOpen
 			|| (m_cwMainMarketData->AskPrice1 - m_cwSubMainMarketData->BidPrice1 < m_dBuyThreadHold + dInsEQ))
 		{
@@ -417,10 +417,10 @@ void cwPandoraPairTrading::DoManualSpread()
 	}
 	else
 	{
-		///ÓÃ¿ª²Ö²ÎÊı
+		///ç”¨å¼€ä»“å‚æ•°
 		bool bNeedCancel = true;
 		bool bCanOpen = false;
-		//ÏÈ¼ì²é¹Òµ¥
+		//å…ˆæ£€æŸ¥æŒ‚å•
 		int iSubMainWaitShortOrder = 0;
 		for (auto WaitOrderIt = WaitOrderList.begin();
 			WaitOrderIt != WaitOrderList.end(); WaitOrderIt++)
@@ -447,7 +447,7 @@ void cwPandoraPairTrading::DoManualSpread()
 			}
 		}
 
-		//Âô¿ª²Ö
+		//å–å¼€ä»“
 		if (bCanOpen
 			|| (m_cwMainMarketData->AskPrice1 - m_cwSubMainMarketData->BidPrice1 < m_dBuyThreadHold + dInsEQ))
 		{

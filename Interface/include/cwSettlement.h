@@ -53,17 +53,17 @@ public:
 #pragma endregion
 #endif // _MSC_VER
 
-	//ºËĞÄ¸üĞÂº¯Êı
+	//æ ¸å¿ƒæ›´æ–°å‡½æ•°
 	void SettlementPrice(std::string sInstrumentid, double dPrice, double dVolumeMultiple);
 	void UpdateTrade(std::string instrumentid, double price, int volume, double dVolumeMultiple);
 
-	//ÍØÕ¹¸üĞÂº¯Êı
+	//æ‹“å±•æ›´æ–°å‡½æ•°
 	void UpdatePrice(cwMarketDataPtr pMdData, double dPriceTick, double dVolumeMultiple);
 
 	void UpdateOrder(cwOrderPtr pOrder);
 	void UpdateTrade(cwTradePtr pTrade, double dVolumeMultiple);
 
-	//Èë½ğ
+	//å…¥é‡‘
 	void Deposit(double ddeposit)
 	{
 		m_dPreBalance += ddeposit;
@@ -93,17 +93,17 @@ public:
 	std::unordered_map<std::string, double>					m_dInsMaxBalanceMap;			//key:InstrumentID, value: Instrument Max Balance For Max Drop Down
 	std::unordered_map<std::string, double>					m_dInsMaxDropDownMap;			//Key:InstrumentID, value: Max Drop Down
 
-	double													m_dPreBalance;					//³õÊ¼È¨Òæ
-	double													m_dBalance;						//µ±Ç°È¨Òæ
-	double													m_dMaxFundOccupied;				//×î´ó×Ê½ğÕ¼ÓÃ
-	double													m_dCurFundOccupied;				//µ±Ç°×Ê½ğÕ¼ÓÃ
+	double													m_dPreBalance;					//åˆå§‹æƒç›Š
+	double													m_dBalance;						//å½“å‰æƒç›Š
+	double													m_dMaxFundOccupied;				//æœ€å¤§èµ„é‡‘å ç”¨
+	double													m_dCurFundOccupied;				//å½“å‰èµ„é‡‘å ç”¨
 
-	double													m_dPositionProfit;				//³Ö²ÖÓ¯¿÷
-	double													m_dCloseProfit;					//Æ½²ÖÓ¯¿÷
-	double													m_dFee;							//ÊÖĞø·Ñ
+	double													m_dPositionProfit;				//æŒä»“ç›ˆäº
+	double													m_dCloseProfit;					//å¹³ä»“ç›ˆäº
+	double													m_dFee;							//æ‰‹ç»­è´¹
 
-	double													m_dCurMaxBalance;				//½ØÖ¹Ä¿Ç°×î¸ßÈ¨Òæ£¬¼ÆËã×î´ó»Ø³·ÓÃ
-	double													m_dMaxDropDown;					//×î´ó»Ø³·
+	double													m_dCurMaxBalance;				//æˆªæ­¢ç›®å‰æœ€é«˜æƒç›Šï¼Œè®¡ç®—æœ€å¤§å›æ’¤ç”¨
+	double													m_dMaxDropDown;					//æœ€å¤§å›æ’¤
 
 	double													m_dDefaultFeeRate = 0.0;		//0.0001;
 	double													m_dDefaultFeePerVol = 1.01;

@@ -10,9 +10,9 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 //Note:
-//Ôø¾­ÔÚ·»¼äÊÛÂô¸Ã²ßÂÔÔ´Âë£¬Õû¹¤³Ì×÷ÎªÃ¤ºĞ³öÊÛ£¬¶¨¼ÛÔ¼3Íò
-//²ßÂÔÖ÷ÒªÂß¼­Îª×·ÕÇÉ±µø£¬ÏÖ½«²ßÂÔÒªÒå³é³ö£¬×÷ÎªÒ»¸öÊ¾Àı²ßÂÔ£¬½ö¹©²Î¿¼£¬
-//ÈçÓÃÓÚ½»Ò×£¬ÇëÎñ±ØÁË½â²ßÂÔÂß¼­£¬ÉèÖÃºÏÊÊÆ·ÖÖ¼°²ÎÊı£¬²¢×Ô¸ºÓ¯¿÷¡£
+//æ›¾ç»åœ¨åŠé—´å”®å–è¯¥ç­–ç•¥æºç ï¼Œæ•´å·¥ç¨‹ä½œä¸ºç›²ç›’å‡ºå”®ï¼Œå®šä»·çº¦3ä¸‡
+//ç­–ç•¥ä¸»è¦é€»è¾‘ä¸ºè¿½æ¶¨æ€è·Œï¼Œç°å°†ç­–ç•¥è¦ä¹‰æŠ½å‡ºï¼Œä½œä¸ºä¸€ä¸ªç¤ºä¾‹ç­–ç•¥ï¼Œä»…ä¾›å‚è€ƒï¼Œ
+//å¦‚ç”¨äºäº¤æ˜“ï¼Œè¯·åŠ¡å¿…äº†è§£ç­–ç•¥é€»è¾‘ï¼Œè®¾ç½®åˆé€‚å“ç§åŠå‚æ•°ï¼Œå¹¶è‡ªè´Ÿç›ˆäºã€‚
 
 #pragma once
 #include "cwBasicKindleStrategy.h"
@@ -21,24 +21,24 @@ class cwChasingRisingStrategy :
     public cwBasicKindleStrategy
 {
 public:
-	//»ñÈ¡²ßÂÔ°æ±¾ºÅ
+	//è·å–ç­–ç•¥ç‰ˆæœ¬å·
 	virtual std::string  GetStrategyVersion();
-	//±íÊ¾²ßÂÔÃû³Æ
+	//è¡¨ç¤ºç­–ç•¥åç§°
 	virtual std::string  GetStrategyName();
 
 	//MarketData SPI
-	///ĞĞÇé¸üĞÂ
+	///è¡Œæƒ…æ›´æ–°
 	virtual void			PriceUpdate(cwMarketDataPtr pPriceData);
-	//µ±Éú³ÉÒ»¸ùĞÂKÏßµÄÊ±ºò£¬»áµ÷ÓÃ¸Ã»Øµ÷
+	//å½“ç”Ÿæˆä¸€æ ¹æ–°Kçº¿çš„æ—¶å€™ï¼Œä¼šè°ƒç”¨è¯¥å›è°ƒ
 	virtual void			OnBar(cwMarketDataPtr pPriceData, int iTimeScale, cwBasicKindleStrategy::cwKindleSeriesPtr pKindleSeries) {};
 
 
 	//Trade SPI
-	///³É½»»Ø±¨
+	///æˆäº¤å›æŠ¥
 	virtual void OnRtnTrade(cwTradePtr pTrade);
-	///±¨µ¥»Ø±¨
+	///æŠ¥å•å›æŠ¥
 	virtual void OnRtnOrder(cwOrderPtr pOrder, cwOrderPtr pOriginOrder = cwOrderPtr()) {};
-	///³·µ¥³É¹¦
+	///æ’¤å•æˆåŠŸ
 	virtual void OnOrderCanceled(cwOrderPtr pOrder) {};
 
 	virtual void OnStrategyTimer(int iTimerId, const char* szInstrumentID) {};
@@ -51,11 +51,11 @@ public:
 
 
 	///strategy parameter
-	//²ßÂÔÔËĞĞ´úºÅ
+	//ç­–ç•¥è¿è¡Œä»£å·
 	std::string m_strStrategyName;
-	//²ßÂÔÊÇ·ñÔËĞĞ, can be modified by config file
+	//ç­–ç•¥æ˜¯å¦è¿è¡Œ, can be modified by config file
 	bool		m_bStrategyRun;
-	//ÏÔÊ¾³Ö²Ö£¬can be modified by config file
+	//æ˜¾ç¤ºæŒä»“ï¼Œcan be modified by config file
 	bool		m_bShowPosition;
 
 	std::string	m_strCurrentUpdateTime;
@@ -64,19 +64,19 @@ public:
 	struct StrategyParameter
 	{
 		//general
-		bool        Manual;							//ÊÇ·ñÊÖ¶¯¸ÉÔ¤
-		int			Portfolio;						//×Ê²ú×éºÏid
+		bool        Manual;							//æ˜¯å¦æ‰‹åŠ¨å¹²é¢„
+		int			Portfolio;						//èµ„äº§ç»„åˆid
 
-		int			TotalPositionLimit;				//×Ü³Ö²ÖÏŞÖÆ
-		int			OrderVolume;					//±¨µ¥Á¿
+		int			TotalPositionLimit;				//æ€»æŒä»“é™åˆ¶
+		int			OrderVolume;					//æŠ¥å•é‡
 
-		double		dStep;							//²½³¤
+		double		dStep;							//æ­¥é•¿
 
 		//Instrument
-		std::string Instrument;				//´ÎÖ÷Á¦ºÏÔ¼
-		cwOpenCloseMode OpenCloseMode;		//¿ªÆ½Ä£Ê½
-		int			OpenCancelLimit;			//¿ª²Ö³·µ¥´ÎÊıÏŞÖÆ
-		int			CloseCancelLimit;		//Æ½²Ö³·µ¥´ÎÊıÏŞÖÆ
+		std::string Instrument;				//æ¬¡ä¸»åŠ›åˆçº¦
+		cwOpenCloseMode OpenCloseMode;		//å¼€å¹³æ¨¡å¼
+		int			OpenCancelLimit;			//å¼€ä»“æ’¤å•æ¬¡æ•°é™åˆ¶
+		int			CloseCancelLimit;		//å¹³ä»“æ’¤å•æ¬¡æ•°é™åˆ¶
 
 		StrategyParameter()
 			: Manual(false)
