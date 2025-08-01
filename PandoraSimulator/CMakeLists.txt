@@ -1,77 +1,112 @@
-cmake_minimum_required (VERSION 3.8)
+cmake_minimum_required(VERSION 3.8)
 
 # set the project name
-project (PandoraSimulator)
+project(PandoraSimulator)
 
-# ¼ì²âÊÇ·ñÎª Ubuntu ÏµÍ³
-execute_process(
-    COMMAND lsb_release -is
-    OUTPUT_VARIABLE LINUX_DISTRO
-    OUTPUT_STRIP_TRAILING_WHITESPACE
-)
+if(APPLE)
+    set(IS_MACOS TRUE)
+    message(STATUS "Detected macOS system")
+elseif(UNIX)
+    # æ£€æµ‹æ˜¯å¦ä¸º Ubuntu ç³»ç»Ÿ
+    execute_process(
+        COMMAND lsb_release -is
+        OUTPUT_VARIABLE LINUX_DISTRO
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
 
-# ÉèÖÃÏµÍ³Ïà¹Ø±äÁ¿
-if(LINUX_DISTRO STREQUAL "Ubuntu")
-    set(IS_UBUNTU TRUE)
-    message(STATUS "Detected Ubuntu system")
-else()
-    set(IS_UBUNTU FALSE)
-    message(STATUS "Detected non-Ubuntu system: ${LINUX_DISTRO}")
+    if(LINUX_DISTRO STREQUAL "Ubuntu")
+        set(IS_UBUNTU TRUE)
+        message(STATUS "Detected Ubuntu system")
+    else()
+        set(IS_UBUNTU FALSE)
+        message(STATUS "Detected non-Ubuntu system: ${LINUX_DISTRO}")
+    endif()
 endif()
 
-# ¼ì²éc++±àÒëÆ÷±êÖ¾£¬ÉèÖÃc++11Ö§³Ö±äÁ¿
+# find_package(OpenMP REQUIRED)
+if(APPLE)
+    if(CMAKE_C_COMPILER_ID MATCHES "Clang")
+        set(OpenMP_C_FLAGS "-Xpreprocessor -fopenmp -I/usr/local/opt/libomp/include")
+        set(OpenMP_C_LIB_NAMES "omp")
+        set(OpenMP_omp_LIBRARY "/usr/local/opt/libomp/lib/libomp.dylib")
+    endif()
+
+    if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+        set(OpenMP_CXX_FLAGS "-Xpreprocessor -fopenmp -I/usr/local/opt/libomp/include")
+        set(OpenMP_CXX_LIB_NAMES "omp")
+        set(OpenMP_omp_LIBRARY "/usr/local/opt/libomp/lib/libomp.dylib")
+    endif()
+endif()
+
+# æ£€æŸ¥c++ç¼–è¯‘å™¨æ ‡å¿—ï¼Œè®¾ç½®c++11æ”¯æŒå˜é‡
 include(CheckCXXCompilerFlag)
 CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
 CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
 
 if(COMPILER_SUPPORTS_CXX11)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 elseif(COMPILER_SUPPORTS_CXX0X)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
 else()
-message(STATUS "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
+    message(STATUS "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
 endif()
 
-#set(CMAKE_EXE_LINKER_FLAGS "-no-pie")
+# set(CMAKE_EXE_LINKER_FLAGS "-no-pie")
+set(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g -ggdb") # Debugæ¨¡å¼ä¸‹çš„ç¼–è¯‘æŒ‡ä»¤
+set(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall") # Releaseæ¨¡å¼ä¸‹çš„ç¼–è¯‘æŒ‡ä»¤
 
-set(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g -ggdb")  # DebugÄ£Ê½ÏÂµÄ±àÒëÖ¸Áî
-set(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall")         # ReleaseÄ£Ê½ÏÂµÄ±àÒëÖ¸Áî
-
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG   ${PROJECT_SOURCE_DIR}/../bin/Debug/)    
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE  ${PROJECT_SOURCE_DIR}/../bin/Release/) 
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${PROJECT_SOURCE_DIR}/../bin/Debug/)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${PROJECT_SOURCE_DIR}/../bin/Release/)
 
 add_definitions(-std=c++11)
 add_definitions(-D__LINUX__=1 -Dlinux)
 
+include_directories("../PandoraStrategy/")
+include_directories("../Interface/include/")
+include_directories("../Interface/")
 
-include_directories ("../PandoraStrategy/")
-include_directories ("../Interface/include/")
-include_directories ("../Interface/")
+set(CTP_INTERFACE_BASE_DIR "${PROJECT_SOURCE_DIR}/../Interface")
 
-if (CMAKE_BUILD_TYPE STREQUAL DEBUG)   
+# æ ¹æ®ç³»ç»Ÿç±»å‹è®¾ç½®åº“è·¯å¾„
+if(CMAKE_BUILD_TYPE STREQUAL DEBUG)
     add_definitions(-g -DDEBUG)
-    if(IS_UBUNTU)
+
+    if(IS_MACOS)
+        link_directories("${PROJECT_SOURCE_DIR}/../Interface/lib/MacOS/Debug/")
+    elseif(IS_UBUNTU)
         link_directories("${PROJECT_SOURCE_DIR}/../Interface/lib/Ubuntu/Debug/")
     else()
         link_directories("${PROJECT_SOURCE_DIR}/../Interface/lib/Linux/Debug/")
     endif()
+
     link_directories("${PROJECT_SOURCE_DIR}/../bin/Debug/")
-elseif (CMAKE_BUILD_TYPE STREQUAL RELEASE)
+elseif(CMAKE_BUILD_TYPE STREQUAL RELEASE)
     add_definitions(-DNDEBUG -O3)
-    if(IS_UBUNTU)
+
+    if(IS_MACOS)
+        link_directories("${PROJECT_SOURCE_DIR}/../Interface/lib/MacOS/Release/")
+    elseif(IS_UBUNTU)
         link_directories("${PROJECT_SOURCE_DIR}/../Interface/lib/Ubuntu/Release/")
     else()
         link_directories("${PROJECT_SOURCE_DIR}/../Interface/lib/Linux/Release/")
     endif()
+
     link_directories("${PROJECT_SOURCE_DIR}/../bin/Release/")
 endif()
 
-# »ñÈ¡ÕıÔÚ´¦ÀíµÄCMakeLists.txtËùÔÚµÄÎÄ¼ş¼ĞÏÂÃæµÄËùÓĞÔ´ÎÄ¼ş£¬·Åµ½DIR_SRC±äÁ¿ÀïÃæ
+# è·å–æ­£åœ¨å¤„ç†çš„CMakeLists.txtæ‰€åœ¨çš„æ–‡ä»¶å¤¹ä¸‹é¢çš„æ‰€æœ‰æºæ–‡ä»¶ï¼Œæ”¾åˆ°DIR_SRCå˜é‡é‡Œé¢
 aux_source_directory(${CMAKE_CURRENT_LIST_DIR} DIR_SRC)
 
 # add the executable
 add_executable(PandoraSimulator ${DIR_SRC})
 
 TARGET_LINK_LIBRARIES(PandoraSimulator pthread)
-target_link_libraries(PandoraSimulator libPandoraStrategy.a libcwPandoraDLL_Linux.a libTinyXml_Linux.a )
 
+if(APPLE)
+    target_link_libraries(PandoraSimulator libPandoraStrategy.a libcwPandoraDLL_MacOS_Universal.a libTinyXml_MacOS_Universal.a)
+    target_link_libraries(PandoraSimulator ${OpenMP_omp_LIBRARY})
+else()
+    target_link_libraries(PandoraSimulator libPandoraStrategy.a libcwPandoraDLL_Linux.a libTinyXml_Linux.a)
+endif()
+
+# target_link_libraries(PandoraSimulator ${OpenMP_omp_LIBRARY})
