@@ -111,7 +111,6 @@ int main()
         exit(-1);
     }
 #else
-    printf("readlink ??Sim\n");
     size_t cnt = readlink("/proc/self/exe", exeFullPath, MAX_PATH);
     if (cnt < 0 || cnt >= MAX_PATH) {
         printf("***Error***\n");

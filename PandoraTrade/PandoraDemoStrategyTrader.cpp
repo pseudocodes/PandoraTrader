@@ -27,12 +27,6 @@
 #include "cwVersion.h"
 #include "tinyxml.h"
 
-#ifdef __APPLE__
-extern "C" {
-#include <mach-o/dyld.h>
-}
-#endif
-
 #ifdef _MSC_VER
 #pragma comment(lib, "cwPandoraDLL.lib")
 #pragma comment(lib, "tinyxml.lib")

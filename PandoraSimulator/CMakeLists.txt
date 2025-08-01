@@ -66,9 +66,10 @@ include_directories("../Interface/include/")
 include_directories("../Interface/")
 
 set(CTP_INTERFACE_BASE_DIR "${PROJECT_SOURCE_DIR}/../Interface")
+string(TOUPPER "${CMAKE_BUILD_TYPE}" BUILD_TYPE_UPPER)
 
 # 根据系统类型设置库路径
-if(CMAKE_BUILD_TYPE STREQUAL DEBUG)
+if(BUILD_TYPE_UPPER STREQUAL DEBUG)
     add_definitions(-g -DDEBUG)
 
     if(IS_MACOS)
@@ -80,7 +81,7 @@ if(CMAKE_BUILD_TYPE STREQUAL DEBUG)
     endif()
 
     link_directories("${PROJECT_SOURCE_DIR}/../bin/Debug/")
-elseif(CMAKE_BUILD_TYPE STREQUAL RELEASE)
+elseif(BUILD_TYPE_UPPER STREQUAL RELEASE)
     add_definitions(-DNDEBUG -O3)
 
     if(IS_MACOS)
@@ -106,7 +107,6 @@ if(APPLE)
     target_link_libraries(PandoraSimulator libPandoraStrategy.a libcwPandoraDLL_MacOS_Universal.a libTinyXml_MacOS_Universal.a)
     target_link_libraries(PandoraSimulator ${OpenMP_omp_LIBRARY})
 else()
-    target_link_libraries(PandoraSimulator libPandoraStrategy.a libcwPandoraDLL_Linux.a libTinyXml_Linux.a)
+    target_link_libraries(PandoraSimulator libPandoraStrategy.a libcwPandoraDLL_Linux.a libTinyXml_Linux.a) # target_link_libraries(PandoraSimulator ${OpenMP_omp_LIBRARY})
+    target_link_libraries(PandoraSimulator ${OpenMP_omp_LIBRARY})
 endif()
-
-# target_link_libraries(PandoraSimulator ${OpenMP_omp_LIBRARY})

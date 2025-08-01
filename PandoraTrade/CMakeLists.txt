@@ -53,22 +53,28 @@ include_directories("../PandoraStrategy/")
 include_directories("../Interface/include/")
 include_directories("../Interface/")
 
+string(TOUPPER "${CMAKE_BUILD_TYPE}" BUILD_TYPE_UPPER)
+
 # link_directories("${PROJECT_SOURCE_DIR}/../Interface/CTPTradeApiLinux/")
 # link_directories("/root/projects/PandoraTrader/Interface/CTPTradeApiLinux")
 # 根据系统类型设置库路径
-if(CMAKE_BUILD_TYPE STREQUAL DEBUG)
+if(BUILD_TYPE_UPPER STREQUAL DEBUG)
     add_definitions(-g -DDEBUG)
 
     if(IS_MACOS)
         link_directories("${PROJECT_SOURCE_DIR}/../Interface/lib/MacOS/Debug/")
+        message(STATUS "IS_MACOS ${PROJECT_SOURCE_DIR}/../Interface/lib/MacOS/Debug/")
     elseif(IS_UBUNTU)
         link_directories("${PROJECT_SOURCE_DIR}/../Interface/lib/Ubuntu/Debug/")
+        message(STATUS "${PROJECT_SOURCE_DIR}/../Interface/lib/Ubuntu/Debug/")
     else()
         link_directories("${PROJECT_SOURCE_DIR}/../Interface/lib/Linux/Debug/")
+        message(STATUS "${PROJECT_SOURCE_DIR}/../Interface/lib/Linux/Debug/")
     endif()
 
     link_directories("${PROJECT_SOURCE_DIR}/../bin/Debug/")
-elseif(CMAKE_BUILD_TYPE STREQUAL RELEASE)
+    message(STATUS "${PROJECT_SOURCE_DIR}/../bin/Debug/")
+elseif(BUILD_TYPE_UPPER STREQUAL RELEASE)
     add_definitions(-DNDEBUG -O3)
 
     if(IS_MACOS)
