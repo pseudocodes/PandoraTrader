@@ -23,7 +23,8 @@ elseif(UNIX)
     endif()
 endif()
 
-# find_package(OpenMP REQUIRED)
+find_package(OpenMP)
+
 if(APPLE)
     if(CMAKE_C_COMPILER_ID MATCHES "Clang")
         set(OpenMP_C_FLAGS "-Xpreprocessor -fopenmp -I/usr/local/opt/libomp/include")
