@@ -6,6 +6,32 @@ project(PandoraSimulator)
 if(APPLE)
     set(IS_MACOS TRUE)
     message(STATUS "Detected macOS system")
+
+    # 检测 macOS 架构
+    if(CMAKE_OSX_ARCHITECTURES)
+        set(MACOS_ARCH ${CMAKE_OSX_ARCHITECTURES})
+        message(STATUS "Using specified architecture: ${MACOS_ARCH}")
+    else()
+        execute_process(
+            COMMAND uname -m
+            OUTPUT_VARIABLE MACOS_ARCH
+            OUTPUT_STRIP_TRAILING_WHITESPACE
+        )
+        message(STATUS "Detected architecture: ${MACOS_ARCH}")
+    endif()
+
+    # 根据架构设置 Homebrew 路径
+    if(MACOS_ARCH STREQUAL "arm64")
+        set(HOMEBREW_PREFIX "/opt/homebrew")
+        set(IS_ARM64 TRUE)
+        message(STATUS "Using ARM64 (Apple Silicon) Homebrew path: ${HOMEBREW_PREFIX}")
+    else()
+        # x86_64 或其他架构，使用传统路径
+        set(HOMEBREW_PREFIX "/usr/local")
+        set(IS_ARM64 FALSE)
+        message(STATUS "Using x86_64 (Intel) Homebrew path: ${HOMEBREW_PREFIX}")
+    endif()
+
 elseif(UNIX)
     # 检测是否为 Ubuntu 系统
     execute_process(
@@ -26,16 +52,35 @@ endif()
 find_package(OpenMP)
 
 if(APPLE)
+    # 使用动态设置的 Homebrew 路径配置 OpenMP
+    set(LIBOMP_INCLUDE_DIR "${HOMEBREW_PREFIX}/opt/libomp/include")
+    set(LIBOMP_LIBRARY_DIR "${HOMEBREW_PREFIX}/opt/libomp/lib")
+    set(LIBOMP_LIBRARY_PATH "${LIBOMP_LIBRARY_DIR}/libomp.dylib")
+
+    message(STATUS "OpenMP include directory: ${LIBOMP_INCLUDE_DIR}")
+    message(STATUS "OpenMP library path: ${LIBOMP_LIBRARY_PATH}")
+
     if(CMAKE_C_COMPILER_ID MATCHES "Clang")
-        set(OpenMP_C_FLAGS "-Xpreprocessor -fopenmp -I/usr/local/opt/libomp/include")
+        set(OpenMP_C_FLAGS "-Xpreprocessor -fopenmp -I${LIBOMP_INCLUDE_DIR}")
         set(OpenMP_C_LIB_NAMES "omp")
-        set(OpenMP_omp_LIBRARY "/usr/local/opt/libomp/lib/libomp.dylib")
+        set(OpenMP_omp_LIBRARY "${LIBOMP_LIBRARY_PATH}")
     endif()
 
     if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-        set(OpenMP_CXX_FLAGS "-Xpreprocessor -fopenmp -I/usr/local/opt/libomp/include")
+        set(OpenMP_CXX_FLAGS "-Xpreprocessor -fopenmp -I${LIBOMP_INCLUDE_DIR}")
         set(OpenMP_CXX_LIB_NAMES "omp")
-        set(OpenMP_omp_LIBRARY "/usr/local/opt/libomp/lib/libomp.dylib")
+        set(OpenMP_omp_LIBRARY "${LIBOMP_LIBRARY_PATH}")
+    endif()
+
+    # 检查 OpenMP 库是否存在
+    if(NOT EXISTS "${LIBOMP_LIBRARY_PATH}")
+        message(WARNING "OpenMP library not found at ${LIBOMP_LIBRARY_PATH}")
+        message(STATUS "Please install libomp: brew install libomp")
+    endif()
+
+    if(NOT EXISTS "${LIBOMP_INCLUDE_DIR}")
+        message(WARNING "OpenMP headers not found at ${LIBOMP_INCLUDE_DIR}")
+        message(STATUS "Please install libomp: brew install libomp")
     endif()
 elseif(UNIX AND NOT APPLE)
     # Linux系统的OpenMP配置
