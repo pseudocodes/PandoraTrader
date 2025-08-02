@@ -58,7 +58,7 @@ jobs:
         run: |
           mkdir build && cd build
           cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
-          cmake --build . --parallel 2
+          cmake --build .
 
       - name: Verify build artifacts
         run: |
