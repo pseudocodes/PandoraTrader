@@ -48,16 +48,273 @@ jobs:
       - name: Install dependencies
         run: |
           if [[ "$RUNNER_OS" == "Linux" ]]; then
+            echo "=== Installing dependencies on Linux ==="
             sudo apt-get update
-            sudo apt-get install -y cmake build-essential libomp-dev
+            sudo apt-get install -y cmake build-essential libomp-dev pkg-config
+            
+            echo ""
+            echo "=== Verifying OpenMP installation on Linux ==="
+            
+            # 检查 OpenMP 开发包
+            if dpkg -l | grep -q libomp-dev; then
+              echo "✅ libomp-dev package installed"
+              dpkg -l | grep libomp
+            else
+              echo "❌ libomp-dev package not found"
+              exit 1
+            fi
+            
+            # 检查 OpenMP 头文件
+            if [[ -f "/usr/lib/x86_64-linux-gnu/libomp.so" ]] || [[ -f "/usr/lib/libomp.so" ]]; then
+              echo "✅ OpenMP shared library found"
+              ls -la /usr/lib/x86_64-linux-gnu/libomp.so* 2>/dev/null || ls -la /usr/lib/libomp.so* 2>/dev/null
+            else
+              echo "❌ OpenMP shared library not found"
+              exit 1
+            fi
+            
+            # 检查 OpenMP 头文件
+            if [[ -f "/usr/lib/x86_64-linux-gnu/libomp.a" ]] || [[ -f "/usr/lib/libomp.a" ]]; then
+              echo "✅ OpenMP static library found"
+            else
+              echo "⚠️  OpenMP static library not found (not critical)"
+            fi
+            
+            # 检查编译器 OpenMP 支持
+            echo "Testing compiler OpenMP support..."
+            cat > test_openmp.c << 'EOF'
+            #include <omp.h>
+            #include <stdio.h>
+            int main() {
+                printf("OpenMP version: %d\\n", _OPENMP);
+                printf("Max threads: %d\\n", omp_get_max_threads());
+                return 0;
+            }
+            EOF
+            
+            if gcc -fopenmp test_openmp.c -o test_openmp -lomp 2>/dev/null; then
+              echo "✅ GCC OpenMP compilation test passed"
+              ./test_openmp || echo "⚠️  OpenMP runtime test failed"
+            else
+              echo "❌ GCC OpenMP compilation test failed"
+              exit 1
+            fi
+            
+            rm -f test_openmp.c test_openmp
+            
           elif [[ "$RUNNER_OS" == "macOS" ]]; then
-            brew install cmake libomp
+            echo "=== Installing dependencies on macOS ==="
+            
+            # 检测系统架构和 GitHub Actions runner 类型
+            SYSTEM_ARCH=$(uname -m)
+            echo "System architecture: $SYSTEM_ARCH"
+            echo "GitHub Runner OS: ${{ matrix.os }}"
+            
+            # 确定目标架构和相应的 Homebrew 路径
+            # GitHub Actions runners:
+            # - macos-12, macos-13: 通常是 x86_64
+            # - macos-14, macos-15: 通常是 ARM64 (Apple Silicon)
+            if [[ "${{ matrix.os }}" == "macos-12" || "${{ matrix.os }}" == "macos-13" ]]; then
+              TARGET_ARCH="x86_64"
+              HOMEBREW_PREFIX="/usr/local"
+              echo "Target architecture: x86_64 (Intel Mac)"
+            else
+              TARGET_ARCH="arm64"
+              HOMEBREW_PREFIX="/opt/homebrew"
+              echo "Target architecture: arm64 (Apple Silicon)"
+            fi
+            
+            # 检查并安装适当的 Homebrew（如果需要）
+            if [[ "$TARGET_ARCH" == "x86_64" ]]; then
+              echo "=== Setting up x86_64 Homebrew ==="
+              
+              # 如果是 Apple Silicon 系统但需要 x86_64 构建
+              if [[ "$SYSTEM_ARCH" == "arm64" ]]; then
+                echo "Installing x86_64 Homebrew on Apple Silicon..."
+                
+                # 检查 x86_64 Homebrew 是否已安装
+                if [[ ! -f "/usr/local/bin/brew" ]]; then
+                  echo "Installing x86_64 Homebrew..."
+                  arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+                fi
+                
+                # 使用 x86_64 架构运行 Homebrew 命令
+                echo "Installing dependencies with x86_64 Homebrew..."
+                arch -x86_64 /usr/local/bin/brew install cmake libomp
+              else
+                # 本身就是 x86_64 系统
+                echo "Using native x86_64 Homebrew..."
+                brew install cmake libomp
+              fi
+              
+              # 设置 x86_64 环境变量
+              echo "HOMEBREW_PREFIX=/usr/local" >> $GITHUB_ENV
+              echo "LDFLAGS=-L/usr/local/opt/libomp/lib" >> $GITHUB_ENV
+              echo "CPPFLAGS=-I/usr/local/opt/libomp/include" >> $GITHUB_ENV
+              echo "OpenMP_ROOT=/usr/local/opt/libomp" >> $GITHUB_ENV
+              echo "CMAKE_PREFIX_PATH=/usr/local" >> $GITHUB_ENV
+              
+            else
+              echo "=== Setting up ARM64 Homebrew ==="
+              
+              # Apple Silicon 原生安装
+              echo "Using native ARM64 Homebrew..."
+              brew install cmake libomp
+              
+              # 设置 ARM64 环境变量
+              echo "HOMEBREW_PREFIX=/opt/homebrew" >> $GITHUB_ENV
+              echo "LDFLAGS=-L/opt/homebrew/opt/libomp/lib" >> $GITHUB_ENV
+              echo "CPPFLAGS=-I/opt/homebrew/opt/libomp/include" >> $GITHUB_ENV
+              echo "OpenMP_ROOT=/opt/homebrew/opt/libomp" >> $GITHUB_ENV
+              echo "CMAKE_PREFIX_PATH=/opt/homebrew" >> $GITHUB_ENV
+            fi
+            
+            echo ""
+            echo "=== Verifying OpenMP installation on macOS ==="
+            
+            # 根据目标架构使用相应的 brew 命令验证
+            if [[ "$TARGET_ARCH" == "x86_64" && "$SYSTEM_ARCH" == "arm64" ]]; then
+              # 在 Apple Silicon 上验证 x86_64 Homebrew 安装
+              if arch -x86_64 /usr/local/bin/brew list libomp >/dev/null 2>&1; then
+                echo "✅ libomp package installed via x86_64 Homebrew"
+                arch -x86_64 /usr/local/bin/brew list --versions libomp
+              else
+                echo "❌ libomp package not found in x86_64 Homebrew"
+                exit 1
+              fi
+            else
+              # 使用默认 brew 命令验证
+              if brew list libomp >/dev/null 2>&1; then
+                echo "✅ libomp package installed via Homebrew"
+                brew list --versions libomp
+              else
+                echo "❌ libomp package not found"
+                exit 1
+              fi
+            fi
+            
+            # 检查目标架构对应的库文件路径
+            echo "Checking OpenMP library for $TARGET_ARCH architecture..."
+            EXPECTED_LIB_PATH="$HOMEBREW_PREFIX/opt/libomp/lib/libomp.dylib"
+            EXPECTED_HEADER_PATH="$HOMEBREW_PREFIX/opt/libomp/include/omp.h"
+            
+            if [[ -f "$EXPECTED_LIB_PATH" ]]; then
+              echo "✅ OpenMP library found at: $EXPECTED_LIB_PATH"
+              ls -la "$EXPECTED_LIB_PATH"
+              
+              # 检查库的架构
+              echo "Library architecture info:"
+              file "$EXPECTED_LIB_PATH" || echo "Unable to check library architecture"
+            else
+              echo "❌ OpenMP library not found at expected location: $EXPECTED_LIB_PATH"
+              echo "Searching for libomp files in $HOMEBREW_PREFIX:"
+              find "$HOMEBREW_PREFIX" -name "*libomp*" 2>/dev/null | head -10 || echo "No libomp files found"
+              exit 1
+            fi
+            
+            # 检查头文件
+            if [[ -f "$EXPECTED_HEADER_PATH" ]]; then
+              echo "✅ OpenMP header found at: $EXPECTED_HEADER_PATH"
+            else
+              echo "❌ OpenMP header file not found at: $EXPECTED_HEADER_PATH"
+              exit 1
+            fi
+            
+            # 测试编译器 OpenMP 支持
+            echo "Testing compiler OpenMP support for $TARGET_ARCH architecture..."
+            cat > test_openmp.c << 'EOF'
+            #include <omp.h>
+            #include <stdio.h>
+            int main() {
+                printf("OpenMP version: %d\\n", _OPENMP);
+                printf("Max threads: %d\\n", omp_get_max_threads());
+                return 0;
+            }
+            EOF
+            
+            # 设置编译标志
+            COMPILE_FLAGS="-Xpreprocessor -fopenmp -L$HOMEBREW_PREFIX/opt/libomp/lib -I$HOMEBREW_PREFIX/opt/libomp/include -lomp"
+            
+            # 如果需要交叉编译到 x86_64
+            if [[ "$TARGET_ARCH" == "x86_64" && "$SYSTEM_ARCH" == "arm64" ]]; then
+              COMPILE_FLAGS="-arch x86_64 $COMPILE_FLAGS"
+              echo "Using cross-compilation flags for x86_64 on Apple Silicon"
+            elif [[ "$TARGET_ARCH" == "x86_64" ]]; then
+              COMPILE_FLAGS="-arch x86_64 $COMPILE_FLAGS"
+              echo "Using x86_64 compilation flags"
+            else
+              COMPILE_FLAGS="-arch arm64 $COMPILE_FLAGS"
+              echo "Using ARM64 compilation flags"
+            fi
+            
+            echo "Compile command: clang $COMPILE_FLAGS test_openmp.c -o test_openmp"
+            
+            if clang $COMPILE_FLAGS test_openmp.c -o test_openmp 2>/dev/null; then
+              echo "✅ Clang OpenMP compilation test passed"
+              
+              # 检查生成的二进制文件架构
+              echo "Generated binary architecture:"
+              file test_openmp || echo "Unable to check binary architecture"
+              
+              # 运行测试（如果架构匹配）
+              if [[ "$TARGET_ARCH" == "$SYSTEM_ARCH" ]] || [[ "$TARGET_ARCH" == "x86_64" && "$SYSTEM_ARCH" == "arm64" ]]; then
+                echo "Running OpenMP test..."
+                ./test_openmp || echo "⚠️  OpenMP runtime test failed"
+              else
+                echo "Skipping runtime test due to architecture mismatch"
+              fi
+            else
+              echo "❌ Clang OpenMP compilation test failed"
+              echo "Compilation error details:"
+              clang $COMPILE_FLAGS test_openmp.c -o test_openmp 2>&1 || true
+              
+              echo "Trying simplified compilation flags..."
+              SIMPLE_FLAGS="-Xpreprocessor -fopenmp -lomp"
+              if clang $SIMPLE_FLAGS test_openmp.c -o test_openmp 2>/dev/null; then
+                echo "✅ Simplified OpenMP compilation succeeded"
+                ./test_openmp || echo "⚠️  OpenMP runtime test failed"
+              else
+                echo "❌ All OpenMP compilation attempts failed"
+                exit 1
+              fi
+            fi
+            
+            rm -f test_openmp.c test_openmp
           fi
 
       - name: Configure and Build
         run: |
           mkdir build && cd build
-          cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+
+          # 设置 CMake 配置参数
+          CMAKE_ARGS="-DCMAKE_BUILD_TYPE=${{ matrix.build_type }}"
+
+          # macOS 特定配置
+          if [[ "$RUNNER_OS" == "macOS" ]]; then
+            echo "Configuring for macOS build..."
+            
+            # 根据 GitHub Actions runner 确定架构
+            if [[ "${{ matrix.os }}" == "macos-12" || "${{ matrix.os }}" == "macos-13" ]]; then
+              echo "Configuring for x86_64 architecture..."
+              CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_OSX_ARCHITECTURES=x86_64"
+              CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_PREFIX_PATH=/usr/local"
+            else
+              echo "Configuring for ARM64 architecture..."
+              CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_OSX_ARCHITECTURES=arm64"
+              CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_PREFIX_PATH=/opt/homebrew"
+            fi
+            
+            # 显示设置的环境变量
+            echo "Environment variables:"
+            echo "LDFLAGS: $LDFLAGS"
+            echo "CPPFLAGS: $CPPFLAGS"
+            echo "OpenMP_ROOT: $OpenMP_ROOT"
+          fi
+
+          echo "CMake configuration command: cmake .. $CMAKE_ARGS"
+          cmake .. $CMAKE_ARGS
+
+          echo "Building project..."
           cmake --build .
 
       - name: Verify build artifacts
@@ -106,9 +363,33 @@ jobs:
               if [[ "$RUNNER_OS" == "Linux" ]] && command -v ldd >/dev/null 2>&1; then
                 echo "   Dependencies (first 3):"
                 ldd "$exe_path" 2>/dev/null | head -3 | sed 's/^/     /' || echo "     Unable to check dependencies"
-              elif [[ "$RUNNER_OS" == "macOS" ]] && command -v otool >/dev/null 2>&1; then
-                echo "   Dependencies (first 3):"
-                otool -L "$exe_path" 2>/dev/null | head -4 | tail -3 | sed 's/^/     /' || echo "     Unable to check dependencies"
+              elif [[ "$RUNNER_OS" == "macOS" ]]; then
+                # 检查 macOS 二进制文件架构
+                echo "   Architecture:"
+                file "$exe_path" | sed 's/^/     /' || echo "     Unable to check architecture"
+                
+                # 检查依赖库
+                if command -v otool >/dev/null 2>&1; then
+                  echo "   Dependencies (first 3):"
+                  otool -L "$exe_path" 2>/dev/null | head -4 | tail -3 | sed 's/^/     /' || echo "     Unable to check dependencies"
+                fi
+                
+                # 验证架构是否符合预期
+                if [[ "${{ matrix.os }}" == "macos-12" || "${{ matrix.os }}" == "macos-13" ]]; then
+                  if file "$exe_path" | grep -q "x86_64"; then
+                    echo "   ✅ Architecture verification: x86_64 as expected"
+                  else
+                    echo "   ⚠️  Architecture warning: Expected x86_64, got:"
+                    file "$exe_path" | sed 's/^/       /'
+                  fi
+                else
+                  if file "$exe_path" | grep -q "arm64"; then
+                    echo "   ✅ Architecture verification: ARM64 as expected"
+                  else
+                    echo "   ⚠️  Architecture warning: Expected ARM64, got:"
+                    file "$exe_path" | sed 's/^/       /'
+                  fi
+                fi
               fi
             else
               echo "❌ $exe NOT FOUND at $exe_path"
