@@ -17,8 +17,6 @@
 - ✅ 详细的系统信息收集和依赖检查
 - ✅ 按顺序构建：PandoraStrategy → PandoraSimulator → PandoraTrader
 - ✅ 构建产物验证和依赖关系检查
-- ✅ 基础功能测试（smoke test）
-- ✅ 分别上传4套构建产物（保留7天）
 - ✅ Matrix 构建状态汇总报告
 
 **Matrix 配置：**
@@ -151,34 +149,21 @@ cmake .. -DCMAKE_OSX_ARCHITECTURES=arm64
 
 ## 📁 构建产物
 
-构建成功后，产物将上传到 GitHub Actions Artifacts（4套构建产物）：
+构建成功后，可执行文件会生成在项目的 `bin/` 目录下：
 
 ```
-pandora-trader-ubuntu-x86_64-Release/
-├── libPandoraStrategy.a
-├── PandoraSimulator
-└── PandoraTrader
-
-pandora-trader-ubuntu-x86_64-Debug/
-├── libPandoraStrategy.a
-├── PandoraSimulator
-└── PandoraTrader
-
-pandora-trader-macos-arm64-Release/     # Apple Silicon
-├── libPandoraStrategy.a
-├── PandoraSimulator
-└── PandoraTrader
-
-pandora-trader-macos-arm64-Debug/       # Apple Silicon
-├── libPandoraStrategy.a
-├── PandoraSimulator
-└── PandoraTrader
+bin/
+├── Release/
+│   ├── libPandoraStrategy.a
+│   ├── PandoraSimulator
+│   └── PandoraTrader
+└── Debug/
+    ├── libPandoraStrategy.a
+    ├── PandoraSimulator
+    └── PandoraTrader
 ```
 
-**下载方式：**
-1. 进入 GitHub Actions 页面
-2. 选择对应的构建运行
-3. 在 "Artifacts" 部分下载
+**注意：** GitHub Actions 只进行构建验证，不上传构建产物。如需可执行文件，请在本地环境构建。
 
 ## 🔄 本地构建对比
 

@@ -221,23 +221,6 @@ jobs:
             exit 1
           fi
 
-      - name: Test basic functionality
-        run: |
-          echo "=== Testing executables ==="
-          # Test if executables can run (basic smoke test)
-          timeout 5s bin/${{ env.BUILD_TYPE }}/PandoraSimulator --help || echo "PandoraSimulator help test completed"
-          timeout 5s bin/${{ env.BUILD_TYPE }}/PandoraTrader --help || echo "PandoraTrader help test completed"
-
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: pandora-trader-${{ matrix.platform }}-${{ matrix.arch }}-${{ matrix.build_type }}
-          path: |
-            bin/${{ env.BUILD_TYPE }}/
-            !bin/${{ env.BUILD_TYPE }}/*.log
-          retention-days: 7
-
   build-summary:
     needs: [build]
     runs-on: ubuntu-latest
@@ -258,12 +241,6 @@ jobs:
             echo "  - Ubuntu x86_64 Debug"  
             echo "  - macOS arm64 Release (Apple Silicon)"
             echo "  - macOS arm64 Debug (Apple Silicon)"
-            echo ""
-            echo "Artifacts available:"
-            echo "  - pandora-trader-ubuntu-x86_64-Release"
-            echo "  - pandora-trader-ubuntu-x86_64-Debug"
-            echo "  - pandora-trader-macos-arm64-Release"
-            echo "  - pandora-trader-macos-arm64-Debug"
             exit 0
           else
             echo "❌ One or more matrix builds failed"
