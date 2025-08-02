@@ -81,7 +81,8 @@ jobs:
           echo "=== CMake Information ==="
           cmake --version
           echo "=== OpenMP Check ==="
-          echo '#include <omp.h>' | gcc -fopenmp -x c -
+          ls -la /usr/include/omp.h || echo "omp.h not found in /usr/include"
+          ls -la /usr/lib/x86_64-linux-gnu/libgomp* || echo "libgomp not found"
 
       - name: Verify system information (macOS ARM64)
         if: matrix.platform == 'macos'
